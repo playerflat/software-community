@@ -1,0 +1,6 @@
+create table mingus.magazine (
+   magazineNumber   int(10) auto_increment  primary key,
+   title    varchar(50),
+   contents text ,
+   date varchar(8)
+);
