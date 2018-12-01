@@ -3,6 +3,7 @@ package site.namsu.sweng.core.dao;
 import site.namsu.sweng.base.Accessor;
 import site.namsu.sweng.base.Dao;
 import site.namsu.sweng.core.entity.Group;
+import site.namsu.sweng.core.entity.Message;
 import site.namsu.sweng.util.Serializer;
 
 import java.util.ArrayList;
@@ -19,7 +20,12 @@ public class GroupDao extends Accessor implements Dao<Group> {
     @Override public Group select(Group input) {
         return SQL("select * from mingus.group where groupNumber = ?")
                 .param(db -> db.setInt(1, input.getGroupNumber()))
-                .map(db -> Serializer.deserialize(db, "object"))
+                .map(db -> Group.builder()
+                        .groupNumber(db.getInt("groupNubmer"))
+                        .groupName(db.getString("groupNumber"))
+                        .groupMembers((ArrayList<String>) Serializer.deserialize(db, "groupMembers"))
+                        .messages((ArrayList<Message>) Serializer.deserialize(db, "messages"))
+                        .build())
                 .get(Group.class);
     }
 
@@ -27,8 +33,15 @@ public class GroupDao extends Accessor implements Dao<Group> {
         return SQL("select * from mingus.group")
                 .map(db -> {
                     List<Group> list = new ArrayList<>();
-                    while (db.next())
+                    while (db.next()) {
+                        Group group = Group.builder()
+                                .groupNumber(db.getInt("groupNumber"))
+                                .groupName(db.getString("groupNumber"))
+                                .groupMembers((ArrayList<String>) Serializer.deserialize(db, "groupMembers"))
+                                .messages((ArrayList<Message>) Serializer.deserialize(db, "messages"))
+                                .build();
                         list.add((Group) Serializer.deserialize(db, "object"));
+                    }
                     return list;
                 })
                 .get(List.class);
