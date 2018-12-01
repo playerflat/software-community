@@ -1,0 +1,6 @@
+ CREATE TABLE mingus.message (
+    messageNumber int(100) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    stdNumber varchar(9),
+    contents text NOT NULL,
+    time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )
