@@ -289,18 +289,10 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-            <!-- 메인페이지-->
-            <a class="nav-link" href="main.jsp">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <!--Dashboard-->
-                <span>Main</span>
-            </a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-user-circle"></i>
                 <!--Pages-->
                 <span>Information</span>
 
@@ -311,35 +303,31 @@
                 </h7>
                 <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
                 </h7>
-
-                <%--<a class="dropdown-item" href="../view/sign_in.jsp">Login</a>--%>
-                <%--<a class="dropdown-item" href="../view/sign_up.jsp">Register</a>--%>
-                <%--<a class="dropdown-item" href="#">Forgot Password</a>--%>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Other Pages</h6>
-                <!--
-                <a class="dropdown-item" href="404.html">404 Page</a>
-                <a class="dropdown-item" href="blank.html">Blank Page</a>
-                -->
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="chat.jsp">
-                <i class="fas fa-fw fa-comment"></i>
+                <i class="fas fa-fw fa-sticky-note"></i>
                 <!--Charts-->
                 <span>Community</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="notice_board.jsp">
-                <i class="fas fa-fw fa-school"></i>
+                <i class="fas fa-fw fa-bullhorn"></i>
                 <!--Tables-->
                 <span>Notice</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="calendar.jsp">
-                <i class="fas fa-fw fa-calendar"></i>
+            <a class="nav-link" href="tables.jsp">
+                <i class="fas fa-fw fa-film"></i>
                 <!--Tables-->
-                <span>Calendar</span></a>
+                <span>SE Magazine</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="chat.jsp">
+                <i class="fas fa-fw fa-comments"></i>
+                <!--Tables-->
+                <span>Messenger</span></a>
         </li>
 
     </ul>
@@ -361,44 +349,71 @@
                 <i class="fas fa-table"></i>
                 공!지!사!항!
             </div>
+
+            <!--dataTables.bootstrap4.csstable에 {table-layout:fixed;word-break:break-all;}추가한거, 이상있으면 삭제하기-->
+
             <div class="card-body">
                 <div class="table-responsive">
-                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered"
-                           id="dataTable" style="text-align: center;">
-
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>작성일</th>
-                            <th>조회수</th>
-                        </tr>
-                        </thead>
+                        <table cellpadding="0" cellspacing="0" border="0"
+                               id="dataTable"class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">no</th>
+                                <th scope="col" style="text-align: center;">공지사항</th>
+                                <th scope="col" style="text-align: center;">작성일</th>
+                            </tr>
+                            </thead>
                         <tbody>
                         <%
                             int a = 20;
                             for (int i=0; i<a; i++){
                         %>
                         <tr>
-                            <td>1</td>
-                            <td>안녕</td>
-                            <td>민구</td>
-                            <td>2018.11.17.</td>
-                            <td>1</td>
+                            <th scope="row" style="text-align: center;">1</th>
+                            <th scope="row">데이터베이스(database)
+                                복수의 사용자와 응용들이 공용할 수 있게 논리적으로 관련된 데이터의 통합된 집합
+                                화일 : 한 가지 유형의 개체(인사, 급여, 교과목)에 관한 데이터만 포함
+                                데이터베이스 : 여러 유형의 개체에 관한 데이터와 이 개체들간의 논리적 상관 관계에 대한 정보를 포함
+                               </td>
+                            <th scope="row" style="text-align: center;">2018.11.17.</th>
                         </tr>
+
+                        <tr>
+                            <th scope="row" style="text-align: center;">2</th>
+                            <th scope="row">
+                                1. 각각의 시약으로부터 100mL 정도의 0.01mol 용액을 만든다.
+
+                                <시약 별 필요 질량>
+                                    100ml 정도의 0.01M 용액
+                                    ＊ 0.01M = x mol /0.1L
+                                    x mol = (0.01*0.1)mol = 0.001mol
+
+                                    1) 에탄올 (ethanol)의 분자량 = 46.07g/mol
+                                    0.001mol * 46.07g/mol = 0.04607g (=0.05g)
+                                    2) 아세트산 (acetic acid)의 분자량 = 60.0g/mol
+                                    0.001mol * 60.0g/mol = 0.06g
+                                    3) 페놀 (phenol)의 분자량 = 94.11g/mol
+                                    0.001mol * 94.11g/mol = 0.09411g (=0.09g)
+                                    4) 벤조산(benzoic acid)의 분자량 = 122.13g/mol
+                                    0.001mol * 122.13g/mol = 0.12213g (=0.1g)
+                                    5) 파라톨루엔설폰산(P-TOLUENESULFONIC ACID)의 분자량
+                                    = 172.20g/mol
+                                    0.001 mol * 172.20g/mol = 0.1722g (=0.2g)
+                                    6) 아스피린의 분자량 = 180.157g/mol
+                                    0.001mol * 180.157g/mol = 0.180157g (=0.2g)
+
+                                    2. pH meter 또는 pH paper로 각 용액의 pH를 측정한다.
+                                    3. 각 물질의 구조와 pH를 연관시켜 생각해보고 acidity의 순서대로 나열해본다.
+                            </th>
+                            <th scope="row" style="text-align: center;">2018.09.17.</th>
+                            </tr>
                         <% } %>
                         </tbody>
                     </table>
-                    <a href="write.jsp" class="btn btn-primary fa-pull-right">글쓰기</a>
-
-
                 </div>
             </div>
         </div>
-
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-
     </div>
 </div>
 

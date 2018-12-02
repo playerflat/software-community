@@ -3,29 +3,12 @@
 <html lang="ko">
 
 <head>
-    <%@include file="header.jsp" %>
+
+    <%@include file="header.jsp"%>
     <div class="card-title" style="margin-top:10%;">
         <h2 class="card-title text-center" style="color:#ffffff;">전북대학교 소프트웨어공학과</h2>
     </div>
 
-    <script>
-        function signInRequest() {
-            let req = new XMLHttpRequest();
-            req.open("post", "http://localhost:1234/sign_in.do"
-                + "?stdNumber="
-                + encodeURIComponent(document.getElementById("stdNumber").value)
-                + "&password="
-                + encodeURIComponent(document.getElementById("password").value)
-                , true);
-            req.onreadystatechange = signInSubscribe();
-            req.send(null);
-        }
-
-        function signInSubscribe() {
-
-        }
-
-    </script>
 </head>
 
 <body class="bg-dark">
@@ -34,25 +17,30 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header text-center">로그인</div>
         <div class="card-body">
-            <form class="form-signin">
+            <form class="form-signin" action="${pageContext.request.contextPath}/server/sign_in" method="POST">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="text" id="stdNumber" name="stdNumber" class="form-control"
+                        <input type="text" id="inputText" name="stdNumber" class="form-control"
                                placeholder="Student Number" required="required" autofocus="autofocus">
-                        <label for="stdNumber">학생 번호</label>
+                        <label for="inputText">학생 번호</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="password" id="password" name="password" class="form-control"
+                        <input type="password" id="inputPassword" name="password" class="form-control"
                                placeholder="Password" required="required">
-                        <label for="password">비밀번호</label>
+                        <label for="inputPassword">비밀번호</label>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block" type="button"
-                        onclick="signInRequest()">
-                    로그인
-                </button>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me">
+                            회원정보 저장
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">로그인</button>
             </form>
             <div class="text-center">
                 <a class="d-block small mt-3" href="terms.jsp">회원가입</a>
