@@ -1,9 +1,9 @@
 package site.namsu.sweng.rx.operator;
 
+import site.namsu.sweng.rx.function.Predicate;
 import site.namsu.sweng.rx.publisher.Publisher;
 
 import java.util.concurrent.Flow;
-import site.namsu.sweng.rx.function.Function;
 
 /**
  * @Author : Hyunwoong
@@ -11,17 +11,17 @@ import site.namsu.sweng.rx.function.Function;
  * @Homepage : https://github.com/gusdnd852
  */
 @SuppressWarnings("unchecked")
-public class Switcher<T, R> extends Publisher<R> {
+public class Switcher<T> extends Publisher<T> {
 
     private final Publisher<T> flux;
-    private final Function<T, Function<T, R>> function;
+    private final Predicate<T> predicate;
 
-    public Switcher(Publisher<T> flux, Function<T, Function<T, R>> function) {
+    public Switcher(Publisher<T> flux, Predicate<T> predicate) {
         this.flux = flux;
-        this.function = function;
+        this.predicate = predicate;
     }
 
-    @Override public void subscribe(Flow.Subscriber<? super R> subscriber) {
+    @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
         flux.subscribe(new Flow.Subscriber<>() {
             @Override public void onSubscribe(Flow.Subscription subscription) {
                 subscriber.onSubscribe(subscription);
@@ -29,7 +29,11 @@ public class Switcher<T, R> extends Publisher<R> {
 
             @Override public void onNext(T item) {
                 try {
-                    subscriber.onNext(function.apply(item).apply(item));
+                    if (predicate.test(item)) {
+                      subscriber.onNext(item);
+                    } else {
+                        subscriber.onNext(null);
+                    }
                 } catch (Exception e) {
                     subscriber.onError(e);
                 }

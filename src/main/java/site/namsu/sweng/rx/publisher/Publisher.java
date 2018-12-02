@@ -37,7 +37,7 @@ public class Publisher<T> implements Flow.Publisher<T> {
     }
 
     @SafeVarargs
-    public static <T> Publisher<T> springThread(T... inputs) {
+    public static <T> Publisher<T> mainThread(T... inputs) {
         Publisher.executor = Scheduler.main();
         return new Publisher<>(inputs);
     }
@@ -68,8 +68,8 @@ public class Publisher<T> implements Flow.Publisher<T> {
         return new Flatter<>(this, flatMapper);
     }
 
-    public <R> Publisher<R> switchIf(Function<T, Function<T, R>> function) {
-        return new Switcher<>(this, function);
+    public Publisher<T> switchIfEmpty(Predicate<T> predicate) {
+        return new Switcher<>(this, predicate);
     }
 
     @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
@@ -82,9 +82,5 @@ public class Publisher<T> implements Flow.Publisher<T> {
 
     public Publisher<T> complete(Runnable runnable) {
         return new Complete<>(this, runnable);
-    }
-
-    public T block() {
-        return inputAsList.get(0);
     }
 }

@@ -19,7 +19,7 @@ public class Mail {
     private Mail() {
     }
 
-    public static void send(String mailTo, String stdNumber, String name) {
+    public static boolean send(String mailTo, String stdNumber, String name) {
         String mailHost = "smtp.naver.com"; //네이버메일
         String mailAccId = "mingusbob"; // 메일보내는이
         String mailAccPwd = "Software!1"; // 메일비밀번호
@@ -67,8 +67,10 @@ public class Mail {
 
             transport = session.getTransport("smtp");
             Transport.send(msg);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 transport.close();

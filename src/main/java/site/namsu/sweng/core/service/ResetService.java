@@ -20,8 +20,4 @@ public class ResetService {
         return dao.update(user, "password",
                 Encoder.SHA256(user.getPassword()));
     }
-
-    public User getDbUser(User user) {
-        return dao.select(user);
-    }
 }

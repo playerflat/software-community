@@ -43,7 +43,7 @@ public class Reducer<T, R> extends Publisher<R> {
             }
 
             @Override public void onComplete() {
-                subscriber.onNext(temp);
+                  subscriber.onNext(temp);
                 subscriber.onComplete();
             }
         });

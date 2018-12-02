@@ -1,17 +1,17 @@
-<%--suppress ALL --%>
 <%--
   Created by IntelliJ IDEA.
   User: Jeong-yoon
-  Date: 28/11/2018
-  Time: 10:39 PM
+  Date: 01/12/2018
+  Time: 5:35 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%@include file="header.jsp"%>
     <link href="../css/settings.css" rel="stylesheet" id="bootstrap-css">
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 <div id="page-top">
@@ -79,61 +79,97 @@
                 </div>
             </li>
         </ul>
-
     </nav>
-        <!-- Page Content -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active" data-target-id="Category1">Category 1</a>
-                        <a href="#" class="list-group-item" data-target-id="Category2">Category 2</a>
-                        <a href="#" class="list-group-item" data-target-id="Category3">Category 3</a>
-                    </div>
-                </div>               <!-- /.col-lg-3 -->
-                <div class="col-lg-9">
-                    <div class="card mt-4">
-                        <div class="card card-outline-secondary my-4" id="Category1">
-                            <div class="card-header">
-                                Product Reviews
-                            </div>
-                            <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                                <hr>
-                                <a href="#" class="btn btn-success">Leave a Review</a>
-                            </div>
-                        <!-- /.card -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-user-circle"></i>
+                    <!--Pages-->
+                    <span>Information</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    <h6 class="dropdown-header">User Info</h6>
+                    <h7 class="dropdown-item-text"><%= session.getAttribute("stdNumber") %>
+                    </h7>
+                    <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
+                    </h7>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.jsp">
+                    <i class="fas fa-fw fa-sticky-note"></i>
+                    <!--Charts-->
+                    <span>Community</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="notice_board.jsp">
+                    <i class="fas fa-fw fa-bullhorn"></i>
+                    <!--Tables-->
+                    <span>Notice</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tables.jsp">
+                    <i class="fas fa-fw fa-film"></i>
+                    <!--Tables-->
+                    <span>SE Magazine</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.jsp">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <!--Tables-->
+                    <span>Messenger</span></a>
+            </li>
+        </ul>
+        <div style = "padding: 30px 0px 2px 3px;"></div>
+        <div class="container" style="margin-top: 50px;">
+            <div class="row flex-lg-nowrap">
+                <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+                    <div class="card p-3">
+                        <div class="e-navlist e-navlist--active-bg">
+                            <ul class="nav">
+                                <li class="nav-item"><a class="nav-link px-2 active" href="settings.jsp"><i class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2" href="settingpw.jsp"><i class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2" href="dev.jsp"><i class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
+                            </ul>
                         </div>
                     </div>
-                <div class="col-lg-9">
-                    <div class="card mt-4">
-                         <div class="card card-outline-secondary my-4" id="Category2">
-                             <div class="card-header">
-                                        Product Reviews
-                             </div>
-                             <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                 <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                                        <hr>
-                                 <a href="#" class="btn btn-success">Leave a Review</a>
-                             </div>
-                             <div class="card-body">
+                </div>
 
-                             </div>
-                                    <!-- /.card -->
-                         </div>
-
+                <div class="col">
+                    <div class="row">
+                        <div class="col mb-3">
+                                <div class="card" style="width: 40rem;">
+                                    <div class="card-header">개발자 노트</div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">1.0.0. Hello SE</li>
+                                            <li class="list-group-item">1.1.0. Haaaaaaaa</li>
+                                            <li class="list-group-item">1.1.1. sleep(28800)</li>
+                                        </ul>
+                                </div>
+                            </div>
+                        <div class="col-12 col-md-3 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title font-weight-bold">Support</h6>
+                                    <p class="card-text">Test 안녕 연락주세요-★★★</p>
+                                    <div class="btn btn-primary" type="button">
+                                        <a href="contactus.jsp">Contactus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.col-lg-9 -->
+                    </div>
                 </div>
             </div>
-            <!-- /.container -->
         </div>
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

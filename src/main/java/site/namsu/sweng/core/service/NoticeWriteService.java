@@ -17,7 +17,10 @@ public class NoticeWriteService {
 
     private final Dao<Notice> dao = Dao.of(NoticeDao.class);
 
-    public boolean write(Notice notice) {
-        return dao.insert(notice);
+    public boolean writeSuccessful(Notice notice) {
+        if (notice != null)
+            return dao.insert(notice);
+        else
+            return false;
     }
 }

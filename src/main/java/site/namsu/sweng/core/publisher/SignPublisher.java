@@ -1,18 +1,19 @@
 package site.namsu.sweng.core.publisher;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import site.namsu.sweng.base.SessionOwner;
 import site.namsu.sweng.core.entity.User;
 import site.namsu.sweng.core.service.SignInService;
 import site.namsu.sweng.core.service.SignUpService;
 import site.namsu.sweng.rx.publisher.Publisher;
-import site.namsu.sweng.util.View;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
+import java.util.concurrent.Flow;
 
 /**
  * @Author : Hyunwoong
@@ -21,21 +22,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @RestController
-public class SignPublisher {
+@AllArgsConstructor
+public class SignPublisher extends SessionOwner {
 
     @Autowired private SignInService signInService;
     @Autowired private SignUpService signUpService;
 
     @PostMapping("sign_in.do")
     public Publisher<User> signInPublish(User req) {
-        return Publisher.springThread(req)
-                .next(input -> System.out.println("AAAAA"))
-                .map(input -> signInService.getDbUser(input))
-                .map(input -> input);
+        return Publisher.mainThread(req)
+                .map(signInService::getDbUser)
+                .switchIfEmpty(db -> signInService.isSigned(req, db))
+                .filter(Objects::nonNull)
+                .next(db -> store("stdNumber", db.getStdNumber()))
+                .next(db -> store("name", db.getName()));
     }
 
     @PostMapping("sign_up.do")
-    public Publisher<User> signUpPublish(User req) {
-        return Publisher.springThread();
+    public Publisher<Boolean> signUpPublish(User req) {
+        return Publisher.mainThread(req)
+                .map(signUpService::encodePassword)
+                .map(signUpService::storeSuccessful);
     }
 }
