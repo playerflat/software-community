@@ -17,7 +17,7 @@
     <div class="card card-register mx-auto mt-5 col-md-6">
         <div class="card-header">회원가입</div>
         <div class="card-body">
-            <form role="form" class=form-signin action="${pageContext.request.contextPath}/sign_up.do" method="post">
+            <form role="form" class=form-signin action="${pageContext.request.contextPath}/server/sign_up" method="post">
                 <div class="form-group">
                     <div class="form-label-group">
                         <input type="text" id="studentNumber" name="stdNumber" class="form-control" placeholder="학생 번호" required="required" autofocus="autofocus">
