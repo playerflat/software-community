@@ -4,6 +4,7 @@ OriginalFile
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <%@include file="header.jsp"%>
+    <%@include file="session_checker.jsp" %>
 </head>
 <body>
 <div id="page-top">
@@ -93,7 +94,7 @@ OriginalFile
                 </div>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="chat.jsp">
+            <a class="nav-link" href="community_board.jsp">
                 <i class="fas fa-fw fa-sticky-note"></i>
                 <!--Charts-->
                 <span>Community</span></a>
@@ -105,7 +106,7 @@ OriginalFile
                     <span>Notice</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="magazine.jsp">
                     <i class="fas fa-fw fa-film"></i>
                     <!--Tables-->
                     <span>SE Magazine</span></a>

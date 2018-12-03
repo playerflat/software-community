@@ -8,11 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@include file="header.jsp"%>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"
+    <%@include file="header.jsp" %>
+    <%@include file="session_checker.jsp" %>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
 
     <!------ Include the above in your HEAD tag ---------->
-    <link href="../css/admin.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -111,11 +113,11 @@
             </div>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="chat.jsp">
-            <i class="fas fa-fw fa-sticky-note"></i>
-            <!--Charts-->
-            <span>Community</span></a>
-    </li>
+            <a class="nav-link" href="community_board.jsp">
+                <i class="fas fa-fw fa-sticky-note"></i>
+                <!--Charts-->
+                <span>Community</span></a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="notice_board.jsp">
                 <i class="fas fa-fw fa-bullhorn"></i>
@@ -123,7 +125,7 @@
                 <span>Notice</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="tables.jsp">
+            <a class="nav-link" href="magazine.jsp">
                 <i class="fas fa-fw fa-film"></i>
                 <!--Tables-->
                 <span>SE Magazine</span></a>
@@ -148,10 +150,10 @@
                         </div>
                         <div class="srch_bar">
                             <div class="stylish-input-group">
-                                <input type="text" class="search-bar"  placeholder="Search" >
+                                <input type="text" class="search-bar" placeholder="Search">
                                 <span class="input-group-addon">
                 <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
+                </span></div>
                         </div>
                     </div>
                     <div class="inbox_chat">
@@ -226,7 +228,7 @@
                             <div class="sent_msg">
                                 <p>Test which is a new approach to have all
                                     solutions</p>
-                                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+                                <span class="time_date"> 11:01 AM    |    June 9</span></div>
                         </div>
                         <div class="incoming_msg">
                             <div class="received_msg">
@@ -238,51 +240,52 @@
                         <div class="outgoing_msg">
                             <div class="sent_msg">
                                 <p>Mingus University, Korea Test</p>
-                                <span class="time_date"> 11:01 AM    |    Today</span> </div>
+                                <span class="time_date"> 11:01 AM    |    Today</span></div>
                         </div>
                         <div class="incoming_msg">
                             <div class="received_msg">
                                 <div class="received_withd_msg">
                                     <p>web-programming.
-                                    yeahh</p>
+                                        yeahh</p>
                                     <span class="time_date"> 11:01 AM    |    Today</span></div>
                             </div>
                         </div>
                     </div>
                     <div class="type_msg">
                         <div class="input_msg_write">
-                            <input type="text" class="write_msg" placeholder="Type a message" />
-                            <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                            <input type="text" class="write_msg" placeholder="Type a message"/>
+                            <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                                                                          aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <p class="text-center top_spac"> Design by <a target="_blank" href="#">Sunil Rajput</a></p>
+        </div>
+    </div>
+</div>
 
-        </div></div>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
-    <!-- Page level plugin JavaScript-->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin.min.js"></script>
+<!-- Demo scripts for this page-->
+<script src="js/demo/datatables-demo.js"></script>
+<script src="js/demo/chart-area-demo.js"></script>
 
-    <!-- Demo scripts for this page-->
-    <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/demo/chart-area-demo.js"></script>
 </body>
 </html>

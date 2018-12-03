@@ -9,7 +9,8 @@
 <html>
 <head>
     <%@include file="header.jsp"%>
-    <link href="../css/settings.css" rel="stylesheet" id="bootstrap-css">
+    <%@include file="session_checker.jsp" %>
+    <link href="css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -111,7 +112,7 @@
                     <span>Notice</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="magazine.jsp">
                     <i class="fas fa-fw fa-film"></i>
                     <!--Tables-->
                     <span>SE Magazine</span></a>
@@ -221,27 +222,22 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
     <!-- Custom scripts for all pages-->
 
-    <script src="../js/sb-admin.min.js"></script>
-    <script src="../web/vendor/bootstrap/js/settings.js"></script>
+    <script src="js/sb-admin.min.js"></script>
+    <script src="vendor/bootstrap/js/settings.js"></script>
     <!-- Demo scripts for this page-->
-    <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/demo/chart-area-demo.js"></script>
-
-    <script src="../js/settings.js"></script>
-
-    <script src="../4.1.1/js/bootstrap.min.js"></script>
-    <script src="../jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
 </div>
 </body>
 </html>

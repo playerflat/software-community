@@ -9,8 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@include file="header.jsp"%>
-    <link href="../css/settings.css" rel="stylesheet" id="bootstrap-css">
+    <%@include file="header.jsp" %>
+    <%@include file="session_checker.jsp" %>
+    <link href="css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
@@ -100,11 +101,11 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="chat.jsp">
-                    <i class="fas fa-fw fa-sticky-note"></i>
-                    <!--Charts-->
-                    <span>Community</span></a>
-            </li>
+            <a class="nav-link" href="community_board.jsp">
+                <i class="fas fa-fw fa-sticky-note"></i>
+                <!--Charts-->
+                <span>Community</span></a>
+        </li>
             <li class="nav-item">
                 <a class="nav-link" href="notice_board.jsp">
                     <i class="fas fa-fw fa-bullhorn"></i>
@@ -112,7 +113,7 @@
                     <span>Notice</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="magazine.jsp">
                     <i class="fas fa-fw fa-film"></i>
                     <!--Tables-->
                     <span>SE Magazine</span></a>
@@ -124,16 +125,19 @@
                     <span>Messenger</span></a>
             </li>
         </ul>
-        <div style = "padding: 30px 0px 2px 3px;"></div>
+        <div style="padding: 30px 0px 2px 3px;"></div>
         <div class="container" style="margin-top: 50px;">
             <div class="row flex-lg-nowrap">
                 <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
                     <div class="card p-3">
                         <div class="e-navlist e-navlist--active-bg">
                             <ul class="nav">
-                                <li class="nav-item"><a class="nav-link px-2 active" href="settings.jsp"><i class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2" href="settingpw.jsp"><i class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2" href="dev.jsp"><i class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2 active" href="settings.jsp"><i
+                                        class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2" href="settingpw.jsp"><i
+                                        class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2" href="dev.jsp"><i
+                                        class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -148,36 +152,38 @@
                                         <div class="col mb-3">
                                             <div class="form-group">
                                                 <label>To.Suppor team</label>
-                                                <textarea class="form-control" rows="5" placeholder="문의하실 내용을 적어주세요"></textarea>
+                                                <textarea class="form-control" rows="5"
+                                                          placeholder="문의하실 내용을 적어주세요"></textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                            <div class="row">
-                                <div class="col d-flex justify-content-end">
-                                    <button class="btn btn-primary" href="contactus.jsp" type="submit">Contact</button>
-                                </div>
-                            </div>
-                                </div>
-                                </div>
-                        </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-3 mb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title font-weight-bold">Support</h6>
-                                    <p class="card-text">Test 안녕 연락주세요-★★★</p>
-                                    <div class="btn btn-primary" type="button">
-                                        <a href="contactus.jsp">Contactus</a>
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-end">
+                                            <button class="btn btn-primary" href="contactus.jsp" type="submit">Contact
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-12 col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title font-weight-bold">Support</h6>
+                            <p class="card-text">Test 안녕 연락주세요-★★★</p>
+                            <div class="btn btn-primary" type="button">
+                                <a href="contactus.jsp">Contactus</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
+</div>
+</body>

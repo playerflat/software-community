@@ -13,6 +13,8 @@ import java.util.Vector;
  * @When : 2018-11-03 오전 10:31
  * @Homepage : https://github.com/gusdnd852
  */
+
+@SuppressWarnings("unchecked")
 public class Accessor {
 
     private List<Consumer<PreparedStatement>> params;
@@ -48,7 +50,8 @@ public class Accessor {
         return this;
     }
 
-    public <Output> Output get(Class<Output> type) {
+
+    public <Output> Output getOnce(Class<Output> type) {
         if (query == null) throw new NullPointerException("No Query");
         else if (isParameterError())
             throw new IllegalArgumentException("Please call 'param' method for the number of question marks in the PreparedStatement.");
@@ -56,14 +59,8 @@ public class Accessor {
                   PreparedStatement statement = connection.prepareStatement(query)) {
                 for (Consumer<PreparedStatement> param : params) param.accept(statement);
                 try (ResultSet set = statement.executeQuery()) {
-                    if (set.next()) {
-                        if (type.isInstance(Collections.emptyList())) {
-                            List<Output> list = new Vector<>();
-                            do list.add((Output) mapper.apply(set));
-                            while (set.next());
-                            return (Output) list;
-                        } else return (Output) mapper.apply(set);
-                    } else return type.isInstance(Boolean.FALSE)
+                    if (set.next()) return (Output) mapper.apply(set);
+                    else return type.isInstance(Boolean.FALSE)
                             ? (Output) Boolean.FALSE
                             : type.isInstance(0)
                             ? (Output) Integer.valueOf(0)
@@ -80,7 +77,30 @@ public class Accessor {
                 params = null;
                 mapper = null;
             }
+    }
 
+    public <Type> List<Type> getList(Class<Type> genericType) {
+        if (query == null) throw new NullPointerException("No Query");
+        else if (isParameterError())
+            throw new IllegalArgumentException("Please call 'param' method for the number of question marks in the PreparedStatement.");
+        else try (Connection connection = DriverManager.getConnection(url, id, pw);
+                  PreparedStatement statement = connection.prepareStatement(query)) {
+                for (Consumer<PreparedStatement> param : params) param.accept(statement);
+                try (ResultSet set = statement.executeQuery()) {
+                    if (set.next()) {
+                        List<Type> list = new Vector<>();
+                        do list.add((Type) mapper.apply(set));
+                        while (set.next());
+                        return list;
+                    } else return null;
+                }
+            } catch (Exception e) {
+                return null;
+            } finally {
+                query = null;
+                params = null;
+                mapper = null;
+            }
     }
 
     public boolean set() {

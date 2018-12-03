@@ -32,17 +32,13 @@ public class Mail {
                 .append("<h1>아래 링크를 클릭하면 비밀번호를 재설정합니다.</h1>")
                 .append("<br>")
                 .append("<h2><a href =")
-                .append("http://localhost:1234/reset_password.jsp")
-                .append("?name=")
-                .append(name)
-                .append("&stdNumber=")
+                .append("http://localhost:1234/view/reset_password.jsp")
+                .append("?stdNumber=")
                 .append(stdNumber)
                 .append(">비밀번호 재설정하기</a></h2>")
                 .append("<br>");
 
-
         String mailContent = mailContentBuilder.toString();
-
         Authenticator auth = new Auth(mailAccId, mailAccPwd);
         Properties props = new Properties();
         props.put("mail.smtp.host", mailHost);

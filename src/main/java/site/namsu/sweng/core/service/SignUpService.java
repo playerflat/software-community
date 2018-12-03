@@ -26,6 +26,7 @@ public class SignUpService {
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(Encoder.SHA256(user.getPassword()))
+                .admin(user.isAdmin())
                 .build();
     }
 }

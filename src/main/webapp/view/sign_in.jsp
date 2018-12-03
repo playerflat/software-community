@@ -4,7 +4,7 @@
 
 <head>
     <%@include file="header.jsp" %>
-    <script src="../subscriber/SignSubscriber.js"></script>
+    <script src="../core/subscriber/SignSubscriber.js"></script>
     <div class="card-title" style="margin-top:10%;">
         <h2 class="card-title text-center" style="color:#ffffff;">전북대학교 소프트웨어공학과</h2>
     </div>

@@ -16,10 +16,11 @@ import java.util.List;
 @Builder @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User  {
+public class User {
 
     private String stdNumber;
     private String password;
     private String name;
     private String email;
+    private boolean admin = false;
 }

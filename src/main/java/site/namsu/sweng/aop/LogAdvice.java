@@ -1,14 +1,8 @@
 package site.namsu.sweng.aop;
 
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import site.namsu.sweng.rx.publisher.Publisher;
-import site.namsu.sweng.rx.util.DelegateSubscriber;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -24,28 +18,11 @@ import java.util.Date;
 @Aspect
 @Component
 @SuppressWarnings("unchecked")
-public class LogAdvice implements Cloneable {
+public class LogAdvice {
     private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
     @Pointcut("within(site.namsu.sweng.core.publisher.*)")
     private void logPointcut() {
-    }
-
-    @Around("logPointcut()")
-    public Object log(ProceedingJoinPoint pjp) {
-        Date date = new Date();
-
-        try {
-            Publisher result = (Publisher) pjp.proceed();
-            result.next(input -> writer.write(date + " : 3. 발행 쓰레드 : " + Thread.currentThread().getName() + "\n"))
-                    .next(output -> writer.write(date + " : 4. 발행 데이터 : " + output + "\n"))
-                    .error(error -> writer.write(date + " : #. 에러 발생" + ((Throwable) error).getMessage() + "\n"))
-                    .subscribe(new DelegateSubscriber(Long.MAX_VALUE));
-            writer.flush();
-            return result;
-        } catch (Throwable throwable) {
-            return null;
-        }
     }
 
     @Before(value = "logPointcut()", argNames = "joinPoint")
@@ -56,6 +33,21 @@ public class LogAdvice implements Cloneable {
         writer.write('\n');
         writer.write(date + " : 1. 발행 메소드 : " + joinPoint.getSignature().toShortString() + "\n");
         writer.write(date + " : 2. 사용자 입력 : " + Arrays.asList(joinPoint.getArgs()) + "\n");
+        writer.flush();
+    }
+
+    @AfterReturning(value = "logPointcut()", argNames = "joinPoint")
+    public void returnPublish(JoinPoint joinPoint) throws IOException {
+        Date date = new Date();
+        writer.write(date + " : 3. 발행 완료 : " + joinPoint.getSignature().toShortString() + "\n");
+        writer.flush();
+    }
+
+
+    @AfterThrowing(value = "logPointcut()", argNames = "joinPoint")
+    public void errorPublish(JoinPoint joinPoint) throws IOException {
+        Date date = new Date();
+        writer.write(date + " : #. 에러 발생 : " + joinPoint.getSignature().toShortString() + "\n");
         writer.flush();
     }
 }

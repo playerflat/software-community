@@ -10,6 +10,7 @@
 <html>
 <head>
     <%@include file="header.jsp"%>
+    <%@include file="session_checker.jsp" %>
     <link href="../css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -112,7 +113,7 @@
                     <span>Notice</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.jsp">
+                <a class="nav-link" href="magazine.jsp">
                     <i class="fas fa-fw fa-film"></i>
                     <!--Tables-->
                     <span>SE Magazine</span></a>

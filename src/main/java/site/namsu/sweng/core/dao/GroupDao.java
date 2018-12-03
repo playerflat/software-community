@@ -20,18 +20,13 @@ public class GroupDao extends Accessor implements Dao<Group> {
         return SQL("select * from mingus.group where groupNumber = ?")
                 .param(db -> db.setInt(1, input.getGroupNumber()))
                 .map(db -> Serializer.deserialize(db, "object"))
-                .get(Group.class);
+                .getOnce(Group.class);
     }
 
     public List<Group> selectAll() {
         return SQL("select * from mingus.group")
-                .map(db -> {
-                    List<Group> list = new ArrayList<>();
-                    while (db.next())
-                        list.add((Group) Serializer.deserialize(db, "object"));
-                    return list;
-                })
-                .get(List.class);
+                .map(db -> Serializer.deserialize(db, "object"))
+                .getList(Group.class);
     }
 
     @Override public boolean insert(Group input) {

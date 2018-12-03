@@ -2,10 +2,8 @@ package site.namsu.sweng.core.dao;
 
 import site.namsu.sweng.base.Accessor;
 import site.namsu.sweng.base.Dao;
-import site.namsu.sweng.core.entity.Board;
 import site.namsu.sweng.core.entity.Notice;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,33 +15,26 @@ import java.util.List;
 public class NoticeDao extends Accessor implements Dao<Notice> {
 
     @Override public Notice select(Notice input) {
-        return SQL("select * form  mingus.notice where noticeNumber = ?")
-                .param(db -> db.setInt(1, input.getNoticeNumber()))
+        return SQL("select * from  mingus.notice where noticeNumber = ?")
+                .param(param -> param.setInt(1, input.getNoticeNumber()))
+                .map(db -> Notice.builder()
+                        .noticeNumber(db.getInt("noticeNumber"))
+                        .date(db.getString("date"))
+                        .contents(db.getString("contents"))
+                        .build())
+                .getOnce(Notice.class);
+    }
+
+
+    public List<Notice> selectAll() {
+        return SQL("select * from  mingus.notice")
                 .map(db -> Notice.builder()
                         .noticeNumber(db.getInt("noticeNumber"))
                         .contents(db.getString("contents"))
                         .date(db.getString("date"))
                         .build())
-                .get(Notice.class);
+                .getList(Notice.class);
     }
-
-    public List<Notice> selectAll() {
-        return SQL("select * form  mingus.notice")
-                .map(db -> {
-                    List<Notice> list = new ArrayList<>();
-                    while (db.next()) {
-                        Notice board = Notice.builder()
-                                .noticeNumber(db.getInt("noticeNumber"))
-                                .contents(db.getString("contents"))
-                                .date(db.getString("date"))
-                                .build();
-                        list.add(board);
-                    }
-                    return list;
-                })
-                .get(List.class);
-    }
-
 
     public boolean insert(Notice input) {
         return SQL("insert into mingus.notice values (?,?,?)")

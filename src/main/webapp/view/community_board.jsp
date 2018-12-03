@@ -5,12 +5,13 @@
 <head>
 
     <%@include file="header.jsp" %>
+    <%@include file="session_checker.jsp" %>
     <!-- Bootstrap CSS -->
     <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"--%>
     <%--integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--%>
 
     <!-- Page level plugin CSS-->
-    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
 </head>
 
@@ -93,7 +94,6 @@
                 <i class="fas fa-fw fa-user-circle"></i>
                 <!--Pages-->
                 <span>Information</span>
-
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                 <h6 class="dropdown-header">User Info</h6>
@@ -101,20 +101,10 @@
                 </h7>
                 <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
                 </h7>
-
-                <%--<a class="dropdown-item" href="../view/sign_in.jsp">Login</a>--%>
-                <%--<a class="dropdown-item" href="../view/sign_up.jsp">Register</a>--%>
-                <%--<a class="dropdown-item" href="#">Forgot Password</a>--%>
-                <!--<div class="dropdown-divider"></div>
-                       <h6 class="dropdown-header">Other Pages</h6>
-
-                       <a class="dropdown-item" href="404.html">404 Page</a>
-                       <a class="dropdown-item" href="blank.html">Blank Page</a>
-                       -->
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="chat.jsp">
+            <a class="nav-link" href="community_board.jsp">
                 <i class="fas fa-fw fa-sticky-note"></i>
                 <!--Charts-->
                 <span>Community</span></a>
@@ -126,7 +116,7 @@
                 <span>Notice</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="tables.jsp">
+            <a class="nav-link" href="magazine.jsp">
                 <i class="fas fa-fw fa-film"></i>
                 <!--Tables-->
                 <span>SE Magazine</span></a>
@@ -137,7 +127,6 @@
                 <!--Tables-->
                 <span>Messenger</span></a>
         </li>
-
     </ul>
 
     <div id="content-wrapper">
@@ -170,41 +159,33 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <%
-                                int a = 10;
-                                for (int i=0; i<a; i++){
-                            %>
                             <tr class="table-borderless" bgcolor="#9370db">
-                                <td> <!-- Icon Cards-->
-                                    <div class="col-xl-9 col-sm-6 mb-3 mx-auto">
-                                        <div class="card text-dark  o-hidden h-100">
-                                            <div class="card-header">
-                                                <h5 class="float-left card-title">주말엔 정환이와...</h5>
-                                                <h5 class="float-right text-primary">2018-10-10 최정환</h5>
+                                <div class="col-xl-9 col-sm-6 mb-3 mx-auto">
+                                    <div class="card text-dark  o-hidden h-100">
+                                        <div class="card-header">
+                                            <h5 class="float-left card-title">주말엔 정환이와...</h5>
+                                            <h5 class="float-right text-primary">2018-10-10 최정환</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-body-icon">
+                                                <i class="fas fa-fw fa-comments"></i>
                                             </div>
-                                            <div class="card-body">
-                                                <div class="card-body-icon">
-                                                    <i class="fas fa-fw fa-comments"></i>
-                                                </div>
-                                                <p class="card-text">나는..가끔...눈물이...난다...</p>
-                                            </div>
-                                            <a class="card-footer text-dark clearfix small z-1"
-                                               href="community_board.jsp">
-                                                <span class="float-left text-primary"></span>
-                                                <span class="float-right">
+                                            <p class="card-text">나는..가끔...눈물이...난다...</p>
+                                        </div>
+                                        <a class="card-footer text-dark clearfix small z-1"
+                                           href="community_board.jsp">
+                                            <span class="float-left text-primary"></span>
+                                            <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                   </span>
-                                            </a>
-                                        </div>
+                                        </a>
                                     </div>
-                                </td>
+                                </div>
                             </tr>
-                            <% } %>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -243,9 +224,8 @@
             <div class="modal-body">로그아웃 버튼을 누르면 세션이 종료됩니다.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal"> 취소</button>
-                <a class="btn btn-primary"
-                   onclick=<%session.invalidate();%>
-                           href="sign_in.jsp">
+                <a class="btn btn-primary">
+
                     로그아웃</a>
             </div>
         </div>
@@ -253,21 +233,21 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="../vendor/chart.js/Chart.min.js"></script>
-<script src="../vendor/datatables/jquery.dataTables.js"></script>
-<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin.min.js"></script>
+<script src="js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="../js/demo/datatables-demo.js"></script>
-<script src="../js/demo/chart-area-demo.js"></script>
+<script src="js/demo/datatables-demo.js"></script>
+<script src="js/demo/chart-area-demo.js"></script>
 
 </body>
 

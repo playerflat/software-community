@@ -1,6 +1,7 @@
 package site.namsu.sweng.core.publisher;
 
 import lombok.AllArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.User;
 import site.namsu.sweng.core.service.MailService;
 import site.namsu.sweng.core.service.ResetService;
-import site.namsu.sweng.rx.publisher.Publisher;
+import site.namsu.sweng.rx.publisher.Mono;
+
+import java.util.concurrent.Flow;
 
 /**
  * @Author : Hyunwoong
@@ -24,15 +27,15 @@ public class ResetPublisher {
     @Autowired private MailService mailService;
 
     @PostMapping("forgot.do")
-    public Publisher<Boolean> forgotPublisher(User req) {
-        return Publisher.mainThread(req)
+    public Flow.Publisher<Boolean> forgotPublisher(@NonNull User req) {
+        return Mono.main(req)
                 .switchIfEmpty(mailService::isCorrectUser)
                 .map(mailService::sendMailSuccessful);
     }
 
     @PostMapping("reset.do")
-    public Publisher<Boolean> resetPublisher(User user) {
-        return Publisher.mainThread(user)
+    public Flow.Publisher<Boolean> resetPublisher(@NonNull User user) {
+        return Mono.main(user)
                 .map(resetService::resetPassword);
     }
 }
