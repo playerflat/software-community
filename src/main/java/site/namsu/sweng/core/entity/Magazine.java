@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Magazine {
     private int magazineNumber;
     private String title;
+    private String name;
     private String text;
     private String date;
 }

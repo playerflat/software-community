@@ -21,26 +21,19 @@ public class MagazineDao extends Accessor implements Dao<Magazine> {
                         .text(db.getString("text"))
                         .date(db.getString("date"))
                         .build())
-                .get(Magazine.class);
+                .getOnce(Magazine.class);
     }
 
     @Override
     public List<Magazine> selectAll() {
         return SQL("select *form mingus.magazine")
-                .map(db -> {
-                    List<Magazine> list = new ArrayList<>();
-                    while(db.next()) {
-                        Magazine magazine = Magazine.builder()
-                                .magazineNumber(db.getInt("magazineNumber"))
-                                .title(db.getString("title"))
-                                .text(db.getString("text"))
-                                .date(db.getString("date"))
-                                .build();
-                        list.add(magazine);
-                    }
-                    return list;
-                })
-                .get(List.class);
+                .map(db -> Magazine.builder()
+                        .magazineNumber(db.getInt("magazineNumber"))
+                        .title(db.getString("title"))
+                        .text(db.getString("text"))
+                        .date(db.getString("date"))
+                        .build())
+                    .getList(Magazine.class);
     }
 
     @Override
