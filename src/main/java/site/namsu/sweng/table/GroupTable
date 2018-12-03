@@ -1,5 +1,0 @@
-create table mingus.group (
- groupNumber int(5),
- groupName varchar(20),
- object blob
-);
