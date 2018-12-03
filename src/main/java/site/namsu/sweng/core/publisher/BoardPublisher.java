@@ -31,16 +31,14 @@ public class BoardPublisher {
     @Autowired private BoardDeleteService deleteService;
 
     @PostMapping("board_read.do")
-    public Flow.Publisher<List> readBoard() {
+    public Flow.Publisher<List> readBoardPublish() {
         return Empty.background()
                 .map(req -> readService.read());
     }
 
     @PostMapping("write_board.do")
-    public Flow.Publisher<Boolean> writeBoard(Board req) {
+    public Flow.Publisher<Boolean> writeBoardPublish(Board req) {
         return Mono.main(req)
                 .map(writeService::writeSuccessful);
     }
-
-
 }

@@ -66,5 +66,3 @@ function noticeWriteSubscribe() {
         , true);
     req.send(null);
 }
-
-

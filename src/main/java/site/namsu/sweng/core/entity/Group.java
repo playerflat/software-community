@@ -14,7 +14,8 @@ import java.util.List;
 @Data @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group implements Serializable {
+public class
+Group implements Serializable {
 
     private @NonNull int groupNumber; // <-- 기본키
     private String groupName;
