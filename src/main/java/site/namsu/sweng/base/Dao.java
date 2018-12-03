@@ -1,5 +1,6 @@
 package site.namsu.sweng.base;
 
+import org.springframework.stereotype.Component;
 import site.namsu.sweng.util.Pool;
 
 import java.lang.reflect.InvocationTargetException;
@@ -10,6 +11,7 @@ import java.util.List;
  * @When : 2018-11-27 오전 1:05
  * @Homepage : https://github.com/gusdnd852
  */
+@Component
 public interface Dao<T> {
 
     T select(T input);

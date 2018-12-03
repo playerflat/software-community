@@ -1,6 +1,0 @@
-<beans xmlns="http://www.springframework.org/schema/beans">
-    <bean id="controller" class="site.namsu.sweng.base.Control" abstract="true">
-        <property name="session"></property>
-    </bean>
-
-</beans>

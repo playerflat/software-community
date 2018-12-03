@@ -23,34 +23,30 @@ public class UserDao extends Accessor implements Dao<User> {
                         .name(db.getString("name"))
                         .email(db.getString("email"))
                         .password(db.getString("password"))
+                        .admin(db.getBoolean("admin"))
                         .build())
-                .get(User.class);
+                .getOnce(User.class);
     }
 
     @Override public List<User> selectAll() {
         return SQL("select * from mingus.member")
-                .map(db -> {
-                    List<User> list = new ArrayList<>();
-                    while (db.next()) {
-                        User user = User.builder()
-                                .stdNumber(db.getString("stdNumber"))
-                                .name(db.getString("name"))
-                                .email(db.getString("email"))
-                                .password(db.getString("password"))
-                                .build();
-                        list.add(user);
-                    }
-                    return list;
-                })
-                .get(List.class);
+                .map(db -> User.builder()
+                        .stdNumber(db.getString("stdNumber"))
+                        .name(db.getString("name"))
+                        .email(db.getString("email"))
+                        .password(db.getString("password"))
+                        .admin(db.getBoolean("admin"))
+                        .build())
+                .getList(User.class);
     }
 
     public boolean insert(User input) {
-        return SQL("insert into mingus.member values (?,?,?,?)")
+        return SQL("insert into mingus.member values (?,?,?,?,?)")
                 .param(db -> db.setString(1, input.getStdNumber()))
                 .param(db -> db.setString(2, input.getName()))
                 .param(db -> db.setString(3, input.getEmail()))
                 .param(db -> db.setString(4, input.getPassword()))
+                .param(db -> db.setBoolean(5, input.isAdmin()))
                 .set();
     }
 

@@ -162,6 +162,8 @@ div.dataTables_scrollFoot > .dataTables_scrollFootInner > table {
     text-align: center;
   }
 }
+/*dataTables.bootstrap4.csstable{table-layout:fixed;word-break:break-all;}추가한거*/
+table{table-layout:fixed;word-break:break-all;}
 table.dataTable.table-sm > thead > tr > th {
   padding-right: 20px;
 }

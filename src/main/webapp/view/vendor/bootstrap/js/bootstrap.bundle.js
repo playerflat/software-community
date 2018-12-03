@@ -1138,9 +1138,9 @@
       // Public
       _proto.toggle = function toggle() {
         if ($$$1(this._element).hasClass(ClassName.SHOW)) {
-          this.hide();
-        } else {
           this.show();
+        } else {
+          this.hide();
         }
       };
 

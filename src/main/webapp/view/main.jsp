@@ -5,21 +5,17 @@
 <head>
 
     <%@include file="header.jsp" %>
+    <%@include file="session_checker.jsp" %>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <!-- Page level plugin CSS-->
-    <link href="../vendor/datatables/dataTables.bootstrap4.css"
-          rel="stylesheet">
-    <script>
-
-    </script>
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 
 
 <body id="page-top">
-
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -40,7 +36,6 @@
             </div>
         </div>
     </form>
-
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
@@ -83,28 +78,17 @@
             </div>
         </li>
     </ul>
-
 </nav>
-
 <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-            <!-- 메인페이지-->
-            <a class="nav-link" href="main.jsp">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <!--Dashboard-->
-                <span>Main</span>
-            </a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-user-circle"></i>
                 <!--Pages-->
                 <span>Information</span>
-
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                 <h6 class="dropdown-header">User Info</h6>
@@ -112,43 +96,36 @@
                 </h7>
                 <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
                 </h7>
-
-                <%--<a class="dropdown-item" href="../view/sign_in.jsp">Login</a>--%>
-                <%--<a class="dropdown-item" href="../view/sign_up.jsp">Register</a>--%>
-                <%--<a class="dropdown-item" href="#">Forgot Password</a>--%>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Other Pages</h6>
-                <!--
-                <a class="dropdown-item" href="404.html">404 Page</a>
-                <a class="dropdown-item" href="blank.html">Blank Page</a>
-                -->
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="chat.jsp">
-                <i class="fas fa-fw fa-comment"></i>
+            <a class="nav-link" href="community_board.jsp">
+                <i class="fas fa-fw fa-sticky-note"></i>
                 <!--Charts-->
                 <span>Community</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="notice_board.jsp">
-                <i class="fas fa-fw fa-school"></i>
+                <i class="fas fa-fw fa-bullhorn"></i>
                 <!--Tables-->
                 <span>Notice</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="calendar.jsp">
-                <i class="fas fa-fw fa-calendar"></i>
+            <a class="nav-link" href="magazine.jsp">
+                <i class="fas fa-fw fa-film"></i>
                 <!--Tables-->
-                <span>Calendar</span></a>
+                <span>SE Magazine</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="chat.jsp">
+                <i class="fas fa-fw fa-comments"></i>
+                <!--Tables-->
+                <span>Messenger</span></a>
+        </li>
     </ul>
 
     <div id="content-wrapper">
-
         <div class="container-fluid">
-
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -163,12 +140,12 @@
                     <div class="card text-dark bg-primary o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
-                                <i class="fas fa-fw fa-comments"></i>
+                                <i class="fas fa-fw fa-sticky-note"></i>
                             </div>
                             <div class="mr-5">커뮤니티</div>
                         </div>
                         <a class="card-footer text-dark clearfix small z-1" href="community_board.jsp">
-                            <span class="float-left">들어가기</span>
+                            <span class="float-left">자세히 보기</span>
                             <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                   </span>
@@ -179,7 +156,7 @@
                     <div class="card text-dark bg-warning o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
-                                <i class="fas fa-fw fa-list"></i>
+                                <i class="fas fa-fw fa-bullhorn"></i>
                             </div>
                             <div class="mr-5">공지사항</div>
                         </div>
@@ -195,12 +172,12 @@
                     <div class="card text-dark bg-success o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
-                                <i class="fas fa-fw fa-clock"></i>
+                                <i class="fas fa-fw fa-film"></i>
                             </div>
-                            <div class="mr-5">AM:PM</div>
+                            <div class="mr-5">SE 매거진</div>
                         </div>
-                        <a class="card-footer text-dark clearfix small z-1" href="tables.jsp">
-                            <span class="float-left">매거진</span>
+                        <a class="card-footer text-dark clearfix small z-1" href="magazine.jsp">
+                            <span class="float-left">자세히 보기</span>
                             <span class="float-right">
                     <i class="fas fa-angle-right"></i>
                   </span>
@@ -211,11 +188,11 @@
                     <div class="card text-dark bg-danger o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
-                                <i class="fas fa-fw fa-calendar"></i>
+                                <i class="fas fa-fw fa-comments"></i>
                             </div>
                             <div class="mr-5">채팅방</div>
                         </div>
-                        <a class="card-footer text-dark clearfix small z-1" href="calendar.jsp">
+                        <a class="card-footer text-dark clearfix small z-1" href="chat.jsp">
                             <span class="float-left">자세히 보기</span>
                             <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -385,9 +362,29 @@
     {{ } }}
   </table>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </script>
-
-
                     <script>
                         var $currentPopover = null;
                         $(document).on('shown.bs.popover', function (ev) {
@@ -727,7 +724,7 @@
         <footer class="sticky-footer">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright © Your Website 2018</span>
+                    <span>Copyright © Mingus 2018</span>
                 </div>
             </div>
         </footer>
@@ -743,6 +740,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -757,31 +755,28 @@
             <div class="modal-body">로그아웃 버튼을 누르면 세션이 종료됩니다.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal"> Cancel</button>
-                <a class="btn btn-primary"
-                   onclick=<%session.invalidate();%>
-                           href="sign_in.jsp">
-                    Logout</a>
+                <a class="btn btn-primary">
+                    로그아웃</a>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="../vendor/chart.js/Chart.min.js"></script>
-<script src="../vendor/datatables/jquery.dataTables.js"></script>
-<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin.min.js"></script>
+<script src="js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="../js/demo/datatables-demo.js"></script>
-<script src="../js/demo/chart-area-demo.js"></script>
+<script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

@@ -8,23 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%@include file="session_checker.jsp" %>
     <!-- Bootstrap core CSS-->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Page level plugin CSS-->
-    <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin.css" rel="stylesheet">
-    <link href="../css/write.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/write.css" rel="stylesheet">
 
+    <script src="../core/subscriber/NoticeSubscriber.js"></script>
     <title>Title</title>
 </head>
 <body id="page-top">
@@ -95,18 +97,10 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-            <!-- 메인페이지-->
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <!--Dashboard-->
-                <span>Main</span>
-            </a>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-user-circle"></i>
                 <!--Pages-->
                 <span>Information</span>
 
@@ -121,32 +115,39 @@
                 <%--<a class="dropdown-item" href="../view/sign_in.jsp">Login</a>--%>
                 <%--<a class="dropdown-item" href="../view/sign_up.jsp">Register</a>--%>
                 <%--<a class="dropdown-item" href="#">Forgot Password</a>--%>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Other Pages</h6>
-                <!--
-                <a class="dropdown-item" href="404.html">404 Page</a>
-                <a class="dropdown-item" href="blank.html">Blank Page</a>
-                -->
+                <!--<div class="dropdown-divider"></div>
+                   <h6 class="dropdown-header">Other Pages</h6>
+
+                   <a class="dropdown-item" href="404.html">404 Page</a>
+                   <a class="dropdown-item" href="blank.html">Blank Page</a>
+                   -->
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="chat.jsp">
-                <i class="fas fa-fw fa-comment"></i>
+            <a class="nav-link" href="community_board.jsp">
+                <i class="fas fa-fw fa-sticky-note"></i>
                 <!--Charts-->
                 <span>Community</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="notice_board.jsp">
-                <i class="fas fa-fw fa-school"></i>
+                <i class="fas fa-fw fa-bullhorn"></i>
                 <!--Tables-->
                 <span>Notice</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="calendar.jsp">
-                <i class="fas fa-fw fa-calendar"></i>
+            <a class="nav-link" href="magazine.jsp">
+                <i class="fas fa-fw fa-film"></i>
                 <!--Tables-->
-                <span>Calendar</span></a>
+                <span>SE Magazine</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="chat.jsp">
+                <i class="fas fa-fw fa-comments"></i>
+                <!--Tables-->
+                <span>Messenger</span></a>
+        </li>
+
 
     </ul>
     <div id="content-wrapper">
@@ -169,8 +170,9 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <form method="post" action="writeAction.jsp">
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+                    <form method="post">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered"
+                               id="example">
                             <thead>
                             <tr>
                                 <th colspan="2">게시판 글쓰기 형식</th>
@@ -179,20 +181,18 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50">
+                                    <textarea class="form-control" placeholder="글 내용" name="notice_contents"
+                                              maxlength="2048"
+                                              style="height: 350px;" id="notice_contents"></textarea>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <textarea class="form-control" placeholder="글 내용" name="Content" maxlength="2048" style="height: 350px;"></textarea>
-                                </td>
-                            </tr>
-
                             </tbody>
                         </table>
                         <button type="button" class="float-right btn btn-secondary">취소</button>
-                        <button type="button" class="float-right btn btn-primary">등록</button>
-                       </form>
+                        <button type="button" class="float-right btn btn-primary"
+                                onclick="noticeWriteSubscribe()">등록
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -200,28 +200,21 @@
 
 </div>
 
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="../vendor/chart.js/Chart.min.js"></script>
-<script src="../vendor/datatables/jquery.dataTables.js"></script>
-<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../js/sb-admin.min.js"></script>
+<script src="js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="../js/demo/datatables-demo.js"></script>
-<script src="../js/demo/chart-area-demo.js"></script>
+<script src="js/demo/datatables-demo.js"></script>
+<script src="js/demo/chart-area-demo.js"></script>
 </body>
 </html>

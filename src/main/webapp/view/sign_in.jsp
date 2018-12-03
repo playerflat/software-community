@@ -4,28 +4,10 @@
 
 <head>
     <%@include file="header.jsp" %>
+    <script src="../core/subscriber/SignSubscriber.js"></script>
     <div class="card-title" style="margin-top:10%;">
         <h2 class="card-title text-center" style="color:#ffffff;">전북대학교 소프트웨어공학과</h2>
     </div>
-
-    <script>
-        function signInRequest() {
-            let req = new XMLHttpRequest();
-            req.open("post", "http://localhost:1234/sign_in.do"
-                + "?stdNumber="
-                + encodeURIComponent(document.getElementById("stdNumber").value)
-                + "&password="
-                + encodeURIComponent(document.getElementById("password").value)
-                , true);
-            req.onreadystatechange = signInSubscribe();
-            req.send(null);
-        }
-
-        function signInSubscribe() {
-
-        }
-
-    </script>
 </head>
 
 <body class="bg-dark">
@@ -50,7 +32,7 @@
                     </div>
                 </div>
                 <button class="btn btn-primary btn-block" type="button"
-                        onclick="signInRequest()">
+                        onclick="signInSubscribe()">
                     로그인
                 </button>
             </form>
@@ -63,12 +45,10 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
-
 </html>

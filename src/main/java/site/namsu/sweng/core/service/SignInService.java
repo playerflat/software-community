@@ -1,6 +1,11 @@
 package site.namsu.sweng.core.service;
 
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import site.namsu.sweng.base.Dao;
 import site.namsu.sweng.core.dao.UserDao;
 import site.namsu.sweng.core.entity.User;
@@ -14,10 +19,10 @@ import site.namsu.sweng.util.Encoder;
 @Component
 public class SignInService {
 
-    private final Dao<User> dao = Dao.of(UserDao.class);
+    private Dao<User> userDao = Dao.of(UserDao.class);
 
     public User getDbUser(User user) {
-        return dao.select(user);
+        return userDao.select(user);
     }
 
     public boolean isSigned(User reqUser, User dbUser) {

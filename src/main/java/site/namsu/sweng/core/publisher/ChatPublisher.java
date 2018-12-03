@@ -1,5 +1,6 @@
 package site.namsu.sweng.core.publisher;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Component
+@AllArgsConstructor
 public class ChatPublisher {
 
 

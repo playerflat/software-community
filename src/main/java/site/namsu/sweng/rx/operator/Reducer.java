@@ -2,7 +2,6 @@ package site.namsu.sweng.rx.operator;
 
 import site.namsu.sweng.rx.publisher.Publisher;
 
-import java.util.List;
 import java.util.concurrent.Flow;
 import site.namsu.sweng.rx.function.BiFunction;
 
@@ -43,7 +42,7 @@ public class Reducer<T, R> extends Publisher<R> {
             }
 
             @Override public void onComplete() {
-                subscriber.onNext(temp);
+                  subscriber.onNext(temp);
                 subscriber.onComplete();
             }
         });

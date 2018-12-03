@@ -30,9 +30,11 @@ public class Filter<T> extends Publisher<T> {
 
             @Override public void onNext(T item) {
                 try {
-                    if (predicate.test(item))
+                    if (predicate.test(item)) {
                         subscriber.onNext(item);
-                    else subscriber.onComplete();
+                    } else {
+                         subscriber.onComplete();
+                    }
                 } catch (Exception e) {
                     subscriber.onError(e);
                 }

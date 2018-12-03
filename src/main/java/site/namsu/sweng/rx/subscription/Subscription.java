@@ -21,7 +21,8 @@ public class Subscription<T> implements Flow.Subscription {
         while (n-- > 0) { // 배압 처리
             try {
                 if (iterator.hasNext()) {
-                    subscriber.onNext(iterator.next());
+                    T next = iterator.next();
+                    subscriber.onNext(next);
                 } else {
                     subscriber.onComplete();
                     break;

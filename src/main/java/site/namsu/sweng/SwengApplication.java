@@ -20,7 +20,7 @@ public class SwengApplication {
     public static class Main {
         @GetMapping("/")
         public String index() {
-            return "sign_in";
+            return "index";
         }
     }
 }

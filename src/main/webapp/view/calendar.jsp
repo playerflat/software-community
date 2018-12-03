@@ -4,6 +4,7 @@ OriginalFile
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <%@include file="header.jsp"%>
+    <%@include file="session_checker.jsp" %>
 </head>
 <body>
 <div id="page-top">
@@ -76,18 +77,10 @@ OriginalFile
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
-            <li class="nav-item active">
-                <!-- 메인페이지-->
-                <a class="nav-link" href="main.jsp">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <!--Dashboard-->
-                    <span>Main</span>
-                </a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-fw fa-user-circle"></i>
                     <!--Pages-->
                     <span>Information</span>
 
@@ -98,36 +91,33 @@ OriginalFile
                     </h7>
                     <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
                     </h7>
-
-                    <%--<a class="dropdown-item" href="../view/sign_in.jsp">Login</a>--%>
-                    <%--<a class="dropdown-item" href="../view/sign_up.jsp">Register</a>--%>
-                    <%--<a class="dropdown-item" href="#">Forgot Password</a>--%>
-                    <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Other Pages</h6>
-                    <!--
-                    <a class="dropdown-item" href="404.html">404 Page</a>
-                    <a class="dropdown-item" href="blank.html">Blank Page</a>
-                    -->
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="chat.jsp">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <!--Charts-->
-                    <span>Community</span></a>
-            </li>
+            <a class="nav-link" href="community_board.jsp">
+                <i class="fas fa-fw fa-sticky-note"></i>
+                <!--Charts-->
+                <span>Community</span></a>
+        </li>
             <li class="nav-item">
                 <a class="nav-link" href="notice_board.jsp">
-                    <i class="fas fa-fw fa-school"></i>
+                    <i class="fas fa-fw fa-bullhorn"></i>
                     <!--Tables-->
                     <span>Notice</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="calendar.jsp">
-                    <i class="fas fa-fw fa-calendar"></i>
+                <a class="nav-link" href="magazine.jsp">
+                    <i class="fas fa-fw fa-film"></i>
                     <!--Tables-->
-                    <span>Calendar</span></a>
+                    <span>SE Magazine</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat.jsp">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <!--Tables-->
+                    <span>Messenger</span></a>
+            </li>
+
         </ul>
     <!-- calendar는 </ul>태그 밑에! </div> 위에 놓는다!!!!-->
 

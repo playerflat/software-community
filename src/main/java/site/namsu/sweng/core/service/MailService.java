@@ -24,7 +24,8 @@ public class MailService {
                 && dbUser.getName().equals(user.getName());
     }
 
-    public void sendMail(User user) {
-        Mail.send(user.getEmail(), user.getStdNumber(), user.getName());
+    public boolean sendMailSuccessful(User user) {
+        if (user == null) return false;
+        else return Mail.send(user.getEmail(), user.getStdNumber(), user.getName());
     }
 }
