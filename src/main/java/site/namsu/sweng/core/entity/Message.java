@@ -7,7 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 public class Message {
     private @NonNull int messageNumber;
-    private String stdNumber;
+    private String groupName;
+    private String name;
     private String contents;
     private String time;
 }
