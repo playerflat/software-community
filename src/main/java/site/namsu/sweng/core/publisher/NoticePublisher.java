@@ -34,7 +34,6 @@ public class NoticePublisher {
     @Autowired private NoticeWriteService writeService;
     @Autowired private NoticeDeleteService deleteService;
 
-
     @PostMapping("notice_read.do")
     public Publisher<List<Notice>> noticeRead() {
         return Empty.background()

@@ -12,7 +12,6 @@
 
     <!-- Page level plugin CSS-->
     <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
 </head>
 
 
@@ -25,7 +24,6 @@
     </button>
 
     <a class="navbar-brand mr-1" href="main.jsp">Software Engineering</a>
-
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 <mr-md-2></mr-md-2> my-2 my-md-0">
         <div class="input-group">
@@ -38,7 +36,6 @@
             </div>
         </div>
     </form>
-
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
@@ -81,7 +78,6 @@
             </div>
         </li>
     </ul>
-
 </nav>
 
 <div id="wrapper">
@@ -128,10 +124,8 @@
                 <span>Messenger</span></a>
         </li>
     </ul>
-
     <div id="content-wrapper">
         <div class="container-fluid">
-
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -225,7 +219,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal"> 취소</button>
                 <a class="btn btn-primary">
-
                     로그아웃</a>
             </div>
         </div>
@@ -248,7 +241,5 @@
 <!-- Demo scripts for this page-->
 <script src="js/demo/datatables-demo.js"></script>
 <script src="js/demo/chart-area-demo.js"></script>
-
 </body>
-
 </html>
