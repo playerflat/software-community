@@ -3,5 +3,5 @@
     groupName varchar(20),
     name varchar(10),
     contents text,
-    time timestamp DEFAULT CURRENT_TIMESTAMP
+    time varchar(10)
   )
