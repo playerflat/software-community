@@ -11,7 +11,7 @@ function forgotSubscribe() {
             }
         }
     };
-    req.open("post", "http://localhost:1234/forgot.do"
+    req.open("post", "http://localhost:1234/forgot_password.do"
         + "?stdNumber="
         + encodeURIComponent(document.getElementById("stdNumber").value)
         + "&name="
@@ -35,7 +35,7 @@ function resetSubscribe() {
             }
         }
     };
-    req.open("post", "http://localhost:1234/reset.do"
+    req.open("post", "http://localhost:1234/reset_password.do"
         + "?stdNumber="
         + encodeURIComponent(document.getElementById("stdNumber").value)
         + "&password="

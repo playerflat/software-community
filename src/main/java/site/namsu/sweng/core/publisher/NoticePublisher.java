@@ -35,25 +35,25 @@ public class NoticePublisher {
     @Autowired private NoticeDeleteService deleteService;
 
     @PostMapping("notice_read.do")
-    public Publisher<List<Notice>> noticeRead() {
+    public Publisher<List<Notice>> noticeReadPublish() {
         return Empty.background()
                 .map(req -> readService.read());
     }
 
     @PostMapping("notice_check.do")
-    public Flow.Publisher<Boolean> noticeCheck(@NonNull User req) {
+    public Flow.Publisher<Boolean> noticeCheckPublish(@NonNull User req) {
         return Mono.main(req)
                 .map(adminService::isAdmin);
     }
 
     @PostMapping("notice_write.do")
-    public Flow.Publisher<Boolean> noticeWrite(@NonNull Notice req) {
+    public Flow.Publisher<Boolean> noticeWritePublish(@NonNull Notice req) {
         return Mono.main(req)
                 .map(writeService::writeSuccessful);
     }
 
     @PostMapping("notice_delete.do")
-    public Flow.Publisher<Boolean> noticeDelete(@NonNull Notice req) {
+    public Flow.Publisher<Boolean> noticeDeletePublish(@NonNull Notice req) {
         return Mono.main(req)
                 .map(deleteService::deleteSuccessful);
     }

@@ -26,15 +26,15 @@ public class ResetPublisher {
     @Autowired private ResetService resetService;
     @Autowired private MailService mailService;
 
-    @PostMapping("forgot.do")
-    public Flow.Publisher<Boolean> forgotPublisher(@NonNull User req) {
+    @PostMapping("forgot_password.do")
+    public Flow.Publisher<Boolean> forgotPasswordPublish(@NonNull User req) {
         return Mono.main(req)
                 .switchIfEmpty(mailService::isCorrectUser)
-                .map(mailService::sendMailSuccessful);
+                .map(mailService::sendResetMailSuccessful);
     }
 
-    @PostMapping("reset.do")
-    public Flow.Publisher<Boolean> resetPublisher(@NonNull User user) {
+    @PostMapping("reset_password.do")
+    public Flow.Publisher<Boolean> resetPasswordPublish(@NonNull User user) {
         return Mono.main(user)
                 .map(resetService::resetPassword);
     }

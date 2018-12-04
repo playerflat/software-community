@@ -24,8 +24,10 @@ public class MailService {
                 && dbUser.getName().equals(user.getName());
     }
 
-    public boolean sendMailSuccessful(User user) {
+    public boolean sendResetMailSuccessful(User user) {
         if (user == null) return false;
-        else return Mail.send(user.getEmail(), user.getStdNumber(), user.getName());
+        else return Mail.sendReset(user.getEmail(), user.getStdNumber());
     }
+
+
 }

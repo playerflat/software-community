@@ -5,7 +5,7 @@ function boardReadSubscribe() {
             if (req.readyState === 4 && req.status === 200) {
                 const resultText = this.responseText.substring(1, this.responseText.length - 1);
                 const json = JSON.parse(resultText);
-                const table = document.getElementById("noticeTable");
+                const table = document.getElementById("boardTable");
                 table.innerHTML = "";
 
                 for (let i = 0; i < json.length; i++) {
@@ -41,14 +41,14 @@ function boardWriteSubscribe() {
     const mm = (today.getMonth() + 1).toString(); //January is 0!
     const yyyy = today.getFullYear().toString();
     req.open("post", "http://localhost:1234/board_write.do"
-        + "?contents="
-        + encodeURIComponent(document.getElementById("notice_contents").value)
+        + "?title="
+        + encodeURIComponent(document.getElementById("board_title").value)
+        + "&stdNumber="
+        + encodeURIComponent(document.getElementById("board_stdNumber").value)
+        + "&name="
+        + encodeURIComponent(document.getElementById("board_name").value)
         + "&contents="
-        + encodeURIComponent(document.getElementById("notice_contents").value)
-        + "&contents="
-        + encodeURIComponent(document.getElementById("notice_contents").value)
-        + "&contents="
-        + encodeURIComponent(document.getElementById("notice_contents").value)
+        + encodeURIComponent(document.getElementById("board_contents").value)
         + "&date="
         + yyyy + "-" + mm + "-" + dd
         , true);
