@@ -23,7 +23,6 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class SignPublisher {
 
-    private LoadService loadService;
     private CheckService checkService;
     private StoreService storeService;
     private SessionService sessionService;
@@ -36,7 +35,8 @@ public class SignPublisher {
                 .map(checkService::isSignedOrNull)
                 .filter(Objects::nonNull)
                 .next(db -> sessionService.store("stdNumber", db.getStdNumber()))
-                .next(db -> sessionService.store("name", db.getName()));
+                .next(db -> sessionService.store("name", db.getName()))
+                .next(db -> sessionService.store("email", db.getEmail()));
     }
 
     @PostMapping("sign_up.do")

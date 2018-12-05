@@ -21,66 +21,49 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <%@include file="../module/sidebar.jsp"%>
-        <div style="padding: 30px 0px 2px 3px;"></div>
-        <div class="container" style="margin-top: 50px;">
-            <div class="row flex-lg-nowrap">
-                <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-                    <div class="card p-3">
-                        <div class="e-navlist e-navlist--active-bg">
-                            <ul class="nav">
-                                <li class="nav-item"><a class="nav-link px-2 active" href="settings.jsp"><i
-                                        class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2" href="reset_password.jsp"><i
-                                        class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2" href="dev_notes.jsp"><i
-                                        class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
-                            </ul>
-                        </div>
+    <div style="padding: 30px 0px 2px 3px;"></div>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row flex-lg-nowrap">
+            <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
+                <div class="card p-3">
+                    <div class="e-navlist e-navlist--active-bg">
+                        <ul class="nav">
+                            <li class="nav-item"><a class="nav-link px-2 active" href="settings.jsp"><i class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-2" href="reset_password.jsp"><i class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-2" href="contact_us.jsp"><i class="far fa-fw fa-address-book mr-1"></i><span>Contact</span></a></li>
+                            <li class="nav-item"><a class="nav-link px-2" href="dev_notes.jsp"><i class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
+                        </ul>
                     </div>
                 </div>
+            </div>
 
-                <div class="col">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <div class="form-group">
-                                                <label>To.Suppor team</label>
-                                                <textarea class="form-control" rows="5"
-                                                          placeholder="문의하실 내용을 적어주세요."></textarea>
-                                            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <div class="form-group">
+                                            <label>To.Suppor team</label>
+                                            <textarea class="form-control" rows="5"
+                                                      placeholder="문의하실 내용을 적어주세요."></textarea>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col d-flex justify-content-end">
-                                            <button class="btn btn-primary" href="contactus.jsp" type="submit">Contact
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col d-flex justify-content-end">
+                                        <button class="btn btn-primary" href="contactus.jsp" type="submit">Contact</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-md-3 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="card-title font-weight-bold">Support</h6>
-                            <p class="card-text">Test 안녕 연락주세요-★★★</p>
-                            <div class="btn btn-primary" type="button">
-                                <a href="contact_us.jsp">Contactus</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
     </div>
+</div>
 <!-- Sticky Footer -->
 <footer class="sticky-footer">
     <div class="container my-auto">
@@ -92,7 +75,7 @@
 
 <!-- /.content-wrapper -->
 
-<!-- Scroll to Top Button-->
+<!— Scroll to Top Button—>
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
