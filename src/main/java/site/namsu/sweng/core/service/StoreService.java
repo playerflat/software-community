@@ -10,9 +10,9 @@ import site.namsu.sweng.base.Dao;
  */
 @Component
 @SuppressWarnings("unchecked")
-public class WriteService {
+public class StoreService {
 
-    public <E> boolean writeSuccessful(E entity) {
+    public <E> boolean storeSuccessful(E entity) {
         if (entity != null) {
             return Dao.of(entity).insert(entity);
         } else

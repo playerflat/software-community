@@ -4,23 +4,23 @@
 
 <head>
 
-    <%@include file="header.jsp" %>
-    <%@include file="session_checker.jsp" %>
+    <%@include file="../module/header.jsp" %>
+    <%@include file="../module/session.jsp" %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../library/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 <!-- Nav -->
-<%@include file="nav.jsp"%>
+<%@include file="../module/nav.jsp"%>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%@include file="sidebar.jsp"%>
+    <%@include file="../module/sidebar.jsp"%>
     <div id="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
@@ -132,20 +132,20 @@
 </a>
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../library/vendor/jquery/jquery.min.js"></script>
+<script src="../library/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../library/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="vendor/chart.js/Chart.min.js"></script>
-<script src="vendor/datatables/jquery.dataTables.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="../library/vendor/chart.js/Chart.min.js"></script>
+<script src="../library/vendor/datatables/jquery.dataTables.js"></script>
+<script src="../library/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
+<script src="../library/js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="js/demo/datatables-demo.js"></script>
+<script src="../library/js/demo/datatables-demo.js"></script>
 
 </body>
 

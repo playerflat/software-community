@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.User;
+import site.namsu.sweng.core.service.CheckService;
+import site.namsu.sweng.core.service.EncodeService;
 import site.namsu.sweng.core.service.MailService;
 import site.namsu.sweng.core.service.ResetService;
 import site.namsu.sweng.rx.publisher.Mono;
@@ -23,18 +25,27 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class ResetPublisher {
 
-    @Autowired private ResetService resetService;
-    @Autowired private MailService mailService;
+    private CheckService checkService;
+    private ResetService resetService;
+    private MailService mailService;
+    private EncodeService encodeService;
 
     @PostMapping("forgot_password.do")
     public Flow.Publisher<Boolean> forgotPasswordPublish(@NonNull User req) {
         return Mono.main(req)
-                .switchIfEmpty(mailService::isCorrectUser)
+                .filter(checkService::isCorrectEmail)
                 .map(mailService::sendResetMailSuccessful);
     }
 
     @PostMapping("reset_password.do")
     public Flow.Publisher<Boolean> resetPasswordPublish(@NonNull User user) {
+        return Mono.main(user)
+                .map(encodeService::encodePassword)
+                .map(resetService::resetPassword);
+    }
+
+    @PostMapping("reset_email.do")
+    public Flow.Publisher<Boolean> resetEmailPublish(@NonNull User user) {
         return Mono.main(user)
                 .map(resetService::resetPassword);
     }

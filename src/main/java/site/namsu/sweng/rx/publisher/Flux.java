@@ -1,7 +1,7 @@
 package site.namsu.sweng.rx.publisher;
 
-import site.namsu.sweng.rx.scheduler.Scheduler;
 import site.namsu.sweng.rx.subscription.Subscription;
+import site.namsu.sweng.util.Pool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class Flux<T> extends Publisher<T> {
         }
         return new Flux<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Scheduler.main()
+                Pool.main()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, inputAsList)));
             }
         };
@@ -40,7 +40,7 @@ public class Flux<T> extends Publisher<T> {
         }
         return new Flux<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Scheduler.background()
+                Pool.background()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, inputAsList)));
             }
         };

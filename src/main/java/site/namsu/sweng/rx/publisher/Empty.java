@@ -1,7 +1,7 @@
 package site.namsu.sweng.rx.publisher;
 
-import site.namsu.sweng.rx.scheduler.Scheduler;
 import site.namsu.sweng.rx.subscription.Subscription;
+import site.namsu.sweng.util.Pool;
 
 import java.util.Collections;
 import java.util.concurrent.Flow;
@@ -16,7 +16,7 @@ public class Empty<T> extends Publisher<T> {
     public static <T> Empty<T> main() {
         return new Empty<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Scheduler.main()
+                Pool.main()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, Collections.singletonList((T) "EMPTY INPUT"))));
             }
         };
@@ -25,7 +25,7 @@ public class Empty<T> extends Publisher<T> {
     public static <T> Empty<T> background() {
         return new Empty<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Scheduler.background()
+                Pool.background()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, Collections.singletonList((T) "EMPTY INPUT"))));
             }
         };

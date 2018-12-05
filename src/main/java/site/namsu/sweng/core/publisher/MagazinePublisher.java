@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Magazine;
 import site.namsu.sweng.core.service.LoadService;
-import site.namsu.sweng.core.service.WriteService;
+import site.namsu.sweng.core.service.StoreService;
 import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Mono;
 import site.namsu.sweng.rx.publisher.Publisher;
@@ -26,18 +26,18 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class MagazinePublisher {
 
-    @Autowired private LoadService readService;
-    @Autowired private WriteService writeService;
+     private LoadService readService;
+     private StoreService storeService;
 
     @PostMapping("magazine_load.do")
     public Publisher<List<Magazine>> magazineLoadPublish() {
         return Empty.background()
-                .map(req -> readService.load(Magazine.class));
+                .map(req -> readService.loadAll(Magazine.class));
     }
 
     @PostMapping("magazine_write.do")
     public Flow.Publisher<Boolean> magazineWritePublish(@NonNull Magazine req) {
         return Mono.main(req)
-                .map(writeService::writeSuccessful);
+                .map(storeService::storeSuccessful);
     }
 }

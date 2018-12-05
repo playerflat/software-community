@@ -14,7 +14,11 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class LoadService {
 
-    public <T> List<T> load(Class<T> clazz) {
+    public <T> T load(T req) {
+        return (T) Dao.of(req).select(req);
+    }
+
+    public <T> List<T> loadAll(Class<T> clazz) {
         Dao<T> dao = Dao.of(clazz);
         return dao.selectAll();
     }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Board;
 import site.namsu.sweng.core.service.LoadService;
-import site.namsu.sweng.core.service.WriteService;
+import site.namsu.sweng.core.service.StoreService;
 import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Mono;
 
@@ -25,18 +25,18 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class BoardPublisher {
 
-    @Autowired private LoadService loadService;
-    @Autowired private WriteService writeService;
+     private LoadService loadService;
+     private StoreService writeService;
 
     @PostMapping("board_load.do")
     public Flow.Publisher<List<Board>> boardLoadPublish() {
         return Empty.background()
-                .map(req -> loadService.load(Board.class));
+                .map(req -> loadService.loadAll(Board.class));
     }
 
     @PostMapping("board_write.do")
     public Flow.Publisher<Boolean> boardWritePublish(Board req) {
         return Mono.main(req)
-                .map(writeService::writeSuccessful);
+                .map(writeService::storeSuccessful);
     }
 }

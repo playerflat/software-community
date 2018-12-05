@@ -4,9 +4,7 @@ package site.namsu.sweng.core.dao;
 import site.namsu.sweng.base.Accessor;
 import site.namsu.sweng.base.Dao;
 import site.namsu.sweng.core.entity.Message;
-import site.namsu.sweng.util.Serializer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unchecked")

@@ -4,11 +4,11 @@
 
 <head>
 
-    <%@include file="header.jsp" %>
+    <%@include file="../module/header.jsp" %>
     <div class="card-title" style="margin-top:10%;">
         <h2 class="card-title text-center" style="color:#ffffff;">전북대학교 소프트웨어공학과</h2>
     </div>
-    <script src="../core/subscriber/ResetSubscriber.js"></script>
+    <script src="../ajax/ResetSubscriber.js"></script>
 </head>
 
 <body class="bg-dark">
@@ -58,9 +58,9 @@
 
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../library/vendor/jquery/jquery.min.js"></script>
+<script src="../library/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../library/vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
 </html>

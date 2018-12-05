@@ -4,8 +4,8 @@
 
 <head>
 
-    <%@include file="header.jsp" %>
-    <script src="../core/subscriber/SignSubscriber.js"></script>
+    <%@include file="../module/header.jsp" %>
+    <script src="../ajax/SignSubscriber.js"></script>
     <div class="card-title" style="margin-top:10%;">
         <h2 class="card-title text-center" style="color:#ffffff;">전북대학교 소프트웨어공학과</h2>
     </div>
@@ -66,11 +66,11 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../library/vendor/jquery/jquery.min.js"></script>
+<script src="../library/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../library/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 </body>
 

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Notice;
 import site.namsu.sweng.core.entity.User;
-import site.namsu.sweng.core.service.AdminService;
+import site.namsu.sweng.core.service.CheckService;
 import site.namsu.sweng.core.service.LoadService;
-import site.namsu.sweng.core.service.WriteService;
+import site.namsu.sweng.core.service.StoreService;
 import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Publisher;
 import site.namsu.sweng.rx.publisher.Mono;
@@ -28,25 +28,25 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class NoticePublisher {
 
-    @Autowired private LoadService loadService;
-    @Autowired private WriteService writeService;
-    @Autowired private AdminService adminService;
+     private LoadService loadService;
+     private StoreService storeService;
+     private CheckService checkService;
 
     @PostMapping("notice_load.do")
     public Publisher<List<Notice>> noticeLoadPublish() {
         return Empty.background()
-                .map(req -> loadService.load(Notice.class));
+                .map(req -> loadService.loadAll(Notice.class));
     }
 
     @PostMapping("notice_check.do")
     public Flow.Publisher<Boolean> noticeCheckPublish(@NonNull User req) {
         return Mono.main(req)
-                .map(adminService::isAdmin);
+                .map(checkService::isAdmin);
     }
 
     @PostMapping("notice_write.do")
     public Flow.Publisher<Boolean> noticeWritePublish(@NonNull Notice req) {
         return Mono.main(req)
-                .map(writeService::writeSuccessful);
+                .map(storeService::storeSuccessful);
     }
 }

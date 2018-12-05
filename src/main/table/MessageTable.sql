@@ -4,4 +4,4 @@ CREATE TABLE mingus.message (
   name          varchar(10),
   contents      text,
   time          varchar(10)
-)
+);

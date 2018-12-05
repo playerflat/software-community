@@ -14,7 +14,18 @@ import java.util.function.Consumer;
  */
 public class Pool {
     private static final Map<String, Object> singletonPool = new ConcurrentHashMap<>();
+    private static final Executor backgroundThreadPool = Executors.newCachedThreadPool();
+    private static final Executor mainThread = Runnable::run;
+
     public static Map<String, Object> singleton() {
         return singletonPool;
+    }
+
+    public static Executor background() {
+        return backgroundThreadPool;
+    }
+
+    public static Executor main() {
+        return mainThread;
     }
 }

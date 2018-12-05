@@ -16,7 +16,8 @@ import java.util.concurrent.Flow;
  */
 @SuppressWarnings("unchecked")
 public class Publisher<T> implements Flow.Publisher<T> {
-    protected Publisher(){}
+    protected Publisher() {
+    }
 
     public <R> Publisher<R> map(Function<T, R> function) {
         return new Mapper<>(this, function);
@@ -36,10 +37,6 @@ public class Publisher<T> implements Flow.Publisher<T> {
 
     public <R> Publisher<Publisher<R>> flatMap(Function<T, Publisher<R>> flatMapper) {
         return new Flatter<>(this, flatMapper);
-    }
-
-    public Publisher<T> switchIfEmpty(Predicate<T> predicate) {
-        return new Switcher<>(this, predicate);
     }
 
     @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {

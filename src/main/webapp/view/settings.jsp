@@ -9,18 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@include file="header.jsp"%>
-    <%@include file="session_checker.jsp" %>
+    <%@include file="../module/header.jsp"%>
+    <%@include file="../module/session.jsp" %>
     <link href="../css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 <!-- Nav -->
-<%@include file="nav.jsp"%>
+<%@include file="../module/nav.jsp"%>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%@include file="sidebar.jsp"%>
+    <%@include file="../module/sidebar.jsp"%>
         <div style = "padding: 30px 0px 2px 3px;"></div>
         <div class="container" style="margin-top: 50px;">
             <div class="row flex-lg-nowrap">
@@ -45,8 +45,8 @@
                                         <div class="row">
                                             <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                 <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">Iljjeong2</h4>
-                                                    <p class="mb-0">@201646199</p>
+                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%=session.getAttribute("name")%></h4>
+                                                    <p class="mb-0">@<%=session.getAttribute("stdNumber")%></p>
                                                 </div>
                                                 <div class="text-center text-sm-right">
                                                     <span class="badge badge-secondary">administrator</span>
@@ -92,7 +92,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h6 class="card-title font-weight-bold">Support</h6>
-                                    <p class="card-text">Test 안녕 연락주세요-★★★</p>
+                                    <p class="card-text">개발자 문의</p>
                                     <div class="btn btn-primary" type="button">
                                         <a href="contactus.jsp">Contactus</a>
                                     </div>
@@ -108,22 +108,22 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../library/vendor/jquery/jquery.min.js"></script>
+<script src="../library/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../library/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="vendor/chart.js/Chart.min.js"></script>
-<script src="vendor/datatables/jquery.dataTables.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="../library/vendor/chart.js/Chart.min.js"></script>
+<script src="../library/vendor/datatables/jquery.dataTables.js"></script>
+<script src="../library/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
 
-<script src="js/sb-admin.min.js"></script>
-<script src="vendor/bootstrap/js/settings.js"></script>
+<script src="../library/js/sb-admin.min.js"></script>
+<script src="../library/vendor/bootstrap/js/settings.js"></script>
 <!-- Demo scripts for this page-->
-<script src="js/demo/datatables-demo.js"></script>
-<script src="js/demo/chart-area-demo.js"></script>
+<script src="../library/js/demo/datatables-demo.js"></script>
+<script src="../library/js/demo/chart-area-demo.js"></script>
 
 <script src="/vendor/js/settings.js"></script>
 

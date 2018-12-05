@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.User;
-import site.namsu.sweng.core.service.SignInService;
-import site.namsu.sweng.core.service.SignUpService;
+import site.namsu.sweng.core.service.*;
 import site.namsu.sweng.rx.publisher.Mono;
 
-import javax.servlet.http.HttpSession;
+import java.util.Objects;
 import java.util.concurrent.Flow;
 
 /**
@@ -24,24 +23,27 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class SignPublisher {
 
-    @Autowired private SignInService signInService;
-    @Autowired private SignUpService signUpService;
+    private LoadService loadService;
+    private CheckService checkService;
+    private StoreService storeService;
+    private SessionService sessionService;
+    private EncodeService encodeService;
 
     @PostMapping("sign_in.do")
-    public Flow.Publisher<User> signInPublish(@NonNull User req, HttpSession session) {
+    public Flow.Publisher<User> signInPublish(@NonNull User req) {
         return Mono.main(req)
-                .map(signInService::getDbUser)
-                .switchIfEmpty(db -> signInService.isSigned(req, db))
-                .filter(db -> signInService.isSigned(req, db))
-                .next(db -> session.setAttribute("stdNumber", db.getStdNumber()))
-                .next(db -> session.setAttribute("name", db.getName()));
+                .map(encodeService::encodePassword)
+                .map(checkService::isSignedOrNull)
+                .filter(Objects::nonNull)
+                .next(db -> sessionService.store("stdNumber", db.getStdNumber()))
+                .next(db -> sessionService.store("name", db.getName()));
     }
 
     @PostMapping("sign_up.do")
     public Flow.Publisher<Boolean> signUpPublish(@NonNull User req) {
         return Mono.main(req)
-                .map(signUpService::encodePassword)
-                .map(signUpService::storeSuccessful);
+                .map(encodeService::encodePassword)
+                .map(storeService::storeSuccessful);
     }
 }
 

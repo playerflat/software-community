@@ -5,13 +5,13 @@
 <head>
 
     <%@include file="header.jsp" %>
-    <%@include file="session_checker.jsp" %>
+    <%@include file="session.jsp" %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../library/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 
 
@@ -22,7 +22,7 @@
         <i class="fas fa-bars "></i>
     </button>
 
-    <a class="navbar-brand mr-1" href="main.jsp">Software Engineering</a>
+    <a class="navbar-brand mr-1" href="../view/main.jsp">Software Engineering</a>
 
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 <mr-md-2></mr-md-2> my-2 my-md-0">
@@ -44,7 +44,7 @@
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="settings.jsp">Settings</a>
+                <a class="dropdown-item" href="../view/settings.jsp">Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
@@ -52,7 +52,7 @@
     </ul>
 </nav>
 
-<%@include file="logoutmodal.jsp"%>
+<%@include file="../view/logoutmodel.jsp"%>
 
 </body>
 </html>

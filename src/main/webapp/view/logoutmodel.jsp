@@ -4,19 +4,19 @@
 
 <head>
 
-    <%@include file="header.jsp" %>
-    <%@include file="session_checker.jsp" %>
+    <%@include file="../module/header.jsp" %>
+    <%@include file="../module/session.jsp" %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../library/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 
 
 <body>
-<!-- Logout Modal-->
+<!-- Logout Model-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">

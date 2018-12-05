@@ -17,13 +17,13 @@ import java.util.Vector;
 @SuppressWarnings("unchecked")
 public class Accessor {
 
+    private final String id = "root";
+    private final String pw = "gusdnd852";
+    private final String url = "jdbc:mysql://localhost:3306/mingus?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
+
     private List<Consumer<PreparedStatement>> params;
     private Function<ResultSet, Object> mapper;
     private String query;
-
-    public static final String id = "root";
-    public static final String pw = "gusdnd852";
-    public static final String url = "jdbc:mysql://localhost:3306/mingus?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
 
     protected Accessor SQL(String sql) {
         this.params = new Vector<>();

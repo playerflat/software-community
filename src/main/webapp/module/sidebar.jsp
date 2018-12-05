@@ -5,13 +5,13 @@
 <head>
 
     <%@include file="header.jsp" %>
-    <%@include file="session_checker.jsp" %>
+    <%@include file="session.jsp" %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="../library/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 
 
@@ -32,26 +32,26 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="community_board.jsp">
+        <a class="nav-link" href="../view/community_board.jsp">
             <i class="fas fa-fw fa-sticky-note"></i>
             <span>Community</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="notice_board.jsp">
+        <a class="nav-link" href="../view/notice_board.jsp">
             <i class="fas fa-fw fa-bullhorn"></i>
             <span>Notice</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="magazine_board.jsp">
+        <a class="nav-link" href="../view/magazine_board.jsp">
             <i class="fas fa-fw fa-film"></i>
             <span>SE Magazine</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="chat.jsp">
+        <a class="nav-link" href="../view/chat.jsp">
             <i class="fas fa-fw fa-comments"></i>
             <span>Messenger</span></a>
     </li>
 </ul>
-<%@include file="logoutmodal.jsp"%>
+<%@include file="../view/logoutmodel.jsp"%>
 </body>
 </html>

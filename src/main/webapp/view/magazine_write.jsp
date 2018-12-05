@@ -1,21 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@include file="session_checker.jsp" %>
+    <%@include file="../module/session.jsp" %>
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/write.css" rel="stylesheet">
+    <link href="../library/css/sb-admin.css" rel="stylesheet">
+    <link href="../library/css/write.css" rel="stylesheet">
 
-    <script src="../core/subscriber/MagazineSubscriber.js"></script>
+    <script src="../ajax/MagazineSubscriber.js"></script>
 </head>
 <body id="page-top">
 <!-- Nav -->
-<%@include file="nav.jsp" %>
+<%@include file="../module/nav.jsp" %>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%@include file="sidebar.jsp" %>
+    <%@include file="../module/sidebar.jsp" %>
     <div id="content-wrapper">
         <div class="container-fluid">
 
@@ -68,20 +68,20 @@
 
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../library/vendor/jquery/jquery.min.js"></script>
+<script src="../library/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../library/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
-<script src="vendor/chart.js/Chart.min.js"></script>
-<script src="vendor/datatables/jquery.dataTables.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="../library/vendor/chart.js/Chart.min.js"></script>
+<script src="../library/vendor/datatables/jquery.dataTables.js"></script>
+<script src="../library/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
+<script src="../library/js/sb-admin.min.js"></script>
 
 <!-- Demo scripts for this page-->
-<script src="js/demo/datatables-demo.js"></script>
-<script src="js/demo/chart-area-demo.js"></script>
+<script src="../library/js/demo/datatables-demo.js"></script>
+<script src="../library/js/demo/chart-area-demo.js"></script>
 </body>
 </html>

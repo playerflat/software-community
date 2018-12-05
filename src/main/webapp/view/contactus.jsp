@@ -9,18 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%@include file="header.jsp" %>
-    <%@include file="session_checker.jsp" %>
-    <link href="css/settings.css" rel="stylesheet" id="bootstrap-css">
+    <%@include file="../module/header.jsp" %>
+    <%@include file="../module/session.jsp" %>
+    <link href="../library/css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 <!-- Nav -->
-<%@include file="nav.jsp"%>
+<%@include file="../module/nav.jsp"%>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%@include file="sidebar.jsp"%>
+    <%@include file="../module/sidebar.jsp"%>
         <div style="padding: 30px 0px 2px 3px;"></div>
         <div class="container" style="margin-top: 50px;">
             <div class="row flex-lg-nowrap">
