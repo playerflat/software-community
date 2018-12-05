@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
+@SuppressWarnings("unchecked")
 public class ChatService {
 
 }

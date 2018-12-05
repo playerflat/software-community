@@ -12,12 +12,11 @@ import site.namsu.sweng.util.Encoder;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
+@SuppressWarnings("unchecked")
 public class SignUpService {
 
-    private final Dao<User> dao = Dao.of(UserDao.class);
-
     public boolean storeSuccessful(User user) {
-        return dao.insert(user);
+        return Dao.of(user).insert(user);
     }
 
     public User encodePassword(User user) {

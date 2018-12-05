@@ -11,8 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Magazine {
     private int magazineNumber;
-    private String title;
+    private String stdNumber;
     private String name;
-    private String text;
+    private String title;
+    private String contents;
     private String date;
 }

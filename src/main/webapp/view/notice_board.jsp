@@ -10,330 +10,16 @@
 <head>
     <%@include file="header.jsp" %>
     <%@include file="session_checker.jsp" %>
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Page level plugin CSS-->
-    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
-    <title>CBNU Software Engineering</title>
-    <script src="../core/subscriber/NoticeSubscriber.js">
-    </script>
+    <link href="../view/css/noticeboard.css" rel="stylesheet">
+    <script src="../core/subscriber/NoticeSubscriber.js"></script>
 </head>
-<style>
-    /*    --------------------------------------------------
-	:: General
-	-------------------------------------------------- */
-
-    .content h1 {
-        text-align: center;
-    }
-
-    .content .content-footer p {
-        color: #6d6d6d;
-        font-size: 12px;
-        text-align: center;
-    }
-
-    .content .content-footer p a {
-        color: inherit;
-        font-weight: bold;
-    }
-
-    /*	--------------------------------------------------
-        :: Table Filter
-        -------------------------------------------------- */
-    .panel {
-        border: 1px solid #ddd;
-        background-color: #fcfcfc;
-    }
-
-    .panel .btn-group {
-        margin: 15px 0 30px;
-    }
-
-    .panel .btn-group .btn {
-        transition: background-color .3s ease;
-    }
-
-    .table-filter {
-        background-color: #fff;
-        border-bottom: 1px solid #eee;
-    }
-
-    .table-filter tbody tr:hover {
-        cursor: pointer;
-        background-color: #eee;
-    }
-
-    .table-filter tbody tr td {
-        padding: 10px;
-        vertical-align: middle;
-        border-top-color: #eee;
-    }
-
-    .table-filter tbody tr.selected td {
-        background-color: #eee;
-    }
-
-    .table-filter tr td:first-child {
-        width: 38px;
-    }
-
-    .table-filter tr td:nth-child(2) {
-        width: 35px;
-    }
-
-    .ckbox {
-        position: relative;
-    }
-
-    .ckbox input[type="checkbox"] {
-        opacity: 0;
-    }
-
-    .ckbox label {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .ckbox label:before {
-        content: '';
-        top: 1px;
-        left: 0;
-        width: 18px;
-        height: 18px;
-        display: block;
-        position: absolute;
-        border-radius: 2px;
-        border: 1px solid #bbb;
-        background-color: #fff;
-    }
-
-    .ckbox input[type="checkbox"]:checked + label:before {
-        border-color: #2BBCDE;
-        background-color: #2BBCDE;
-    }
-
-    .ckbox input[type="checkbox"]:checked + label:after {
-        top: 3px;
-        left: 3.5px;
-        content: '\e013';
-        color: #fff;
-        font-size: 11px;
-        font-family: 'Glyphicons Halflings';
-        position: absolute;
-    }
-
-    .table-filter .star {
-        color: #ccc;
-        text-align: center;
-        display: block;
-    }
-
-    .table-filter .star.star-checked {
-        color: #F0AD4E;
-    }
-
-    .table-filter .star:hover {
-        color: #ccc;
-    }
-
-    .table-filter .star.star-checked:hover {
-        color: #F0AD4E;
-    }
-
-    .table-filter .media-photo {
-        width: 35px;
-    }
-
-    .table-filter .media-body {
-        display: block;
-        /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
-    }
-
-    .table-filter .media-meta {
-        font-size: 11px;
-        color: #999;
-    }
-
-    .table-filter .media .title {
-        color: #2BBCDE;
-        font-size: 14px;
-        font-weight: bold;
-        line-height: normal;
-        margin: 0;
-    }
-
-    .table-filter .media .title span {
-        font-size: .8em;
-        margin-right: 20px;
-    }
-
-    .table-filter .media .title span.pagado {
-        color: #5cb85c;
-    }
-
-    .table-filter .media .title span.pendiente {
-        color: #f0ad4e;
-    }
-
-    .table-filter .media .title span.cancelado {
-        color: #d9534f;
-    }
-
-    .table-filter .media .summary {
-        font-size: 14px;
-    }
-</style>
-<script>
-    $(document).ready(function () {
-
-        $('.star').on('click', function () {
-            $(this).toggleClass('star-checked');
-        });
-
-        $('.ckbox label').on('click', function () {
-            $(this).parents('tr').toggleClass('selected');
-        });
-
-        $('.btn-filter').on('click', function () {
-            var $target = $(this).data('target');
-            if ($target != 'all') {
-                $('.table tr').css('display', 'none');
-                $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
-            } else {
-                $('.table tr').css('display', 'none').fadeIn('slow');
-            }
-        });
-
-    });
-</script>
-
 <body id="page-top">
+<!-- Nav -->
+<%@include file="nav.jsp" %>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-        <i class="fas fa-bars "></i>
-    </button>
-
-    <a class="navbar-brand mr-1" href="main.jsp">Software Engineering</a>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 <mr-md-2></mr-md-2> my-2 my-md-0">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
-                   aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- <span class="badge badge-danger">999+</span>-->
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- <span class="badge badge-danger">3</span> -->
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle fa-fw"></i>
-                <!-- <span class="badge badge-danger">3</span> -->
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Activity Log</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-            </div>
-        </li>
-    </ul>
-
-</nav>
 <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-user-circle"></i>
-                <!--Pages-->
-                <span>Information</span>
-
-            </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                <h6 class="dropdown-header">User Info</h6>
-                <h7 class="dropdown-item-text"><%= session.getAttribute("stdNumber") %>
-                </h7>
-                <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
-                </h7>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="community_board.jsp">
-                <i class="fas fa-fw fa-sticky-note"></i>
-                <!--Charts-->
-                <span>Community</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="notice_board.jsp">
-                <i class="fas fa-fw fa-bullhorn"></i>
-                <!--Tables-->
-                <span>Notice</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="magazine.jsp">
-                <i class="fas fa-fw fa-film"></i>
-                <!--Tables-->
-                <span>SE Magazine</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="chat.jsp">
-                <i class="fas fa-fw fa-comments"></i>
-                <!--Tables-->
-                <span>Messenger</span></a>
-        </li>
-
-    </ul>
+    <%@include file="sidebar.jsp" %>
     <div id="content-wrapper">
         <div class="container-fluid">
 
@@ -342,30 +28,26 @@
                 <li class="breadcrumb-item">
                     <a href="#">공지사항</a>
                 </li>
-                <li class="breadcrumb-item active">게시판형testing</li>
             </ol>
 
-            <!-- DataTables Example -->
-            <!-- <div class="card mb-3"> -->
             <div class="card-header">
-                <i class="fas fa-table"></i>
-                공!지!사!항!
-                <script> noticeReadSubscribe();</script>
+                <i class="fas fa-fw fa-bullhorn"></i>
+                공 지 사 항
+                <script> noticeLoadSubscribe();</script>
             </div>
-            <!--dataTables.bootstrap4.csstable에 {table-layout:fixed;word-break:break-all;}추가한거, 이상있으면 삭제하기-->
             <div class="card-body">
                 <div class="table-responsive">
                     <table cellpadding="0" cellspacing="0" border="0"
-                           class="table table-bordered">
+                           class="table table-bordered" style="font-size: 10px">
                         <thead>
                         <tr>
-                            <th scope="col">no</th>
-                            <th scope="col" style="text-align: center;">공지사항</th>
-                            <th scope="col" style="text-align: center;">작성일</th>
+                            <th scope="col" style="text-align: center; width: 45px; ">번호</th>
+                            <th scope="col" style="text-align: center; width: auto;">공지사항</th>
+                            <th scope="col" style="text-align: center; width: 77px;">작성일</th>
                         </tr>
                         </thead>
                         <table cellpadding="0" cellspacing="0" border="0"
-                               id="noticeTable" class="table table-bordered">
+                               id="noticeTable" class="table table-bordered" style="font-size: 10px">
                             <tbody>
                             </tbody>
                         </table>
@@ -374,57 +56,41 @@
             </div>
         </div>
         <br>
-        <input type="hidden" value="<%=session.getAttribute("stdNumber")%>" id="stdNumber" name="stdNumber">
+        <input type="hidden" value="<%=session.getAttribute("stdNumber")%>" id="notice_stdNumber"
+               name="notice_stdNumber">
 
         <button type="button" class="float-right btn btn-primary" style="width: 20%; margin-right: 1%; margin-top: 1%"
                 onclick="noticeCheckSubscribe()">글쓰기
         </button>
-        <div class="card-footer small text-muted"></div>
-    </div>
-</div>
-
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">로그아웃 버튼을 누르면 세션이 종료됩니다.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal"> Cancel</button>
-                <a class="btn btn-primary">
-                    Logout</a>
-            </div>
+        <div>
+            <div class="card-footer small text-muted" style="height: 65px;"></div>
         </div>
     </div>
-</div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Page level plugin JavaScript-->
-<script src="vendor/chart.js/Chart.min.js"></script>
-<script src="vendor/datatables/jquery.dataTables.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Demo scripts for this page-->
-<script src="js/demo/datatables-demo.js"></script>
-<script src="js/demo/chart-area-demo.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
+
+    <script src="js/noticeboard.js"></script>
+
 </body>
 </html>

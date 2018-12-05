@@ -16,7 +16,7 @@ import java.util.List;
 public class BoardDao extends Accessor implements Dao<Board> {
 
     @Override public Board select(Board input) {
-        return SQL("select * form  mingus.board where boardNumber = ?")
+        return SQL("select * from  mingus.board where boardNumber = ?")
                 .param(db -> db.setInt(1, input.getBoardNumber()))
                 .map(db -> Board.builder()
                         .boardNumber(db.getInt("boardNumber"))
@@ -30,7 +30,7 @@ public class BoardDao extends Accessor implements Dao<Board> {
     }
 
     public List<Board> selectAll() {
-        return SQL("select * form  mingus.board")
+        return SQL("select * from  mingus.board")
                 .map(db -> Board.builder()
                         .boardNumber(db.getInt("boardNumber"))
                         .stdNumber(db.getString("stdNumber"))

@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Board;
-import site.namsu.sweng.core.service.BoardDeleteService;
-import site.namsu.sweng.core.service.BoardReadService;
-import site.namsu.sweng.core.service.BoardWriteService;
+import site.namsu.sweng.core.service.LoadService;
+import site.namsu.sweng.core.service.WriteService;
 import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Mono;
 
@@ -26,18 +25,17 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class BoardPublisher {
 
-    @Autowired private BoardReadService readService;
-    @Autowired private BoardWriteService writeService;
-    @Autowired private BoardDeleteService deleteService;
+    @Autowired private LoadService loadService;
+    @Autowired private WriteService writeService;
 
-    @PostMapping("board_read.do")
-    public Flow.Publisher<List> readBoardPublish() {
+    @PostMapping("board_load.do")
+    public Flow.Publisher<List<Board>> boardLoadPublish() {
         return Empty.background()
-                .map(req -> readService.read());
+                .map(req -> loadService.load(Board.class));
     }
 
-    @PostMapping("write_board.do")
-    public Flow.Publisher<Boolean> writeBoardPublish(Board req) {
+    @PostMapping("board_write.do")
+    public Flow.Publisher<Boolean> boardWritePublish(Board req) {
         return Mono.main(req)
                 .map(writeService::writeSuccessful);
     }

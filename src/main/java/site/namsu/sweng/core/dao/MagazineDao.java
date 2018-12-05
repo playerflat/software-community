@@ -10,15 +10,16 @@ import java.util.List;
 
 public class MagazineDao extends Accessor implements Dao<Magazine> {
 
-
     @Override
     public Magazine select(Magazine input) {
-        return SQL("select * form mingus.magazine where magazineNumber = ?")
+        return SQL("select * from mingus.magazine where magazineNumber = ?")
                 .param(db -> db.setInt(1, input.getMagazineNumber()))
                 .map(db -> Magazine.builder()
                         .magazineNumber(db.getInt("magazineNumber"))
+                        .stdNumber(db.getString("stdNumber"))
+                        .name(db.getString("name"))
                         .title(db.getString("title"))
-                        .text(db.getString("text"))
+                        .contents(db.getString("contents"))
                         .date(db.getString("date"))
                         .build())
                 .getOnce(Magazine.class);
@@ -26,23 +27,27 @@ public class MagazineDao extends Accessor implements Dao<Magazine> {
 
     @Override
     public List<Magazine> selectAll() {
-        return SQL("select *form mingus.magazine")
+        return SQL("select *from mingus.magazine")
                 .map(db -> Magazine.builder()
                         .magazineNumber(db.getInt("magazineNumber"))
+                        .stdNumber(db.getString("stdNumber"))
+                        .name(db.getString("name"))
                         .title(db.getString("title"))
-                        .text(db.getString("text"))
+                        .contents(db.getString("contents"))
                         .date(db.getString("date"))
                         .build())
-                    .getList(Magazine.class);
+                .getList(Magazine.class);
     }
 
     @Override
     public boolean insert(Magazine input) {
-        return SQL("insert into mingus.magazine values (?,?,?,?)")
+        return SQL("insert into mingus.magazine values (?,?,?,?,?,?)")
                 .param(db -> db.setInt(1, input.getMagazineNumber()))
-                .param(db -> db.setString(2, input.getTitle()))
-                .param(db -> db.setString(3, input.getText()))
-                .param(db -> db.setString(4, input.getDate()))
+                .param(db -> db.setString(2, input.getStdNumber()))
+                .param(db -> db.setString(3, input.getTitle()))
+                .param(db -> db.setString(4, input.getName()))
+                .param(db -> db.setString(5, input.getContents()))
+                .param(db -> db.setString(6, input.getDate()))
                 .set();
     }
 

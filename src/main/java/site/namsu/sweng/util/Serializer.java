@@ -1,7 +1,5 @@
 package site.namsu.sweng.util;
 
-import site.namsu.sweng.core.entity.Group;
-
 import java.io.*;
 import java.sql.Blob;
 import java.sql.PreparedStatement;

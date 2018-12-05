@@ -5,7 +5,7 @@
 <head>
     <%@include file="header.jsp" %>
     <%@include file="session_checker.jsp" %>
-    <script src="../core/subscriber/BoardSubscriber.js"></script>
+    <script src="../core/subscriber/MagazineSubscriber.js"></script>
 </head>
 <body id="page-top">
 <!-- Nav -->
@@ -22,15 +22,15 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">SE Community</a>
+                    <a href="#">SE Magazine</a>
                 </li>
-                <li class="breadcrumb-item active">커뮤니티</li>
+                <li class="breadcrumb-item active">매거진</li>
             </ol>
             <!-- DataTables Example -->
             <div class="card-header">
                 <i class="fas fa-fw fa-film"></i>
-                Community
-                <script>boardLoadSubscribe()</script>
+                Magazine
+                <script>magazineLoadSubscribe()</script>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -46,7 +46,7 @@
                         </tr>
                         </thead>
                         <table cellpadding="0" cellspacing="0" border="0"
-                               id="communityTable" class="table table-bordered"  style="font-size: 10px">
+                               id="magazineTable" class="table table-bordered"  style="font-size: 10px">
                             <tbody>
                             </tbody>
                         </table>
@@ -55,10 +55,10 @@
             </div>
         </div>
         <br>
-        <input type="hidden" value="<%=session.getAttribute("stdNumber")%>" id="community_stdNumber" name="community_stdNumber">
+        <input type="hidden" value="<%=session.getAttribute("stdNumber")%>" id="stdNumber" name="stdNumber">
 
         <button type="button" class="float-right btn btn-primary" style="width: 20%; margin-right: 1%; margin-top: 1%"
-                onclick="location.href='community_write.jsp'">글쓰기
+                onclick="location.href='magazine_write.jsp'">글쓰기
         </button>
         <div class="card-footer small text-muted" style="height: 65px;"></div>
     </div>

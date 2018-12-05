@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gangmingu
-  Date: 13/11/2018
-  Time: 12:51 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,30 +7,29 @@
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/write.css" rel="stylesheet">
 
-    <script src="../core/subscriber/NoticeSubscriber.js"></script>
+    <script src="../core/subscriber/BoardSubscriber.js"></script>
 </head>
 <body id="page-top">
 <!-- Nav -->
-<%@include file="nav.jsp"%>
+<%@include file="nav.jsp" %>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%@include file="sidebar.jsp"%>
+    <%@include file="sidebar.jsp" %>
     <div id="content-wrapper">
         <div class="container-fluid">
 
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">공지사항</a>
+                    <a href="#">SE 커뮤니티</a>
                 </li>
             </ol>
-
             </td>
             <!-- DataTables Example -->
             <div class="card-header">
-                <i class="fas fa-fw fa-bullhorn"></i>
-                공 지 사 항
+                <i class="fas fa-fw fa-film"></i>
+                SE Community
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -47,16 +39,24 @@
                             <tbody>
                             <tr>
                                 <td>
-                                <textarea class="form-control" placeholder="글 내용" name="notice_contents"
-                                              maxlength="2048"
-                                              style="height: 350px;" id="notice_contents"></textarea>
+                                    <input type="text" class="form-control" placeholder="글 제목" name="community_title" id="community_title">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <textarea class="form-control" placeholder="글 내용" name="community_contents"
+                                          maxlength="2048"
+                                          style="height: 350px;" id="community_contents"></textarea>
+
+                                    <input type="hidden" class="form-control" id="community_stdNumber"  name="community_stdNumber" value="<%=session.getAttribute("stdNumber")%>">
+                                    <input type="hidden" class="form-control" id="community_name" name="community_name" value="<%=session.getAttribute("name")%>">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                         <button type="button" class="float-right btn btn-secondary">취소</button>
                         <button type="button" class="float-right btn btn-primary"
-                                onclick="noticeWriteSubscribe()">등록
+                                onclick="boardWriteSubscribe()">등록
                         </button>
                     </form>
                 </div>

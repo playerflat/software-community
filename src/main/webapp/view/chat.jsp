@@ -16,127 +16,13 @@
     <!------ Include the above in your HEAD tag ---------->
     <link href="css/admin.css" rel="stylesheet">
 </head>
-
 <body id="page-top">
+<!-- Nav -->
+<%@include file="nav.jsp"%>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-        <i class="fas fa-bars "></i>
-    </button>
-
-    <a class="navbar-brand mr-1" href="main.jsp">Software Engineering</a>
-
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 <mr-md-2></mr-md-2> my-2 my-md-0">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
-                   aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- <span class="badge badge-danger">999+</span>-->
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- <span class="badge badge-danger">3</span> -->
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle fa-fw"></i>
-                <!-- <span class="badge badge-danger">3</span> -->
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Activity Log</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-            </div>
-        </li>
-    </ul>
-</nav>
 <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-user-circle"></i>
-                <!--Pages-->
-                <span>Information</span>
-
-            </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                <h6 class="dropdown-header">User Info</h6>
-                <h7 class="dropdown-item-text"><%= session.getAttribute("stdNumber") %>
-                </h7>
-                <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
-                </h7>
-
-                <%--<a class="dropdown-item" href="../view/sign_in.jsp">Login</a>--%>
-                <%--<a class="dropdown-item" href="../view/sign_up.jsp">Register</a>--%>
-                <%--<a class="dropdown-item" href="#">Forgot Password</a>--%>
-                <!--<div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Other Pages</h6>
-
-                <a class="dropdown-item" href="404.html">404 Page</a>
-                <a class="dropdown-item" href="blank.html">Blank Page</a>
-                -->
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="community_board.jsp">
-                <i class="fas fa-fw fa-sticky-note"></i>
-                <!--Charts-->
-                <span>Community</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="notice_board.jsp">
-                <i class="fas fa-fw fa-bullhorn"></i>
-                <!--Tables-->
-                <span>Notice</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="magazine.jsp">
-                <i class="fas fa-fw fa-film"></i>
-                <!--Tables-->
-                <span>SE Magazine</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="chat.jsp">
-                <i class="fas fa-fw fa-comments"></i>
-                <!--Tables-->
-                <span>Messenger</span></a>
-        </li>
-    </ul>
+    <%@include file="sidebar.jsp"%>
 
 
     <div class="container">

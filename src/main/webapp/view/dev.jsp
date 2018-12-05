@@ -14,118 +14,14 @@
     <link href="css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
-<div id="page-top">
-
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars "></i>
-        </button>
-
-        <a class="navbar-brand mr-1" href="main.jsp">Software Engineering</a>
-
-        <!-- Navbar Search -->
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 <mr-md-2></mr-md-2> my-2 my-md-0">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
-                       aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-
-        <!-- Navbar -->
-        <ul class="navbar-nav ml-auto ml-md-0">
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw"></i>
-                    <!-- <span class="badge badge-danger">999+</span>-->
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <!-- <span class="badge badge-danger">3</span> -->
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i>
-                    <!-- <span class="badge badge-danger">3</span> -->
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">Activity Log</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="sidebar navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-user-circle"></i>
-                    <!--Pages-->
-                    <span>Information</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <h6 class="dropdown-header">User Info</h6>
-                    <h7 class="dropdown-item-text"><%= session.getAttribute("stdNumber") %>
-                    </h7>
-                    <h7 class="dropdown-item-text"><%= session.getAttribute("name") %>
-                    </h7>
-                </div>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="community_board.jsp">
-                <i class="fas fa-fw fa-sticky-note"></i>
-                <!--Charts-->
-                <span>Community</span></a>
-        </li>
-            <li class="nav-item">
-                <a class="nav-link" href="notice_board.jsp">
-                    <i class="fas fa-fw fa-bullhorn"></i>
-                    <!--Tables-->
-                    <span>Notice</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="magazine.jsp">
-                    <i class="fas fa-fw fa-film"></i>
-                    <!--Tables-->
-                    <span>SE Magazine</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="chat.jsp">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <!--Tables-->
-                    <span>Messenger</span></a>
-            </li>
-        </ul>
-        <div style = "padding: 30px 0px 2px 3px;"></div>
+<body id="page-top">
+    <!-- Nav -->
+    <%@include file="nav.jsp"%>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%@include file="sidebar.jsp"%>
+    <!-- Contents -->
+    <div style = "padding: 30px 0px 2px 3px;"></div>
         <div class="container" style="margin-top: 50px;">
             <div class="row flex-lg-nowrap">
                 <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
@@ -133,7 +29,7 @@
                         <div class="e-navlist e-navlist--active-bg">
                             <ul class="nav">
                                 <li class="nav-item"><a class="nav-link px-2 active" href="settings.jsp"><i class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2" href="settingpw.jsp"><i class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
+                                <li class="nav-item"><a class="nav-link px-2" href="reset_password.jsp"><i class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2" href="dev.jsp"><i class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
                             </ul>
                         </div>
@@ -170,6 +66,7 @@
         </div>
     </div>
 
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -188,9 +85,9 @@
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
 
-    <script src="js/settings.js"></script>
+    <script src="/vendor/js/settings.js"></script>
 
-    <script src="4.1.1/js/bootstrap.min.js"></script>
-    <script src="jquery/3.2.1/jquery.min.js"></script>
+    <script src="/vendor/js/bootstrap.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
 </body>
 </html>

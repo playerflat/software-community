@@ -2,8 +2,6 @@ package site.namsu.sweng.core.service;
 
 import org.springframework.stereotype.Component;
 import site.namsu.sweng.base.Dao;
-import site.namsu.sweng.core.dao.BoardDao;
-import site.namsu.sweng.core.entity.Board;
 
 import java.util.List;
 
@@ -13,11 +11,11 @@ import java.util.List;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
-public class BoardReadService {
+@SuppressWarnings("unchecked")
+public class LoadService {
 
-    private Dao<Board> dao = Dao.of(BoardDao.class);
-
-    public List<Board> read() {
+    public <T> List<T> load(Class<T> clazz) {
+        Dao<T> dao = Dao.of(clazz);
         return dao.selectAll();
     }
 }

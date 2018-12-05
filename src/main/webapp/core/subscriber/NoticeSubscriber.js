@@ -1,25 +1,34 @@
-function noticeReadSubscribe() {
-    setInterval(function () {
-        let req = new XMLHttpRequest();
-        req.onreadystatechange = function () {
-            if (req.readyState === 4 && req.status === 200) {
-                const resultText = this.responseText.substring(1, this.responseText.length - 1);
-                const json = JSON.parse(resultText);
-                const table = document.getElementById("noticeTable");
-                table.innerHTML = "";
+function noticeLoadSubscribe() {
+    let req = new XMLHttpRequest();
+    req.onreadystatechange = function () {
+        if (req.readyState === 4 && req.status === 200) {
+            const resultText = this.responseText.substring(1, this.responseText.length - 1);
+            const json = JSON.parse(resultText);
+            const table = document.getElementById("noticeTable");
+            table.innerHTML = "";
 
-                for (let i = 0; i < json.length; i++) {
-                    let row = table.insertRow(0);
-                    let noticeNumber = row.insertCell(0);
-                    noticeNumber.innerHTML = json[i].noticeNumber;
-                    let contents = row.insertCell(1);
-                    contents.innerHTML = json[i].contents;
-                    let date = row.insertCell(2);
-                    date.innerHTML = json[i].date;
-                }
+            for (let i = 0; i < json.length; i++) {
+                let row = table.insertRow(0);
+                let noticeNumber = row.insertCell(0);
+                noticeNumber.innerHTML = json[i].noticeNumber;
+                noticeNumber.style.width = '45px';
+                noticeNumber.style.textAlign = 'center';
+
+                let contents = row.insertCell(1);
+                contents.innerHTML = json[i].contents;
+                contents.style.width = 'auto';
+                contents.style.textAlign = 'center';
+
+                let date = row.insertCell(2);
+                date.innerHTML = json[i].date;
+                date.style.width = '77px';
+                date.style.textAlign = 'center';
             }
-        };
-        req.open("post", "http://localhost:1234/notice_read.do", true);
+        }
+    };
+
+    setInterval(function () {
+        req.open("post", "http://localhost:1234/notice_load.do", true);
         req.send(null);
     }, 100);
 }
@@ -36,7 +45,7 @@ function noticeCheckSubscribe() {
     };
     req.open("post", "http://localhost:1234/notice_check.do"
         + "?stdNumber="
-        + encodeURIComponent(document.getElementById("stdNumber").value)
+        + encodeURIComponent(document.getElementById("notice_stdNumber").value)
         , true);
     req.send(null);
 }
@@ -62,7 +71,7 @@ function noticeWriteSubscribe() {
         + "?contents="
         + encodeURIComponent(document.getElementById("notice_contents").value)
         + "&date="
-        + yyyy + "-" + mm + "-" + dd
+        + yyyy + "/" + mm + "/" + dd
         , true);
     req.send(null);
 }

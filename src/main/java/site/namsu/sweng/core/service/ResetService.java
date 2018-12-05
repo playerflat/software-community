@@ -12,12 +12,11 @@ import site.namsu.sweng.util.Encoder;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
+@SuppressWarnings("unchecked")
 public class ResetService {
 
-    private final Dao<User> dao = Dao.of(UserDao.class);
-
     public boolean resetPassword(User user) {
-        return dao.update(user, "password",
+        return Dao.of(user).update(user, "password",
                 Encoder.SHA256(user.getPassword()));
     }
 }

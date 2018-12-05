@@ -1,18 +1,18 @@
-function boardLoadSubscribe() {
+function magazineLoadSubscribe() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
             const resultText = this.responseText.substring(1, this.responseText.length - 1);
             const json = JSON.parse(resultText);
-            const table = document.getElementById("communityTable");
+            const table = document.getElementById("magazineTable");
             table.innerHTML = "";
 
             for (let i = 0; i < json.length; i++) {
                 let row = table.insertRow(0);
-                let boardNumber = row.insertCell(0);
-                boardNumber.innerHTML = json[i].boardNumber;
-                boardNumber.style.width = '45px';
-                boardNumber.style.textAlign = 'center';
+                let magazineNumber = row.insertCell(0);
+                magazineNumber.innerHTML = json[i].magazineNumber;
+                magazineNumber.style.width = '45px';
+                magazineNumber.style.textAlign = 'center';
 
                 let name = row.insertCell(1);
                 name.innerHTML = json[i].name;
@@ -38,21 +38,21 @@ function boardLoadSubscribe() {
     };
 
     setInterval(function () {
-        req.open("post", "http://localhost:1234/board_load.do", true);
+        req.open("post", "http://localhost:1234/magazine_load.do", true);
         req.send(null);
     }, 100);
 }
 
 
-function boardWriteSubscribe() {
+function magazineWriteSubscribe() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
             const json = JSON.parse(this.responseText);
             if (json[0] === true) {
-                alert("게시글이 등록되었습니다.");
-                location.href = "community_board.jsp";
-            } else alert("게시글 작성에 실패하였습니다.")
+                alert("매거진이 등록되었습니다.");
+                location.href = "magazine_board.jsp";
+            } else alert("매거진 작성에 실패하였습니다.")
         }
     };
 
@@ -60,15 +60,15 @@ function boardWriteSubscribe() {
     const dd = today.getDate().toString();
     const mm = (today.getMonth() + 1).toString(); //January is 0!
     const yyyy = today.getFullYear().toString();
-    req.open("post", "http://localhost:1234/board_write.do"
+    req.open("post", "http://localhost:1234/magazine_write.do"
         + "?stdNumber="
-        + encodeURIComponent(document.getElementById("community_stdNumber").value)
+        + encodeURIComponent(document.getElementById("magazine_stdNumber").value)
         + "&name="
-        + encodeURIComponent(document.getElementById("community_name").value)
+        + encodeURIComponent(document.getElementById("magazine_name").value)
         + "&title="
-        + encodeURIComponent(document.getElementById("community_title").value)
+        + encodeURIComponent(document.getElementById("magazine_title").value)
         + "&contents="
-        + encodeURIComponent(document.getElementById("community_contents").value)
+        + encodeURIComponent(document.getElementById("magazine_contents").value)
         + "&date="
         + yyyy + "/" + mm + "/" + dd
         , true);

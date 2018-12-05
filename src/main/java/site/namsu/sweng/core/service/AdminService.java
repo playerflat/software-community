@@ -11,13 +11,13 @@ import site.namsu.sweng.core.entity.User;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
-public class CheckAdminService {
-
-    private Dao<User> dao = Dao.of(UserDao.class);
+@SuppressWarnings("unchecked")
+public class AdminService {
 
     public boolean isAdmin(User user) {
         if (user == null) return false;
         else {
+            Dao<User> dao = Dao.of(user);
             User dbUser = dao.select(user);
             return dbUser.isAdmin();
         }

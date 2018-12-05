@@ -17,12 +17,12 @@ import site.namsu.sweng.util.Encoder;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
+@SuppressWarnings("unchecked")
 public class SignInService {
 
-    private Dao<User> userDao = Dao.of(UserDao.class);
-
     public User getDbUser(User user) {
-        return userDao.select(user);
+        Dao<User> dao = Dao.of(user);
+        return dao.select(user);
     }
 
     public boolean isSigned(User reqUser, User dbUser) {

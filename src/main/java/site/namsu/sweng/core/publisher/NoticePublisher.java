@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Notice;
 import site.namsu.sweng.core.entity.User;
-import site.namsu.sweng.core.service.CheckAdminService;
-import site.namsu.sweng.core.service.NoticeDeleteService;
-import site.namsu.sweng.core.service.NoticeReadService;
-import site.namsu.sweng.core.service.NoticeWriteService;
+import site.namsu.sweng.core.service.AdminService;
+import site.namsu.sweng.core.service.LoadService;
+import site.namsu.sweng.core.service.WriteService;
 import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Publisher;
 import site.namsu.sweng.rx.publisher.Mono;
@@ -29,15 +28,14 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class NoticePublisher {
 
-    @Autowired private NoticeReadService readService;
-    @Autowired private CheckAdminService adminService;
-    @Autowired private NoticeWriteService writeService;
-    @Autowired private NoticeDeleteService deleteService;
+    @Autowired private LoadService loadService;
+    @Autowired private WriteService writeService;
+    @Autowired private AdminService adminService;
 
-    @PostMapping("notice_read.do")
-    public Publisher<List<Notice>> noticeReadPublish() {
+    @PostMapping("notice_load.do")
+    public Publisher<List<Notice>> noticeLoadPublish() {
         return Empty.background()
-                .map(req -> readService.read());
+                .map(req -> loadService.load(Notice.class));
     }
 
     @PostMapping("notice_check.do")
@@ -50,11 +48,5 @@ public class NoticePublisher {
     public Flow.Publisher<Boolean> noticeWritePublish(@NonNull Notice req) {
         return Mono.main(req)
                 .map(writeService::writeSuccessful);
-    }
-
-    @PostMapping("notice_delete.do")
-    public Flow.Publisher<Boolean> noticeDeletePublish(@NonNull Notice req) {
-        return Mono.main(req)
-                .map(deleteService::deleteSuccessful);
     }
 }
