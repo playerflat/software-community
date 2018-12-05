@@ -1,9 +1,6 @@
 package site.namsu.sweng.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @Author : Hyunwoong
@@ -15,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
-    private int boardNumber;
-    private String stdNumber;
-    private String name;
-    private String title;
-    private String contents;
-    private String date;
+     private int boardNumber;
+     private String stdNumber;
+     private String name;
+     private String title;
+     private String contents;
+     private String date;
 }

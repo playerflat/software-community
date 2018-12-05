@@ -1,6 +1,7 @@
 package site.namsu.sweng.core.entity;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
@@ -13,7 +14,7 @@ import javax.mail.PasswordAuthentication;
 @Getter
 public class Auth extends Authenticator {
 
-    private PasswordAuthentication passwordAuthentication;
+     private PasswordAuthentication passwordAuthentication;
 
     public Auth(String id, String pwd) {
         passwordAuthentication = new PasswordAuthentication(id, pwd);

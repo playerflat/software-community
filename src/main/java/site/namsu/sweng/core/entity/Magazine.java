@@ -1,19 +1,16 @@
 package site.namsu.sweng.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Magazine {
-    private int magazineNumber;
-    private String stdNumber;
-    private String name;
-    private String title;
-    private String contents;
-    private String date;
+     private int magazineNumber;
+     private String stdNumber;
+     private String name;
+     private String title;
+     private String contents;
+     private String date;
 }

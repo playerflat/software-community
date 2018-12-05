@@ -1,9 +1,6 @@
 package site.namsu.sweng.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @Author : Hyunwoong
@@ -15,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Notice {
-    private int noticeNumber;
-    private String contents;
-    private String date;
+     private int noticeNumber;
+     private String contents;
+     private String date;
 }

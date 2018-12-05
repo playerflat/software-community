@@ -6,9 +6,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
-    private @NonNull int messageNumber;
-    private String groupName;
-    private String name;
-    private String contents;
-    private String time;
+     private int messageNumber;
+     private String groupName;
+     private String name;
+     private String contents;
+     private String time;
 }

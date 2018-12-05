@@ -1,9 +1,6 @@
 package site.namsu.sweng.core.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,10 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-
-    private String stdNumber;
-    private String password;
-    private String name;
-    private String email;
-    private boolean admin = false;
+     private String stdNumber;
+     private String password;
+     private String name;
+     private String email;
+     private boolean admin = false;
 }
