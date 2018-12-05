@@ -28,6 +28,7 @@ public class Complete<T> extends Publisher<T> {
 
             @Override public void onNext(T item) {
                 subscriber.onNext(item);
+
             }
 
             @Override public void onError(Throwable throwable) {

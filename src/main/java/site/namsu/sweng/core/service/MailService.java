@@ -12,11 +12,11 @@ import site.namsu.sweng.util.Mail;
  * @Homepage : https://github.com/gusdnd852
  */
 @Component
+@SuppressWarnings("unchecked")
 public class MailService {
 
-    private final Dao<User> dao = Dao.of(UserDao.class);
-
     public boolean isCorrectUser(User user) {
+        Dao<User> dao = Dao.of(user);
         User dbUser = dao.select(user);
 
         if (dbUser == null) return false;
@@ -24,7 +24,8 @@ public class MailService {
                 && dbUser.getName().equals(user.getName());
     }
 
-    public void sendMail(User user) {
-        Mail.send(user.getEmail(), user.getStdNumber(), user.getName());
+    public boolean sendResetMailSuccessful(User user) {
+        if (user == null) return false;
+        else return Mail.sendReset(user.getEmail(), user.getStdNumber());
     }
 }

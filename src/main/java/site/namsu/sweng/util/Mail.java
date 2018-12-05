@@ -19,29 +19,12 @@ public class Mail {
     private Mail() {
     }
 
-    public static void send(String mailTo, String stdNumber, String name) {
+    private static boolean send(String message, String mailTo) {
         String mailHost = "smtp.naver.com"; //네이버메일
         String mailAccId = "mingusbob"; // 메일보내는이
         String mailAccPwd = "Software!1"; // 메일비밀번호
         String sendMailAdd = "mingusbob@naver.com"; // 보내는이주소
         String mailTitle = "비밀번호를 재설정해주세요.";
-
-        StringBuilder mailContentBuilder = new StringBuilder();
-
-        mailContentBuilder
-                .append("<h1>아래 링크를 클릭하면 비밀번호를 재설정합니다.</h1>")
-                .append("<br>")
-                .append("<h2><a href =")
-                .append("http://localhost:1234/reset_password.jsp")
-                .append("?name=")
-                .append(name)
-                .append("&stdNumber=")
-                .append(stdNumber)
-                .append(">비밀번호 재설정하기</a></h2>")
-                .append("<br>");
-
-
-        String mailContent = mailContentBuilder.toString();
 
         Authenticator auth = new Auth(mailAccId, mailAccPwd);
         Properties props = new Properties();
@@ -61,14 +44,16 @@ public class Mail {
 
             MimeMultipart mp = new MimeMultipart();
             MimeBodyPart mbp1 = new MimeBodyPart();
-            mbp1.setContent(mailContent, "text/html; charset=utf-8");
+            mbp1.setContent(message, "text/html; charset=utf-8");
             mp.addBodyPart(mbp1);
             msg.setContent(mp);
 
             transport = session.getTransport("smtp");
             Transport.send(msg);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 transport.close();
@@ -76,5 +61,28 @@ public class Mail {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    public static boolean sendReset(String mailTo, String stdNumber) {
+        String msg = "<h1>아래 링크를 클릭하면 비밀번호를 재설정합니다.</h1>"
+                + "<br>"
+                + "<h2><a href ="
+                + "http://localhost:1234/view/reset_password.jsp"
+                + "?stdNumber="
+                + stdNumber
+                + ">비밀번호 재설정하기</a></h2>"
+                + "<br>";
+
+        return send(msg, mailTo);
+    }
+
+    public static boolean sendDev(String msg, String stdNumber) {
+
+        String msgWithStdNumber = "보내는이 : "
+                + stdNumber + "\n"
+                + msg;
+
+        return send(msgWithStdNumber, "mingusbob@naver.com");
     }
 }

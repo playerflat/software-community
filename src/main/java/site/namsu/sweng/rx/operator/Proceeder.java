@@ -2,7 +2,6 @@ package site.namsu.sweng.rx.operator;
 
 import site.namsu.sweng.rx.publisher.Publisher;
 
-import java.util.List;
 import java.util.concurrent.Flow;
 
 import site.namsu.sweng.rx.function.Consumer;
@@ -31,7 +30,7 @@ public class Proceeder<T> extends Publisher<T> {
             @Override public void onNext(T item) {
                 try {
                     consumer.accept(item);
-                    subscriber.onNext(item);
+                      subscriber.onNext(item);
                 } catch (Exception e) {
                     subscriber.onError(e);
                 }

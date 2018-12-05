@@ -29,7 +29,7 @@ public class Flatter<T, R> extends Publisher<Publisher<R>> {
 
             @Override public void onNext(T item) {
                 try {
-                    subscriber.onNext(function.apply(item));
+                     subscriber.onNext(function.apply(item));
                 } catch (Exception e) {
                     subscriber.onError(e);
                 }

@@ -1,18 +1,18 @@
 package site.namsu.sweng.core.publisher;
 
+import lombok.AllArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.User;
 import site.namsu.sweng.core.service.SignInService;
 import site.namsu.sweng.core.service.SignUpService;
-import site.namsu.sweng.rx.publisher.Publisher;
-import site.namsu.sweng.util.View;
+import site.namsu.sweng.rx.publisher.Mono;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.concurrent.Flow;
 
 /**
  * @Author : Hyunwoong
@@ -21,21 +21,27 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @RestController
+@AllArgsConstructor
 public class SignPublisher {
 
     @Autowired private SignInService signInService;
     @Autowired private SignUpService signUpService;
 
     @PostMapping("sign_in.do")
-    public Publisher<User> signInPublish(User req) {
-        return Publisher.springThread(req)
-                .next(input -> System.out.println("AAAAA"))
-                .map(input -> signInService.getDbUser(input))
-                .map(input -> input);
+    public Flow.Publisher<User> signInPublish(@NonNull User req, HttpSession session) {
+        return Mono.main(req)
+                .map(signInService::getDbUser)
+                .switchIfEmpty(db -> signInService.isSigned(req, db))
+                .filter(db -> signInService.isSigned(req, db))
+                .next(db -> session.setAttribute("stdNumber", db.getStdNumber()))
+                .next(db -> session.setAttribute("name", db.getName()));
     }
 
     @PostMapping("sign_up.do")
-    public Publisher<User> signUpPublish(User req) {
-        return Publisher.springThread();
+    public Flow.Publisher<Boolean> signUpPublish(@NonNull User req) {
+        return Mono.main(req)
+                .map(signUpService::encodePassword)
+                .map(signUpService::storeSuccessful);
     }
 }
+

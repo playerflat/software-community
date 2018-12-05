@@ -16,7 +16,7 @@ import java.util.List;
 public class BoardDao extends Accessor implements Dao<Board> {
 
     @Override public Board select(Board input) {
-        return SQL("select * form  mingus.board where boardNumber = ?")
+        return SQL("select * from  mingus.board where boardNumber = ?")
                 .param(db -> db.setInt(1, input.getBoardNumber()))
                 .map(db -> Board.builder()
                         .boardNumber(db.getInt("boardNumber"))
@@ -26,29 +26,21 @@ public class BoardDao extends Accessor implements Dao<Board> {
                         .contents(db.getString("contents"))
                         .date(db.getString("date"))
                         .build())
-                .get(Board.class);
+                .getOnce(Board.class);
     }
 
     public List<Board> selectAll() {
-        return SQL("select * form  mingus.board")
-                .map(db -> {
-                    List<Board> list = new ArrayList<>();
-                    while (db.next()) {
-                        Board board = Board.builder()
-                                .boardNumber(db.getInt("boardNumber"))
-                                .stdNumber(db.getString("stdNumber"))
-                                .name(db.getString("name"))
-                                .title(db.getString("title"))
-                                .contents(db.getString("contents"))
-                                .date(db.getString("date"))
-                                .build();
-                        list.add(board);
-                    }
-                    return list;
-                })
-                .get(List.class);
+        return SQL("select * from  mingus.board")
+                .map(db -> Board.builder()
+                        .boardNumber(db.getInt("boardNumber"))
+                        .stdNumber(db.getString("stdNumber"))
+                        .name(db.getString("name"))
+                        .title(db.getString("title"))
+                        .contents(db.getString("contents"))
+                        .date(db.getString("date"))
+                        .build())
+                .getList(Board.class);
     }
-
 
     public boolean insert(Board input) {
         return SQL("insert into mingus.board values (?,?,?,?,?,?)")

@@ -9,11 +9,11 @@ import java.util.concurrent.Executors;
  * @Homepage : https://github.com/gusdnd852
  */
 public class Scheduler {
-    private static final Executor singleBackgroundThreadPool = Executors.newSingleThreadExecutor();
+    private static final Executor backgroundThreadPool = Executors.newCachedThreadPool();
     private static final Executor mainThread = Runnable::run;
 
     public static Executor background() {
-        return singleBackgroundThreadPool;
+        return backgroundThreadPool;
     }
 
     public static Executor main() {
