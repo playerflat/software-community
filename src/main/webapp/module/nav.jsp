@@ -52,7 +52,7 @@
     </ul>
 </nav>
 
-<%@include file="../view/logoutmodel.jsp"%>
+<%@include file="logout.jsp"%>
 
 </body>
 </html>

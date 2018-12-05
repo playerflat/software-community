@@ -4,8 +4,8 @@
 
 <head>
 
-    <%@include file="../module/header.jsp" %>
-    <%@include file="../module/session.jsp" %>
+    <%@include file="header.jsp" %>
+    <%@include file="session.jsp" %>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"

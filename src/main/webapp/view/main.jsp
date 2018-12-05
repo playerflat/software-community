@@ -105,7 +105,7 @@
                     <i class="fas fa-calendar"></i>
                     학사일정
                 </div>
-                <%@include file="maincalendar.jsp"%>
+                <%@include file="../module/calendar.jsp"%>
             </div>
 
         </div>

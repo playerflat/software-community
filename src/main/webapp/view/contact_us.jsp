@@ -32,7 +32,7 @@
                                         class="far fa-fw fa-user-circle mr-1"></i><span>Profile</span></a></li>
                                 <li class="nav-item"><a class="nav-link px-2" href="reset_password.jsp"><i
                                         class="fa fa-fw fa-key mr-1"></i><span>PW Reset</span></a></li>
-                                <li class="nav-item"><a class="nav-link px-2" href="dev.jsp"><i
+                                <li class="nav-item"><a class="nav-link px-2" href="dev_notes.jsp"><i
                                         class="far fa-fw fa-sticky-note mr-1"></i><span>Dev Notes</span></a></li>
                             </ul>
                         </div>
@@ -72,7 +72,7 @@
                             <h6 class="card-title font-weight-bold">Support</h6>
                             <p class="card-text">Test 안녕 연락주세요-★★★</p>
                             <div class="btn btn-primary" type="button">
-                                <a href="contactus.jsp">Contactus</a>
+                                <a href="contact_us.jsp">Contactus</a>
                             </div>
                         </div>
                     </div>
