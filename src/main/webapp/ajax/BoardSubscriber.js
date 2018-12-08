@@ -1,3 +1,8 @@
+function trimById(elementId) {
+    document.getElementById(elementId).value = document.getElementById(elementId).value.trim();
+    return document.getElementById(elementId)
+}
+
 function boardLoadSubscribe() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = function () {
@@ -45,32 +50,39 @@ function boardLoadSubscribe() {
 
 
 function boardWriteSubscribe() {
-    let req = new XMLHttpRequest();
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-            const json = JSON.parse(this.responseText);
-            if (json[0] === true) {
-                alert("게시글이 등록되었습니다.");
-                location.href = "community_board.jsp";
-            } else alert("게시글 작성에 실패하였습니다.")
-        }
-    };
+    let community_title = trimById("community_title");
+    let community_contents = trimById("community_contents");
 
-    const today = new Date();
-    const dd = today.getDate().toString();
-    const mm = (today.getMonth() + 1).toString(); //January is 0!
-    const yyyy = today.getFullYear().toString();
-    req.open("post", "http://localhost:1234/board_write.do"
-        + "?stdNumber="
-        + encodeURIComponent(document.getElementById("community_stdNumber").value)
-        + "&name="
-        + encodeURIComponent(document.getElementById("community_name").value)
-        + "&title="
-        + encodeURIComponent(document.getElementById("community_title").value)
-        + "&contents="
-        + encodeURIComponent(document.getElementById("community_contents").value)
-        + "&date="
-        + yyyy + "/" + mm + "/" + dd
-        , true);
-    req.send(null);
+    if (community_title.value !== "" && community_contents.value !== "") {
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState === 4 && req.status === 200) {
+                const json = JSON.parse(this.responseText);
+                if (json[0] === true) {
+                    alert("게시글이 등록되었습니다.");
+                    location.href = "community_board.jsp";
+                } else alert("게시글 작성에 실패하였습니다.")
+            }
+        };
+
+        const today = new Date();
+        const dd = today.getDate().toString();
+        const mm = (today.getMonth() + 1).toString(); //January is 0!
+        const yyyy = today.getFullYear().toString();
+        req.open("post", "http://localhost:1234/board_write.do"
+            + "?stdNumber="
+            + encodeURIComponent(document.getElementById("community_stdNumber").value)
+            + "&name="
+            + encodeURIComponent(document.getElementById("community_name").value)
+            + "&title="
+            + encodeURIComponent(document.getElementById("community_title").value)
+            + "&contents="
+            + encodeURIComponent(document.getElementById("community_contents").value)
+            + "&date="
+            + yyyy + "/" + mm + "/" + dd
+            , true);
+        req.send(null);
+    } else{
+        alert("모든 항목을 입력해주세요")
+    }
 }

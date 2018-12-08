@@ -1,3 +1,8 @@
+function trimById(elementId) {
+    document.getElementById(elementId).value = document.getElementById(elementId).value.trim();
+    return document.getElementById(elementId)
+}
+
 function magazineLoadSubscribe() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = function () {
@@ -45,32 +50,39 @@ function magazineLoadSubscribe() {
 
 
 function magazineWriteSubscribe() {
-    let req = new XMLHttpRequest();
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-            const json = JSON.parse(this.responseText);
-            if (json[0] === true) {
-                alert("매거진이 등록되었습니다.");
-                location.href = "magazine_board.jsp";
-            } else alert("매거진 작성에 실패하였습니다.")
-        }
-    };
+    let magazine_title = trimById("magazine_title");
+    let magazine_contents = trimById("magazine_contents");
 
-    const today = new Date();
-    const dd = today.getDate().toString();
-    const mm = (today.getMonth() + 1).toString(); //January is 0!
-    const yyyy = today.getFullYear().toString();
-    req.open("post", "http://localhost:1234/magazine_write.do"
-        + "?stdNumber="
-        + encodeURIComponent(document.getElementById("magazine_stdNumber").value)
-        + "&name="
-        + encodeURIComponent(document.getElementById("magazine_name").value)
-        + "&title="
-        + encodeURIComponent(document.getElementById("magazine_title").value)
-        + "&contents="
-        + encodeURIComponent(document.getElementById("magazine_contents").value)
-        + "&date="
-        + yyyy + "/" + mm + "/" + dd
-        , true);
-    req.send(null);
+    if (magazine_title.value !== "" && magazine_contents.value !== "") {
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState === 4 && req.status === 200) {
+                const json = JSON.parse(this.responseText);
+                if (json[0] === true) {
+                    alert("매거진이 등록되었습니다.");
+                    location.href = "magazine_board.jsp";
+                } else alert("매거진 작성에 실패하였습니다.")
+            }
+        };
+
+        const today = new Date();
+        const dd = today.getDate().toString();
+        const mm = (today.getMonth() + 1).toString(); //January is 0!
+        const yyyy = today.getFullYear().toString();
+        req.open("post", "http://localhost:1234/magazine_write.do"
+            + "?stdNumber="
+            + encodeURIComponent(document.getElementById("magazine_stdNumber").value)
+            + "&name="
+            + encodeURIComponent(document.getElementById("magazine_name").value)
+            + "&title="
+            + encodeURIComponent(document.getElementById("magazine_title").value)
+            + "&contents="
+            + encodeURIComponent(document.getElementById("magazine_contents").value)
+            + "&date="
+            + yyyy + "/" + mm + "/" + dd
+            , true);
+        req.send(null);
+    } else{
+        alert("모든 항목을 입력해주세요")
+    }
 }

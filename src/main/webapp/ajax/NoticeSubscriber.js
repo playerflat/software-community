@@ -1,3 +1,8 @@
+function trimById(elementId) {
+    document.getElementById(elementId).value = document.getElementById(elementId).value.trim();
+    return document.getElementById(elementId)
+}
+
 function noticeLoadSubscribe() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = function () {
@@ -52,26 +57,32 @@ function noticeCheckSubscribe() {
 
 
 function noticeWriteSubscribe() {
-    let req = new XMLHttpRequest();
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-            const json = JSON.parse(this.responseText);
-            if (json[0] === true) {
-                alert("공지가 등록되었습니다.");
-                location.href = "notice_board.jsp";
-            } else alert("공지 작성에 실패하였습니다.")
-        }
-    };
+    let notice_contents = trimById("notice_contents");
 
-    const today = new Date();
-    const dd = today.getDate().toString();
-    const mm = (today.getMonth() + 1).toString(); //January is 0!
-    const yyyy = today.getFullYear().toString();
-    req.open("post", "http://localhost:1234/notice_write.do"
-        + "?contents="
-        + encodeURIComponent(document.getElementById("notice_contents").value)
-        + "&date="
-        + yyyy + "/" + mm + "/" + dd
-        , true);
-    req.send(null);
+    if (notice_contents.value !== "") {
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = function () {
+            if (req.readyState === 4 && req.status === 200) {
+                const json = JSON.parse(this.responseText);
+                if (json[0] === true) {
+                    alert("공지가 등록되었습니다.");
+                    location.href = "notice_board.jsp";
+                } else alert("공지 작성에 실패하였습니다.")
+            }
+        };
+
+        const today = new Date();
+        const dd = today.getDate().toString();
+        const mm = (today.getMonth() + 1).toString(); //January is 0!
+        const yyyy = today.getFullYear().toString();
+        req.open("post", "http://localhost:1234/notice_write.do"
+            + "?contents="
+            + encodeURIComponent(document.getElementById("notice_contents").value)
+            + "&date="
+            + yyyy + "/" + mm + "/" + dd
+            , true);
+        req.send(null);
+    } else{
+        alert("모든 항목을 입력해주세요")
+    }
 }

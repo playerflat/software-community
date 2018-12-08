@@ -2,7 +2,6 @@ package site.namsu.sweng.core.publisher;
 
 import lombok.AllArgsConstructor;
 import org.springframework.lang.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
