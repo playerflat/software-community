@@ -39,7 +39,7 @@
                    value="<%=request.getParameter("stdNumber")%>">
 
             <button class="btn btn-primary btn-block0" type="button"
-                    onclick="resetSubscribe()">
+                    onclick="resetPasswordSubscribe()">
                 변경하기
             </button>
         </div>

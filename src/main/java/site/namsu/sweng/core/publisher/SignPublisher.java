@@ -2,12 +2,15 @@ package site.namsu.sweng.core.publisher;
 
 import lombok.AllArgsConstructor;
 import org.springframework.lang.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.User;
-import site.namsu.sweng.core.service.*;
+import site.namsu.sweng.core.service.CheckService;
+import site.namsu.sweng.core.service.EncodeService;
+import site.namsu.sweng.core.service.SessionService;
+import site.namsu.sweng.core.service.StoreService;
+import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Mono;
 
 import java.util.Objects;
@@ -44,6 +47,12 @@ public class SignPublisher {
         return Mono.main(req)
                 .map(encodeService::encodePassword)
                 .map(storeService::storeSuccessful);
+    }
+
+    @PostMapping("sign_out.do")
+    public Flow.Publisher signUpPublish() {
+        return Empty.main()
+                .next(empty -> sessionService.invalidate());
     }
 }
 

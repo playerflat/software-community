@@ -2,9 +2,10 @@ package site.namsu.sweng.core.publisher;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import site.namsu.sweng.core.entity.Board;
+import site.namsu.sweng.core.entity.Group;
 import site.namsu.sweng.core.entity.Message;
 import site.namsu.sweng.core.service.LoadService;
 import site.namsu.sweng.core.service.StoreService;
@@ -24,21 +25,27 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class ChatPublisher {
-    private LoadService loadService;
-    private StoreService writeService;
+    private final LoadService loadService;
+    private final StoreService writeService;
 
-    @PostMapping("message_load.do")
-    public Flow.Publisher<List<Message>> boardLoadPublish() {
-//        Empty.background().map(empty -> loadService.loadAll(Message.class)).map(all -> all.stream().filter(all.get(0).getGroupName().equals(req.getGroupName()).collect(Collectors.<Message>toList))
-
+    @PostMapping("message_load.do/{groupName}")
+    public Flow.Publisher<List<Message>> messageLoadPublish(@PathVariable String groupName) {
         return Empty.background()
-                .map(req -> loadService.loadAll(Message.class));
+                .map(empty -> loadService.loadAll(Message.class))
+                .map(all -> all.stream()
+                        .filter(message -> message.getGroupName().equals(groupName))
+                        .collect(Collectors.toList()));
     }
 
     @PostMapping("message_write.do")
-    public Flow.Publisher<Boolean> boardWritePublish(Message req) {
-        return Mono.main(req)
+    public Flow.Publisher<Boolean> messageWritePublish(Message req) {
+        return Mono.background(req)
                 .map(writeService::storeSuccessful);
     }
 
+    @PostMapping("group_load.do")
+    public Flow.Publisher<List<Group>> groupLoadPublish() {
+        return Empty.background()
+                .map(req -> loadService.loadAll(Group.class));
+    }
 }

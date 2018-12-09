@@ -3,9 +3,7 @@ package site.namsu.sweng.util;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.function.Consumer;
 
 /**
  * @Author : Hyunwoong
@@ -15,6 +13,7 @@ import java.util.function.Consumer;
 public class Pool {
     private static final Map<String, Object> singletonPool = new ConcurrentHashMap<>();
     private static final Executor backgroundThreadPool = Executors.newCachedThreadPool();
+
     private static final Executor mainThread = Runnable::run;
 
     public static Map<String, Object> singleton() {

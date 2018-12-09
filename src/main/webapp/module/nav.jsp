@@ -27,13 +27,7 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 <mr-md-2></mr-md-2> my-2 my-md-0">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search"
-                   aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            <div class="input-group-append"></div>
         </div>
     </form>
     <!-- Navbar -->
@@ -46,13 +40,42 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="../view/settings.jsp">Settings</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
         </li>
     </ul>
 </nav>
 
-<%@include file="logout.jsp"%>
-
+<!-- Logout Model-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">로그아웃 버튼을 누르면 세션이 종료됩니다.</div>
+            <div class="modal-footer">
+                <script> function logout() {
+                    let req = new XMLHttpRequest();
+                    req.onreadystatechange = function () {
+                        if (req.readyState === 4 && req.status === 200) {
+                            location.href = "sign_in.jsp";
+                        }
+                    };
+                    req.open("post", "http://localhost:1234/sign_out.do");
+                    req.send(null);
+                }</script>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal"> 취소</button>
+                <button class="btn btn-primary" id="logout" type="button"
+                        onclick="logout()">로그아웃
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

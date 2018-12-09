@@ -1,29 +1,33 @@
-function messageLoadSubscriber() {
+let globalGroupName;
+let globalInterval;
+
+function messageLoadSubscribe(groupName) {
     let req = new XMLHttpRequest();
-    req.onreadystatechange = function () {
-        if (req.readyState === 4 && req.status === 200) {
-            const stdName = document.getElementById("sent_name").value;
+    clearInterval(globalInterval);
 
-            const resultText = this.responseText.substring(1, this.responseText.length - 1);
-            const json = JSON.parse(resultText);
-
-            $('#chatList').empty()
-            for(var i = 0; i < json.length; i++){
-                addreceivedChat(json[i].name, json[i].contents, json[i].time, stdName)
-            }
-            console.log(json[0])
-        }
-    }
-
-    var startInterval = setInterval(function () {
-        req.open("post", "http://localhost:1234/message_load.do", true);
+    globalInterval = setInterval(function () {
+        req.open("post", "http://localhost:1234/message_load.do/" + groupName, true);
         req.send(null);
+        req.onreadystatechange = function () {
+            if (req.readyState === 4 && req.status === 200) {
+                const stdName = document.getElementById("sent_name").value;
+                const resultText = this.responseText.substring(1, this.responseText.length - 1);
+                const json = JSON.parse(resultText);
+                globalGroupName = groupName;
+
+                $('#chatList').empty();
+                for (var i = 0; i < json.length; i++) {
+                    addreceivedChat(json[i].name, json[i].contents, json[i].time, stdName)
+                }
+            }
+        };
     }, 100);
-    
+
+    globalInterval();
 }
 
 function addreceivedChat(name, contents, time, myName) {
-    if(name != myName){
+    if (name != myName) {
         $('#chatList').append('<div class="incoming_msg">' +
             '<div class="received_msg">' +
             '<div class="received_withd_msg">' +
@@ -35,13 +39,13 @@ function addreceivedChat(name, contents, time, myName) {
     } else {
         $('#chatList').append('<div class="outgoing_msg">' +
             '<div class="sent_msg">' +
-            '<h7>' + name +'</h7>' +
+            '<h7>' + name + '</h7>' +
             '<p>' + contents + '</p>' +
             '<span class="time_date"></span></div>' +
             '</div>')
     }
-
 }
+
 // <%--<div class="outgoing_msg">--%>
 //     <%--<div class="sent_msg">--%>
 //         <%--<h7>강민구</h7>--%>
@@ -50,7 +54,7 @@ function addreceivedChat(name, contents, time, myName) {
 //         <%--<span class="time_date"></span></div>--%>
 //     <%--</div>--%>
 
-function messageWriteSubscriber() {
+function messageWriteSubscribe() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
@@ -68,7 +72,7 @@ function messageWriteSubscriber() {
 
     req.open("post", "http://localhost:1234/message_write.do"
         + "?groupName="
-        + encodeURIComponent(document.getElementById("sent_groupName").value)
+        + globalGroupName
         + "&name="
         + encodeURIComponent(document.getElementById("sent_name").value)
         + "&contents="

@@ -46,6 +46,6 @@ public class ResetPublisher {
     @PostMapping("reset_email.do")
     public Flow.Publisher<Boolean> resetEmailPublish(@NonNull User user) {
         return Mono.main(user)
-                .map(resetService::resetPassword);
+                .map(resetService::resetEmail);
     }
 }

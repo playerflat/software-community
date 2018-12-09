@@ -8,11 +8,11 @@ import site.namsu.sweng.core.entity.Message;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class MessageDao extends Accessor implements Dao<Message>{
+public class MessageDao extends Accessor implements Dao<Message> {
 
     @Override
-    public Message select(Message input){
-        return SQL("select * form mingus.message where messageNumber = ? ")
+    public synchronized Message select(Message input) {
+        return SQL("select * from mingus.message where messageNumber = ? ")
                 .param(db -> db.setInt(1, input.getMessageNumber()))
                 .map(db -> Message.builder()
                         .messageNumber(db.getInt("messageNumber"))
@@ -25,7 +25,7 @@ public class MessageDao extends Accessor implements Dao<Message>{
     }
 
     @Override
-    public List<Message> selectAll() {
+    public synchronized List<Message> selectAll() {
         return SQL("select * from mingus.message")
                 .map(db -> Message.builder()
                         .messageNumber(db.getInt("messageNumber"))
@@ -38,7 +38,7 @@ public class MessageDao extends Accessor implements Dao<Message>{
     }
 
     @Override
-    public boolean insert(Message input) {
+    public synchronized boolean insert(Message input) {
         return SQL("insert into mingus.message values (?,?,?,?,?)")
                 .param(db -> db.setInt(1, input.getMessageNumber()))
                 .param(db -> db.setString(2, input.getGroupName()))
@@ -49,7 +49,7 @@ public class MessageDao extends Accessor implements Dao<Message>{
     }
 
     @Override
-    public boolean update(Message input, String property, String value) {
+    public synchronized boolean update(Message input, String property, String value) {
         return SQL("update mingus.message set " + property + " = ?" + "where  messageNumber = ?")
                 .param(db -> db.setString(1, value))
                 .param(db -> db.setInt(2, input.getMessageNumber()))

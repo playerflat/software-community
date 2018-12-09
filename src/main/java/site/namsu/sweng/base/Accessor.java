@@ -51,7 +51,7 @@ public class Accessor {
     }
 
 
-    public <Output> Output getOnce(Class<Output> type) {
+    public synchronized <Type> Type getOnce(Class<Type> type) {
         if (query == null) throw new NullPointerException("No Query");
         else if (isParameterError())
             throw new IllegalArgumentException("Please call 'param' method for the number of question marks in the PreparedStatement.");
@@ -59,18 +59,18 @@ public class Accessor {
                   PreparedStatement statement = connection.prepareStatement(query)) {
                 for (Consumer<PreparedStatement> param : params) param.accept(statement);
                 try (ResultSet set = statement.executeQuery()) {
-                    if (set.next()) return (Output) mapper.apply(set);
+                    if (set.next()) return (Type) mapper.apply(set);
                     else return type.isInstance(Boolean.FALSE)
-                            ? (Output) Boolean.FALSE
+                            ? (Type) Boolean.FALSE
                             : type.isInstance(0)
-                            ? (Output) Integer.valueOf(0)
+                            ? (Type) Integer.valueOf(0)
                             : null;
                 }
             } catch (Exception e) {
                 return type.isInstance(Boolean.FALSE)
-                        ? (Output) Boolean.FALSE
+                        ? (Type) Boolean.FALSE
                         : type.isInstance(0)
-                        ? (Output) Integer.valueOf(0)
+                        ? (Type) Integer.valueOf(0)
                         : null;
             } finally {
                 query = null;
@@ -79,7 +79,7 @@ public class Accessor {
             }
     }
 
-    public <Type> List<Type> getList(Class<Type> genericType) {
+    public synchronized  <Type> List<Type> getList(Class<Type> genericType) {
         if (query == null) throw new NullPointerException("No Query");
         else if (isParameterError())
             throw new IllegalArgumentException("Please call 'param' method for the number of question marks in the PreparedStatement.");
@@ -103,7 +103,7 @@ public class Accessor {
             }
     }
 
-    public boolean set() {
+    public synchronized boolean set() {
         if (query == null) throw new NullPointerException("No Query");
         else if (isParameterError())
             throw new IllegalArgumentException("Please call the 'param' method for the number of question marks in the PreparedStatement.");

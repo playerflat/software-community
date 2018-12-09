@@ -13,6 +13,8 @@
     <%@include file="../module/session.jsp" %>
     <link href="../css/settings.css" rel="stylesheet" id="bootstrap-css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../ajax/ResetSubscriber.js"></script>
+
 </head>
 <body id="page-top">
 <!-- Nav -->
@@ -82,7 +84,8 @@
                                                                 <div class="col-sm-10">
                                                                     <input type="text" readonly
                                                                            class="form-control-plaintext"
-                                                                           id="staticEmail" value="<%=session.getAttribute("email")%>">
+                                                                           id="staticEmail"
+                                                                           value="<%=session.getAttribute("email")%>">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
@@ -90,16 +93,19 @@
                                                                        class="col-sm-2 col-form-label">&nbsp;&nbsp;
                                                                     change</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="password" class="form-control"
-                                                                           id="inputPassword" placeholder="new email">
+                                                                    <input type="email" class="form-control"
+                                                                           id="resetEmail" placeholder="new email">
                                                                 </div>
                                                             </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                                 <div class="row">
+                                                    <input type="hidden" class="form-control" id="settings_stdNumber"  name="settings_stdNumber" value="<%=session.getAttribute("stdNumber")%>">
                                                     <div class="col d-flex justify-content-end">
-                                                        <button class="btn btn-primary" type="submit">저장하기</button>
+                                                        <button class="btn btn-primary" type="button"
+                                                                onclick="resetEmailSubscribe()">저장하기
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </form>

@@ -52,6 +52,5 @@
             <span>Messenger</span></a>
     </li>
 </ul>
-<%@include file="logout.jsp"%>
 </body>
 </html>

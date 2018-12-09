@@ -18,9 +18,6 @@
     <!------ Include the above in your HEAD tag ---------->
     <link href="../library/css/admin.css" rel="stylesheet">
 </head>
-<%! String groupName = "얍얍"; %>
-
-
 <body id="page-top">
 <!-- Nav -->
 <%@include file="../module/nav.jsp" %>
@@ -28,7 +25,6 @@
 <div id="wrapper">
     <!-- Sidebar -->
     <%@include file="../module/sidebar.jsp" %>
-
     <div class="container">
         <h3 class=" text-center">CBNU Community</h3>
         <div class="messaging">
@@ -38,46 +34,20 @@
                         <div class="recent_heading">
                             <h4>Group</h4>
                         </div>
-                        <div class="srch_bar">
-                            <div class="stylish-input-group">
-                                <input type="text" class="search-bar" placeholder="Search">
-                                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span></div>
-                        </div>
                     </div>
-                    <div class="inbox_chat" id = "groupList">
-                        <%--<div class="chat_list active_chat" style="cursor: pointer">--%>
-                            <%--<div class="chat_people">--%>
-                                <%--<div class="chat_ib">--%>
-                                    <%--<h5>ChoiJH <span class="chat_date">Dec 27</span></h5>--%>
-                                    <%--<p>CBNU SoftwareEngineering student</p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                                <script>groupLoadSubscriber()</script>
+                    <div class="inbox_chat" id="groupList">
+                        <script>groupLoadSubscribe()</script>
                     </div>
                 </div>
-
                 <div class="mesgs">
                     <form>
-                        <div class="msg_history" id = "chatList">
-                            <%--<div class="outgoing_msg">--%>
-                                <%--<div class="sent_msg">--%>
-                                    <%--<h7>강민구</h7>--%>
-                                    <%--<p>Test which is a new approach to have all--%>
-                                        <%--solutions</p>--%>
-                                    <%--<span class="time_date"></span></div>--%>
-                            <%--</div>--%>
+                        <div class="msg_history" id="chatList">
                         </div>
-
-                    <input type="hidden" id = "sent_name" value="<%=session.getAttribute("name")%>">
-                    <input type="hidden" id = "sent_groupName" value= "<%=groupName%>" />
+                        <input type="hidden" id="sent_name" value="<%=session.getAttribute("name")%>">
                         <div class="type_msg">
                             <div class="input_msg_write form-group">
                                 <input type="text" class="write_msg" id="sent_contents" placeholder="Type a message"/>
-
-                                <button class="msg_send_btn" type="button" onclick="messageWriteSubscriber()"><i
+                                <button class="msg_send_btn" type="button" onclick="messageWriteSubscribe()"><i
                                         class="fa fa-paper-plane-o"
                                         aria-hidden="true"></i></button>
                             </div>
@@ -85,7 +55,6 @@
                     </form>
                 </div>
             </div>
-            <p class="text-center top_spac"> Design by <a target="_blank" href="#">Sunil Rajput</a></p>
         </div>
     </div>
 </div>

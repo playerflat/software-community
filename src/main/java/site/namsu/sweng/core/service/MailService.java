@@ -21,6 +21,18 @@ import java.util.Properties;
 @SuppressWarnings("unchecked")
 public class MailService {
 
+    public boolean sendContactMailSuccessful(User user, String msg) {
+        if (user == null) return false;
+        String contactMsg =
+                user.getName() + "@" + user.getStdNumber() + "님이 보내신 문의 메일입니다."
+                        + "<br>"
+                        + "회신메일주소 : " + user.getEmail()
+                        + "<br>"
+                        + msg;
+
+        return send(user.getName() + "님께서 보내신 문의 메일입니다.", contactMsg, "mingusbob@naver.com");
+    }
+
     public boolean sendResetMailSuccessful(User user) {
         if (user == null) return false;
         String msg = "<h1>아래 링크를 클릭하면 비밀번호를 재설정합니다.</h1>"
@@ -31,15 +43,14 @@ public class MailService {
                 + user.getStdNumber()
                 + ">비밀번호 재설정하기</a></h2>"
                 + "<br>";
-        return send(msg, user.getEmail());
+        return send("비밀번호를 재설정해주세요.", msg, user.getEmail());
     }
 
-    private static boolean send(String message, String mailTo) {
+    private static boolean send(String title, String message, String mailTo) {
         String mailHost = "smtp.naver.com"; //네이버메일
         String mailAccId = "mingusbob"; // 메일보내는이
-        String mailAccPwd = "Software!1"; // 메일비밀번호
+        String mailAccPwd = "software"; // 메일비밀번호
         String sendMailAdd = "mingusbob@naver.com"; // 보내는이주소
-        String mailTitle = "비밀번호를 재설정해주세요.";
 
         Authenticator auth = new Auth(mailAccId, mailAccPwd);
         Properties props = new Properties();
@@ -54,7 +65,7 @@ public class MailService {
             msg.setHeader("content-type", "text/html;charset=utf-8");
             InternetAddress[] toAddress = InternetAddress.parse(mailTo);
             msg.setRecipients(Message.RecipientType.TO, toAddress);
-            msg.setSubject(mailTitle, "UTF-8");
+            msg.setSubject(title, "UTF-8");
             msg.setSentDate(new Date());
             MimeMultipart mp = new MimeMultipart();
             MimeBodyPart mbp1 = new MimeBodyPart();
