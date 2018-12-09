@@ -10,20 +10,24 @@
 <head>
     <%@include file="../module/header.jsp" %>
     <%@include file="../module/session.jsp" %>
+    <script src="../ajax/MessageSubscriber.js"></script>
+    <script src="../ajax/GroupSubscriber.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet">
 
     <!------ Include the above in your HEAD tag ---------->
     <link href="../library/css/admin.css" rel="stylesheet">
 </head>
+<%! String groupName = "얍얍"; %>
+
+
 <body id="page-top">
 <!-- Nav -->
-<%@include file="../module/nav.jsp"%>
+<%@include file="../module/nav.jsp" %>
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%@include file="../module/sidebar.jsp"%>
-
+    <%@include file="../module/sidebar.jsp" %>
 
     <div class="container">
         <h3 class=" text-center">CBNU Community</h3>
@@ -32,7 +36,7 @@
                 <div class="inbox_people">
                     <div class="headind_srch">
                         <div class="recent_heading">
-                            <h4>Recent</h4>
+                            <h4>Group</h4>
                         </div>
                         <div class="srch_bar">
                             <div class="stylish-input-group">
@@ -42,108 +46,43 @@
                 </span></div>
                         </div>
                     </div>
-                    <div class="inbox_chat">
-                        <div class="chat_list active_chat">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>ChoiJH <span class="chat_date">Dec 27</span></h5>
-                                    <p>CBNU SoftwareEngineering student</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>MunJY <span class="chat_date">Dec 27</span></h5>
-                                    <p>CBNU SoftwareEngineering student</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>GoHU <span class="chat_date">Dec 26</span></h5>
-                                    <p>CBNU SoftwareEngineering student</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>Kangmingu <span class="chat_date">Dec 25</span></h5>
-                                    <p>CBNU SoftwareEngineering student</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                    <p>Unknown USer Sunil Rajput lol </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                    <p>Unknown USer Sunil Rajput lol </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="chat_list">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                    <p>Unknown USer Sunil Rajput lol </p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="inbox_chat" id = "groupList">
+                        <%--<div class="chat_list active_chat" style="cursor: pointer">--%>
+                            <%--<div class="chat_people">--%>
+                                <%--<div class="chat_ib">--%>
+                                    <%--<h5>ChoiJH <span class="chat_date">Dec 27</span></h5>--%>
+                                    <%--<p>CBNU SoftwareEngineering student</p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                                <script>groupLoadSubscriber()</script>
                     </div>
                 </div>
+
                 <div class="mesgs">
-                    <div class="msg_history">
-                        <div class="incoming_msg">
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Hi, my name is CBNU!</p>
-                                    <span class="time_date"> 11:11 AM    |    June 9</span></div>
+                    <form>
+                        <div class="msg_history" id = "chatList">
+                            <%--<div class="outgoing_msg">--%>
+                                <%--<div class="sent_msg">--%>
+                                    <%--<h7>강민구</h7>--%>
+                                    <%--<p>Test which is a new approach to have all--%>
+                                        <%--solutions</p>--%>
+                                    <%--<span class="time_date"></span></div>--%>
+                            <%--</div>--%>
+                        </div>
+
+                    <input type="hidden" id = "sent_name" value="<%=session.getAttribute("name")%>">
+                    <input type="hidden" id = "sent_groupName" value= "<%=groupName%>" />
+                        <div class="type_msg">
+                            <div class="input_msg_write form-group">
+                                <input type="text" class="write_msg" id="sent_contents" placeholder="Type a message"/>
+
+                                <button class="msg_send_btn" type="button" onclick="messageWriteSubscriber()"><i
+                                        class="fa fa-paper-plane-o"
+                                        aria-hidden="true"></i></button>
                             </div>
                         </div>
-                        <div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <span class="time_date"> 11:01 AM    |    June 9</span></div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Test, which is a new approach to have</p>
-                                    <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-                            </div>
-                        </div>
-                        <div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Mingus University, Korea Test</p>
-                                <span class="time_date"> 11:01 AM    |    Today</span></div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>web-programming.
-                                        yeahh</p>
-                                    <span class="time_date"> 11:01 AM    |    Today</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="type_msg">
-                        <div class="input_msg_write">
-                            <input type="text" class="write_msg" placeholder="Type a message"/>
-                            <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
-                                                                          aria-hidden="true"></i></button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <p class="text-center top_spac"> Design by <a target="_blank" href="#">Sunil Rajput</a></p>

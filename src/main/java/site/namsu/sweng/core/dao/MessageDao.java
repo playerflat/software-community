@@ -26,7 +26,7 @@ public class MessageDao extends Accessor implements Dao<Message>{
 
     @Override
     public List<Message> selectAll() {
-        return SQL("select * form mingus.message")
+        return SQL("select * from mingus.message")
                 .map(db -> Message.builder()
                         .messageNumber(db.getInt("messageNumber"))
                         .groupName(db.getString("groupName"))
@@ -39,7 +39,7 @@ public class MessageDao extends Accessor implements Dao<Message>{
 
     @Override
     public boolean insert(Message input) {
-        return SQL("insert into mingus.board values (?,?,?,?,?")
+        return SQL("insert into mingus.message values (?,?,?,?,?)")
                 .param(db -> db.setInt(1, input.getMessageNumber()))
                 .param(db -> db.setString(2, input.getGroupName()))
                 .param(db -> db.setString(3, input.getName()))

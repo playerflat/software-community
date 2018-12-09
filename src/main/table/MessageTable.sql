@@ -3,5 +3,5 @@ CREATE TABLE mingus.message (
   groupName     varchar(20),
   name          varchar(10),
   contents      text,
-  time          varchar(10)
+  time          varchar(20)
 );
