@@ -35,7 +35,7 @@ function noticeLoadSubscribe() {
     setInterval(function () {
         req.open("post", "http://localhost:1234/notice_load.do", true);
         req.send(null);
-    }, 100);
+    }, 200);
 }
 
 

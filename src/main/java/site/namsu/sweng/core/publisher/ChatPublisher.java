@@ -45,7 +45,7 @@ public class ChatPublisher {
 
     @PostMapping("group_load.do")
     public Flow.Publisher<List<Group>> groupLoadPublish() {
-        return Empty.background()
+        return Empty.main()
                 .map(req -> loadService.loadAll(Group.class));
     }
 }

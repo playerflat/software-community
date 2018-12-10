@@ -12,16 +12,15 @@ import java.util.concurrent.Executors;
  */
 public class Pool {
     private static final Map<String, Object> singletonPool = new ConcurrentHashMap<>();
-    private static final Executor backgroundThreadPool = Executors.newCachedThreadPool();
-
     private static final Executor mainThread = Runnable::run;
+    private static final Executor backgroundThread = Executors.newCachedThreadPool();
 
     public static Map<String, Object> singleton() {
         return singletonPool;
     }
 
     public static Executor background() {
-        return backgroundThreadPool;
+        return backgroundThread;
     }
 
     public static Executor main() {

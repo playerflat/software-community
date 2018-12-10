@@ -45,7 +45,7 @@ function magazineLoadSubscribe() {
     setInterval(function () {
         req.open("post", "http://localhost:1234/magazine_load.do", true);
         req.send(null);
-    }, 100);
+    }, 200);
 }
 
 

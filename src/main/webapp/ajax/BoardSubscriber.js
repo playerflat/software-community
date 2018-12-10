@@ -45,7 +45,7 @@ function boardLoadSubscribe() {
     setInterval(function () {
         req.open("post", "http://localhost:1234/board_load.do", true);
         req.send(null);
-    }, 100);
+    }, 200);
 }
 
 

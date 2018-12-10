@@ -1,12 +1,14 @@
 package site.namsu.sweng.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+import site.namsu.sweng.rx.publisher.Publisher;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -19,36 +21,28 @@ import java.util.Date;
 @Component
 @SuppressWarnings("unchecked")
 public class LogAdvice {
-    private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-
     @Pointcut("within(site.namsu.sweng.core.publisher.*)")
     private void logPointcut() {
     }
 
     @Before(value = "logPointcut()", argNames = "joinPoint")
-    public void beforePublish(JoinPoint joinPoint) throws IOException {
+    public void beforePublish(JoinPoint joinPoint) {
         Date date = new Date();
 
-        for (int i = 0; i < 200; i++) writer.write('=');
-        writer.write('\n');
-        writer.write(date + " : 1. 발행 메소드 : " + joinPoint.getSignature().toShortString() + "\n");
-        writer.write(date + " : 2. 사용자 입력 : " + Arrays.asList(joinPoint.getArgs()) + "\n");
-        writer.flush();
+        for (int i = 0; i < 200; i++) System.out.print('=');
+        System.out.print('\n');
+        System.out.println(date + " 발행 메소드 : " + joinPoint.getSignature().toShortString());
+        System.out.println(date + " 사용자 입력 : " + Arrays.asList(joinPoint.getArgs()));
     }
 
-    @AfterReturning(value = "logPointcut()", argNames = "joinPoint")
-    public void returnPublish(JoinPoint joinPoint) throws IOException {
+    @Around(value = "logPointcut()")
+    public Object publish(ProceedingJoinPoint pjp) throws Throwable {
         Date date = new Date();
-        writer.write(date + " : 3. 발행 완료 : " + joinPoint.getSignature().toShortString() + "\n");
-        writer.flush();
-    }
+        Publisher pjpPublisher = (Publisher) pjp.proceed();
 
-
-    @AfterThrowing(value = "logPointcut()", argNames = "joinPoint")
-    public void errorPublish(JoinPoint joinPoint) throws IOException {
-        Date date = new Date();
-        writer.write(date + " : #. 에러 발생 : " + joinPoint.getSignature().toShortString() + "\n");
-        writer.flush();
+        return pjpPublisher
+                .next(input -> System.out.println(date + " 발행 쓰레드 : " + Thread.currentThread().getName()))
+                .next(output -> System.out.println(date + " 발행 데이터 : " + output.toString()));
     }
 }
 
