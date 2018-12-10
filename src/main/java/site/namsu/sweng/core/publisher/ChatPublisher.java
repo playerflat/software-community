@@ -39,7 +39,7 @@ public class ChatPublisher {
 
     @PostMapping("message_write.do")
     public Flow.Publisher<Boolean> messageWritePublish(Message req) {
-        return Mono.background(req)
+        return Mono.main(req)
                 .map(writeService::storeSuccessful);
     }
 
