@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class ChatPublisher {
     private final LoadService loadService;
     private final StoreService writeService;
-    
+
     @PostMapping("message_load.do/{groupName}")
     public Flow.Publisher<List<Message>> messageLoadPublish(@PathVariable String groupName) {
         return Mono.background(loadService.loadAll(Message.class))
