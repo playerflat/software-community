@@ -14,6 +14,8 @@ import java.util.concurrent.Flow;
  */
 @SuppressWarnings("unchecked")
 public class Flux<T> extends Publisher<T> {
+
+    @SafeVarargs
     public static <T> Flux<T> main(T... inputs) {
         List<T> inputAsList = new ArrayList<>();
         for (T input : inputs) {
@@ -30,6 +32,7 @@ public class Flux<T> extends Publisher<T> {
         };
     }
 
+    @SafeVarargs
     public static <T> Flux<T> background(T... inputs) {
         List<T> inputAsList = new ArrayList<>();
         for (T input : inputs) {

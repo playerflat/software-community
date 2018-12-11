@@ -27,11 +27,10 @@ import java.util.stream.Collectors;
 public class ChatPublisher {
     private final LoadService loadService;
     private final StoreService writeService;
-
+    
     @PostMapping("message_load.do/{groupName}")
     public Flow.Publisher<List<Message>> messageLoadPublish(@PathVariable String groupName) {
-        return Empty.background()
-                .map(empty -> loadService.loadAll(Message.class))
+        return Mono.background(loadService.loadAll(Message.class))
                 .map(all -> all.stream()
                         .filter(message -> message.getGroupName().equals(groupName))
                         .collect(Collectors.toList()));

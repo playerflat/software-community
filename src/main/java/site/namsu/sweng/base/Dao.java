@@ -1,17 +1,10 @@
 package site.namsu.sweng.base;
 
 import org.springframework.stereotype.Component;
-import site.namsu.sweng.aop.LogAdvice;
-import site.namsu.sweng.core.dao.BoardDao;
-import site.namsu.sweng.core.dao.UserDao;
-import site.namsu.sweng.core.entity.Board;
-import site.namsu.sweng.core.entity.Notice;
-import site.namsu.sweng.core.entity.User;
 import site.namsu.sweng.util.Path;
 import site.namsu.sweng.util.Pool;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Type;
 import java.util.List;
 
 /**

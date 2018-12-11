@@ -31,8 +31,7 @@ public class MagazinePublisher {
 
     @PostMapping("magazine_load.do")
     public Publisher<List<Magazine>> magazineLoadPublish() {
-        return Empty.background()
-                .map(req -> readService.loadAll(Magazine.class));
+        return Mono.background(readService.loadAll(Magazine.class));
     }
 
     @PostMapping("magazine_write.do")

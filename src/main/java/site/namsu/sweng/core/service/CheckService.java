@@ -13,9 +13,8 @@ import site.namsu.sweng.core.entity.User;
 @SuppressWarnings("unchecked")
 public class CheckService {
 
-    private Dao<User> dao = Dao.of(User.class);
-
     public User isSignedOrNull(User reqUser) {
+        Dao<User> dao = Dao.of(User.class);
         User dbUser = dao.select(reqUser);
 
         if (dbUser == null)
@@ -29,12 +28,14 @@ public class CheckService {
     public boolean isAdmin(User user) {
         if (user == null) return false;
         else {
+            Dao<User> dao = Dao.of(User.class);
             User dbUser = dao.select(user);
             return dbUser.isAdmin();
         }
     }
 
     public boolean isCorrectEmail(User user) {
+        Dao<User> dao = Dao.of(User.class);
         User dbUser = dao.select(user);
         if (dbUser == null) return false;
         else return dbUser.getEmail().equals(user.getEmail())
