@@ -11,7 +11,6 @@
     <%@include file="../module/header.jsp" %>
     <%@include file="../module/session.jsp" %>
     <script src="../ajax/MessageSubscriber.js"></script>
-    <script src="../ajax/GroupSubscriber.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
           rel="stylesheet">
 

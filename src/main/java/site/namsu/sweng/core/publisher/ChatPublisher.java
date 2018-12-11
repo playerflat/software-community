@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class ChatPublisher {
+
     private final LoadService loadService;
     private final StoreService writeService;
 
