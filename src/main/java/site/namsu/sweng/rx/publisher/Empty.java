@@ -25,7 +25,7 @@ public class Empty<T> extends Publisher<T> {
     public static <T> Empty<T> background() {
         return new Empty<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Pool.background()
+                Pool.randomExecutor()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, Collections.singletonList((T) "EMPTY INPUT"))));
             }
         };

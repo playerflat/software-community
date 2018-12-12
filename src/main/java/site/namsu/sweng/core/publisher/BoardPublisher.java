@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Board;
 import site.namsu.sweng.core.service.LoadService;
 import site.namsu.sweng.core.service.StoreService;
+import site.namsu.sweng.rx.publisher.Flux;
 import site.namsu.sweng.rx.publisher.Mono;
 
 import java.util.List;

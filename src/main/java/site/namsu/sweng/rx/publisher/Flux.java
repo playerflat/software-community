@@ -43,7 +43,7 @@ public class Flux<T> extends Publisher<T> {
         }
         return new Flux<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Pool.background()
+                Pool.randomExecutor()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, inputAsList)));
             }
         };

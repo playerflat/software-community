@@ -9,7 +9,6 @@ import site.namsu.sweng.core.entity.Group;
 import site.namsu.sweng.core.entity.Message;
 import site.namsu.sweng.core.service.LoadService;
 import site.namsu.sweng.core.service.StoreService;
-import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Mono;
 
 import java.util.List;
@@ -31,6 +30,7 @@ public class ChatPublisher {
 
     @PostMapping("message_load.do/{groupName}")
     public Flow.Publisher<List<Message>> messageLoadPublish(@PathVariable String groupName) {
+
         return Mono.background(loadService.loadAll(Message.class))
                 .map(all -> all.stream()
                         .filter(message -> message.getGroupName().equals(groupName))
@@ -45,7 +45,6 @@ public class ChatPublisher {
 
     @PostMapping("group_load.do")
     public Flow.Publisher<List<Group>> groupLoadPublish() {
-        return Empty.main()
-                .map(req -> loadService.loadAll(Group.class));
+        return Mono.background(loadService.loadAll(Group.class));
     }
 }
