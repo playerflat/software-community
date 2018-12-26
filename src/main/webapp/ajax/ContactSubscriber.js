@@ -11,7 +11,7 @@ function contactSubscribe() {
             }
         }
     };
-    req.open("post", "http://localhost:1234/contact_us.do"
+    req.open("post", "http://namsu.site:9891/contact_us.do"
         + "?stdNumber="
         + encodeURIComponent(document.getElementById("contact_stdNumber").value)
         + "&name="

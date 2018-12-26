@@ -1,7 +1,6 @@
 package site.namsu.sweng.core.publisher;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Magazine;
 import site.namsu.sweng.core.service.LoadService;
 import site.namsu.sweng.core.service.StoreService;
-import site.namsu.sweng.rx.publisher.Empty;
 import site.namsu.sweng.rx.publisher.Mono;
 import site.namsu.sweng.rx.publisher.Publisher;
 
@@ -26,13 +24,13 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class MagazinePublisher {
 
-     private LoadService readService;
-     private StoreService storeService;
+    private LoadService readService;
+    private StoreService storeService;
 
     @PostMapping("magazine_load.do")
     public Publisher<List<Magazine>> magazineLoadPublish() {
-        return Empty.background()
-                .map(req -> readService.loadAll(Magazine.class));
+        return Mono.background(Magazine.class)
+                .map(readService::loadAll);
     }
 
     @PostMapping("magazine_write.do")

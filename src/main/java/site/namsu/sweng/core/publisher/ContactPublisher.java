@@ -10,6 +10,7 @@ import site.namsu.sweng.core.entity.User;
 import site.namsu.sweng.core.service.MailService;
 import site.namsu.sweng.rx.publisher.Mono;
 
+import java.util.Arrays;
 import java.util.concurrent.Flow;
 
 /**
@@ -20,6 +21,7 @@ import java.util.concurrent.Flow;
 @Component
 @RestController
 @AllArgsConstructor
+@SuppressWarnings("unchecked")
 public class ContactPublisher {
 
     private MailService mailService;
@@ -27,7 +29,7 @@ public class ContactPublisher {
     @PostMapping("contact_us.do")
     public Flow.Publisher<Boolean> forgotPasswordPublish(@NonNull User req,
                                                          @RequestParam("msg") String msg) {
-        return Mono.main(req)
-                .map(user -> mailService.sendContactMailSuccessful(user, msg));
+        return Mono.main(Arrays.asList(req, msg))
+                .map(mailService::sendContactMailSuccessful);
     }
 }

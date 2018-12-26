@@ -6,7 +6,7 @@ function messageLoadSubscribe(groupName) {
     clearInterval(globalInterval);
 
     globalInterval = setInterval(function () {
-        req.open("post", "http://localhost:1234/message_load.do/" + groupName, true);
+        req.open("post", "http://namsu.site:9891/message_load.do/" + groupName, true);
         req.send(null);
         req.onreadystatechange = function () {
             if (req.readyState === 4 && req.status === 200) {
@@ -70,7 +70,7 @@ function messageWriteSubscribe() {
     const mm = today.getMinutes().toString();
     // const ss = today.getMilliseconds().toString();
 
-    req.open("post", "http://localhost:1234/message_write.do"
+    req.open("post", "http://namsu.site:9891/message_write.do"
         + "?groupName="
         + globalGroupName
         + "&name="

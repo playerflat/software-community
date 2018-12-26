@@ -33,7 +33,7 @@ function noticeLoadSubscribe() {
     };
 
     setInterval(function () {
-        req.open("post", "http://localhost:1234/notice_load.do", true);
+        req.open("post", "http://namsu.site:9891/notice_load.do", true);
         req.send(null);
     }, 200);
 }
@@ -48,7 +48,7 @@ function noticeCheckSubscribe() {
             else alert("관리자만 작성할 수 있습니다.")
         }
     };
-    req.open("post", "http://localhost:1234/notice_check.do"
+    req.open("post", "http://namsu.site:9891/notice_check.do"
         + "?stdNumber="
         + encodeURIComponent(document.getElementById("notice_stdNumber").value)
         , true);
@@ -75,7 +75,7 @@ function noticeWriteSubscribe() {
         const dd = today.getDate().toString();
         const mm = (today.getMonth() + 1).toString(); //January is 0!
         const yyyy = today.getFullYear().toString();
-        req.open("post", "http://localhost:1234/notice_write.do"
+        req.open("post", "http://namsu.site:9891/notice_write.do"
             + "?contents="
             + encodeURIComponent(document.getElementById("notice_contents").value)
             + "&date="

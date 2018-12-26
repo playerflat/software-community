@@ -10,6 +10,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -21,7 +22,10 @@ import java.util.Properties;
 @SuppressWarnings("unchecked")
 public class MailService {
 
-    public boolean sendContactMailSuccessful(User user, String msg) {
+    public boolean sendContactMailSuccessful(List<Object> msgSet) {
+        User user = (User) msgSet.get(0);
+        String msg = (String) msgSet.get(1);
+
         if (user == null) return false;
         String contactMsg =
                 user.getName() + "@" + user.getStdNumber() + "님이 보내신 문의 메일입니다."
@@ -38,7 +42,7 @@ public class MailService {
         String msg = "<h1>아래 링크를 클릭하면 비밀번호를 재설정합니다.</h1>"
                 + "<br>"
                 + "<h2><a href ="
-                + "http://localhost:1234/view/reset_password.jsp"
+                + "http://namsu.site:9891/view/reset_password.jsp"
                 + "?stdNumber="
                 + user.getStdNumber()
                 + ">비밀번호 재설정하기</a></h2>"

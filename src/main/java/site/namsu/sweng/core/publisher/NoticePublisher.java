@@ -1,7 +1,6 @@
 package site.namsu.sweng.core.publisher;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,9 +10,8 @@ import site.namsu.sweng.core.entity.User;
 import site.namsu.sweng.core.service.CheckService;
 import site.namsu.sweng.core.service.LoadService;
 import site.namsu.sweng.core.service.StoreService;
-import site.namsu.sweng.rx.publisher.Empty;
-import site.namsu.sweng.rx.publisher.Publisher;
 import site.namsu.sweng.rx.publisher.Mono;
+import site.namsu.sweng.rx.publisher.Publisher;
 
 import java.util.List;
 import java.util.concurrent.Flow;
@@ -28,14 +26,14 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class NoticePublisher {
 
-     private LoadService loadService;
-     private StoreService storeService;
-     private CheckService checkService;
+    private LoadService loadService;
+    private StoreService storeService;
+    private CheckService checkService;
 
     @PostMapping("notice_load.do")
     public Publisher<List<Notice>> noticeLoadPublish() {
-        return Empty.background()
-                .map(req -> loadService.loadAll(Notice.class));
+        return Mono.background(Notice.class)
+                .map(loadService::loadAll);
     }
 
     @PostMapping("notice_check.do")

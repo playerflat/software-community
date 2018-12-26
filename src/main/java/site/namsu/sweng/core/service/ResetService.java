@@ -14,10 +14,13 @@ import site.namsu.sweng.core.entity.User;
 public class ResetService {
 
     public boolean resetPassword(User user) {
-        return Dao.of(user).update(user, "password", user.getPassword());
+        return Dao.of(user)
+                .update(user, "password", user.getPassword());
     }
 
     public boolean resetEmail(User user) {
-        return Dao.of(user).update(user, "email", user.getEmail());
+        return Dao.of(user)
+                .update(user, "email", user.getEmail());
     }
 }
+

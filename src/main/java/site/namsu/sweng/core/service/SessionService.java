@@ -3,6 +3,7 @@ package site.namsu.sweng.core.service;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import site.namsu.sweng.core.entity.User;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,12 @@ import javax.servlet.http.HttpSession;
 public class SessionService {
 
     @Autowired private HttpSession session;
+
+    public void signInStore(User user) {
+        this.store("stdNumber", user.getStdNumber());
+        this.store("name", user.getName());
+        this.store("email", user.getEmail());
+    }
 
     public void store(String key, Object val) {
         session.setAttribute(key, val);

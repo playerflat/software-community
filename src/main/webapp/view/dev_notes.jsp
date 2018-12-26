@@ -43,9 +43,8 @@
                         <div class="card" style="width: 40rem;">
                             <div class="card-header">개발자 노트</div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">1.1.1. sleep(28800)</li>
-                                <li class="list-group-item">1.1.0. Haaaaaaaa</li>
-                                <li class="list-group-item">1.0.0. Hello SE</li>
+                                <li class="list-group-item">1.1.1. Team Mingus</li>
+                                <li class="list-group-item">1.1.0. Version 1.0</li>
                             </ul>
                         </div>
                     </div>

@@ -16,8 +16,7 @@ public class Mono<T> extends Publisher<T> {
     public static <T> Mono<T> main(T input) {
         return new Mono<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Pool.main()
-                        .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, Collections.singletonList(input))));
+                Pool.main().execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, Collections.singletonList(input))));
             }
         };
     }
@@ -25,7 +24,7 @@ public class Mono<T> extends Publisher<T> {
     public static <T> Mono<T> background(T input) {
         return new Mono<>() {
             @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-                Pool.background()
+                Pool.randomExecutor()
                         .execute(() -> subscriber.onSubscribe(new Subscription<>(subscriber, Collections.singletonList(input))));
             }
         };
