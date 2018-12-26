@@ -24,13 +24,19 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class ChatPublisher {
+
     private final LoadService loadService;
     private final StoreService writeService;
 
     @PostMapping("message_load.do/{groupName}")
     public Flow.Publisher<List<Message>> messageLoadPublish(@PathVariable String groupName) {
+<<<<<<< HEAD
         return Mono.background(Message.class)
                 .map(loadService::loadAll)
+=======
+
+        return Mono.background(loadService.loadAll(Message.class))
+>>>>>>> fd77a0895573647e476c1da2a7dacbe7b50d612a
                 .map(all -> all.stream()
                         .filter(message -> message.getGroupName().equals(groupName))
                         .collect(Collectors.toList()));
@@ -44,7 +50,11 @@ public class ChatPublisher {
 
     @PostMapping("group_load.do")
     public Flow.Publisher<List<Group>> groupLoadPublish() {
+<<<<<<< HEAD
         return Mono.main(Group.class)
                 .map(loadService::loadAll);
+=======
+        return Mono.background(loadService.loadAll(Group.class));
+>>>>>>> fd77a0895573647e476c1da2a7dacbe7b50d612a
     }
 }

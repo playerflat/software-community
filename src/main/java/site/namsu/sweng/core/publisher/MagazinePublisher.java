@@ -29,8 +29,12 @@ public class MagazinePublisher {
 
     @PostMapping("magazine_load.do")
     public Publisher<List<Magazine>> magazineLoadPublish() {
+<<<<<<< HEAD
         return Mono.background(Magazine.class)
                 .map(readService::loadAll);
+=======
+        return Mono.background(readService.loadAll(Magazine.class));
+>>>>>>> fd77a0895573647e476c1da2a7dacbe7b50d612a
     }
 
     @PostMapping("magazine_write.do")

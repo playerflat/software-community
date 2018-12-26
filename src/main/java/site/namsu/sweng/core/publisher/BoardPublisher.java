@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import site.namsu.sweng.core.entity.Board;
 import site.namsu.sweng.core.service.LoadService;
 import site.namsu.sweng.core.service.StoreService;
+<<<<<<< HEAD
+=======
+import site.namsu.sweng.rx.publisher.Flux;
+>>>>>>> fd77a0895573647e476c1da2a7dacbe7b50d612a
 import site.namsu.sweng.rx.publisher.Mono;
 
 import java.util.List;
@@ -28,8 +32,12 @@ public class BoardPublisher {
 
     @PostMapping("board_load.do")
     public Flow.Publisher<List<Board>> boardLoadPublish() {
+<<<<<<< HEAD
         return Mono.background(Board.class)
                 .map(loadService::loadAll);
+=======
+        return Mono.background(loadService.loadAll(Board.class));
+>>>>>>> fd77a0895573647e476c1da2a7dacbe7b50d612a
     }
 
     @PostMapping("board_write.do")

@@ -51,7 +51,6 @@ public abstract class Accessor {
         return this;
     }
 
-
     public synchronized <Type> Type getOnce(Class<Type> type) {
         if (query == null) throw new NullPointerException("No Query");
         else if (isParameterError())

@@ -13,4 +13,10 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Java 11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
+  <component name="UMLDiagramComponent">
+    <diagram name="publisher">
+      <command command-class="de.frag.umlplugin.uml.command.AddClassCommand" psi-class="site.namsu.sweng.core.publisher.BoardPublisher" />
+      <compartment-visibility />
+    </diagram>
+  </component>
 </project>

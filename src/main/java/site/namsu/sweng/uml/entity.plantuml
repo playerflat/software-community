@@ -1,0 +1,349 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class Auth {
+            - passwordAuthentication : PasswordAuthentication
+            + Auth()
+            + getPasswordAuthentication()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class Board {
+            - boardNumber : int
+            - stdNumber : String
+            - name : String
+            - title : String
+            - contents : String
+            - date : String
+            + Board()
+            + Board()
+            + getBoardNumber()
+            + getStdNumber()
+            + getName()
+            + getTitle()
+            + getContents()
+            + getDate()
+            + setBoardNumber()
+            + setStdNumber()
+            + setName()
+            + setTitle()
+            + setContents()
+            + setDate()
+            + equals()
+            # canEqual()
+            + hashCode()
+            + toString()
+            {static} + builder()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class BoardBuilder {
+            - boardNumber : int
+            - stdNumber : String
+            - name : String
+            - title : String
+            - contents : String
+            - date : String
+            ~ BoardBuilder()
+            + boardNumber()
+            + stdNumber()
+            + name()
+            + title()
+            + contents()
+            + date()
+            + build()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class Group {
+            - groupNumber : int
+            - name : String
+            + Group()
+            + Group()
+            + getGroupNumber()
+            + getName()
+            + setGroupNumber()
+            + setName()
+            + equals()
+            # canEqual()
+            + hashCode()
+            + toString()
+            {static} + builder()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class GroupBuilder {
+            - groupNumber : int
+            - name : String
+            ~ GroupBuilder()
+            + groupNumber()
+            + name()
+            + build()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class Magazine {
+            - magazineNumber : int
+            - stdNumber : String
+            - name : String
+            - title : String
+            - contents : String
+            - date : String
+            + Magazine()
+            + Magazine()
+            + getMagazineNumber()
+            + getStdNumber()
+            + getName()
+            + getTitle()
+            + getContents()
+            + getDate()
+            + setMagazineNumber()
+            + setStdNumber()
+            + setName()
+            + setTitle()
+            + setContents()
+            + setDate()
+            + equals()
+            # canEqual()
+            + hashCode()
+            + toString()
+            {static} + builder()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class MagazineBuilder {
+            - magazineNumber : int
+            - stdNumber : String
+            - name : String
+            - title : String
+            - contents : String
+            - date : String
+            ~ MagazineBuilder()
+            + magazineNumber()
+            + stdNumber()
+            + name()
+            + title()
+            + contents()
+            + date()
+            + build()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class Message {
+            - messageNumber : int
+            - groupName : String
+            - name : String
+            - contents : String
+            - time : String
+            + Message()
+            + Message()
+            + getMessageNumber()
+            + getGroupName()
+            + getName()
+            + getContents()
+            + getTime()
+            + setMessageNumber()
+            + setGroupName()
+            + setName()
+            + setContents()
+            + setTime()
+            + equals()
+            # canEqual()
+            + hashCode()
+            + toString()
+            {static} + builder()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class MessageBuilder {
+            - messageNumber : int
+            - groupName : String
+            - name : String
+            - contents : String
+            - time : String
+            ~ MessageBuilder()
+            + messageNumber()
+            + groupName()
+            + name()
+            + contents()
+            + time()
+            + build()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class Notice {
+            - noticeNumber : int
+            - contents : String
+            - date : String
+            + Notice()
+            + Notice()
+            + getNoticeNumber()
+            + getContents()
+            + getDate()
+            + setNoticeNumber()
+            + setContents()
+            + setDate()
+            + equals()
+            # canEqual()
+            + hashCode()
+            + toString()
+            {static} + builder()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class NoticeBuilder {
+            - noticeNumber : int
+            - contents : String
+            - date : String
+            ~ NoticeBuilder()
+            + noticeNumber()
+            + contents()
+            + date()
+            + build()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class User {
+            - stdNumber : String
+            - password : String
+            - name : String
+            - email : String
+            - admin : boolean
+            + User()
+            + User()
+            + getStdNumber()
+            + getPassword()
+            + getName()
+            + getEmail()
+            + isAdmin()
+            + setStdNumber()
+            + setPassword()
+            + setName()
+            + setEmail()
+            + setAdmin()
+            + equals()
+            # canEqual()
+            + hashCode()
+            + toString()
+            {static} + builder()
+        }
+      }
+    }
+  }
+  
+
+  package  {
+    package site.namsu.sweng {
+      package site.namsu.sweng.core.entity {
+        class UserBuilder {
+            - stdNumber : String
+            - password : String
+            - name : String
+            - email : String
+            - admin : boolean
+            ~ UserBuilder()
+            + stdNumber()
+            + password()
+            + name()
+            + email()
+            + admin()
+            + build()
+            + toString()
+        }
+      }
+    }
+  }
+  
+
+  Auth -up-|> Authenticator
+  Board +-down- BoardBuilder
+  Group +-down- GroupBuilder
+  Magazine +-down- MagazineBuilder
+  Message +-down- MessageBuilder
+  Notice +-down- NoticeBuilder
+  User +-down- UserBuilder
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

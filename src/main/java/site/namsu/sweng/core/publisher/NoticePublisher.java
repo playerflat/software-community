@@ -32,8 +32,12 @@ public class NoticePublisher {
 
     @PostMapping("notice_load.do")
     public Publisher<List<Notice>> noticeLoadPublish() {
+<<<<<<< HEAD
         return Mono.background(Notice.class)
                 .map(loadService::loadAll);
+=======
+        return Mono.background(loadService.loadAll(Notice.class));
+>>>>>>> fd77a0895573647e476c1da2a7dacbe7b50d612a
     }
 
     @PostMapping("notice_check.do")

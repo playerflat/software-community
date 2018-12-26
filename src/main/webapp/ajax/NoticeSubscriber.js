@@ -63,7 +63,7 @@ function noticeWriteSubscribe() {
         let req = new XMLHttpRequest();
         req.onreadystatechange = function () {
             if (req.readyState === 4 && req.status === 200) {
-                const json = JSON.parse(this.responseText);
+                const json = JSON.rtparse(this.responseText);
                 if (json[0] === true) {
                     alert("공지가 등록되었습니다.");
                     location.href = "notice_board.jsp";
