@@ -66,7 +66,7 @@
                             location.href = "sign_in.jsp";
                         }
                     };
-                    req.open("post", "http://localhost:1234/sign_out.do");
+                    req.open("post", "http://namsu.site:9891/sign_out.do");
                     req.send(null);
                 }</script>
                 <button class="btn btn-secondary" type="button" data-dismiss="modal"> 취소</button>

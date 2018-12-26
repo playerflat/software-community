@@ -37,7 +37,7 @@
                 </button>
             </form>
             <div class="text-center">
-                <a class="d-block small mt-3" href="terms.jsp">회원가입</a>
+                <a class="d-block small mt-3" href="sign_up.jsp">회원가입</a>
                 <a class="d-block small" href="forgot_password.jsp">비밀번호 찾기</a>
             </div>
         </div>

@@ -14,7 +14,8 @@ public class StoreService {
 
     public <E> boolean storeSuccessful(E entity) {
         if (entity != null) {
-            return Dao.of(entity).insert(entity);
+            return Dao.of(entity)
+                    .insert(entity);
         } else
             return false;
     }

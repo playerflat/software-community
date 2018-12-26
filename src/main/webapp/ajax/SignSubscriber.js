@@ -19,7 +19,7 @@ function signInSubscribe() {
                 }
             }
         };
-        req.open("post", "http://localhost:1234/sign_in.do"
+        req.open("post", "http://namsu.site:9891/sign_in.do"
             + "?stdNumber="
             + encodeURIComponent(document.getElementById("stdNumber").value)
             + "&password="
@@ -57,7 +57,7 @@ function signUpSubscribe() {
                     }
                 }
             };
-            req.open("post", "http://localhost:1234/sign_up.do"
+            req.open("post", "http://namsu.site:9891/sign_up.do"
                 + "?stdNumber="
                 + encodeURIComponent(document.getElementById("stdNumber").value)
                 + "&name="

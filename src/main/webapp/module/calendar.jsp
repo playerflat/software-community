@@ -77,9 +77,7 @@
               </td>
               <td style="text-align: right">
                 <span class="btn-group">
-                  <button class="js-cal-option btn btn-default {{: mode==='year'? 'active':'' }}" data-mode="year">Year</button>
                   <button class="js-cal-option btn btn-default {{: mode==='month'? 'active':'' }}" data-mode="month">Month</button>
-                  <button class="js-cal-option btn btn-default {{: mode==='week'? 'active':'' }}" data-mode="week">Week</button>
                   <button class="js-cal-option btn btn-default {{: mode==='day'? 'active':'' }}" data-mode="day">Day</button>
                 </span>
               </td>
@@ -456,8 +454,8 @@
                     }
                 });
             })({
-                days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                days: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+                months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 date: (new Date()),
                 daycss: ["c-sunday", "", "", "", "", "", "c-saturday"],

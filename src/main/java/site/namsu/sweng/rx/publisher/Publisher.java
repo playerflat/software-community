@@ -35,6 +35,10 @@ public class Publisher<T> implements Flow.Publisher<T> {
         return new Proceeder<>(this, consumer);
     }
 
+    public Publisher<T> run(Runnable runnable) {
+        return new Runner<>(this, runnable);
+    }
+
     public <R> Publisher<Publisher<R>> flatMap(Function<T, Publisher<R>> flatMapper) {
         return new Flatter<>(this, flatMapper);
     }

@@ -43,7 +43,7 @@ function magazineLoadSubscribe() {
     };
 
     setInterval(function () {
-        req.open("post", "http://localhost:1234/magazine_load.do", true);
+        req.open("post", "http://namsu.site:9891/magazine_load.do", true);
         req.send(null);
     }, 200);
 }
@@ -69,7 +69,7 @@ function magazineWriteSubscribe() {
         const dd = today.getDate().toString();
         const mm = (today.getMonth() + 1).toString(); //January is 0!
         const yyyy = today.getFullYear().toString();
-        req.open("post", "http://localhost:1234/magazine_write.do"
+        req.open("post", "http://namsu.site:9891/magazine_write.do"
             + "?stdNumber="
             + encodeURIComponent(document.getElementById("magazine_stdNumber").value)
             + "&name="

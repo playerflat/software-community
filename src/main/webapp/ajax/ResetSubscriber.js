@@ -23,7 +23,7 @@ function forgotSubscribe() {
                 }
             }
         };
-        req.open("post", "http://localhost:1234/forgot_password.do"
+        req.open("post", "http://namsu.site:9891/forgot_password.do"
             + "?stdNumber="
             + encodeURIComponent(document.getElementById("stdNumber").value)
             + "&name="
@@ -55,7 +55,7 @@ function resetPasswordSubscribe() {
                     }
                 }
             };
-            req.open("post", "http://localhost:1234/reset_password.do"
+            req.open("post", "http://namsu.site:9891/reset_password.do"
                 + "?stdNumber="
                 + encodeURIComponent(document.getElementById("stdNumber").value)
                 + "&password="
@@ -90,7 +90,7 @@ function resetEmailSubscribe() {
         };
 
 
-        req.open("post", "http://localhost:1234/reset_email.do"
+        req.open("post", "http://namsu.site:9891/reset_email.do"
             + "?stdNumber="
             + encodeURIComponent(document.getElementById("settings_stdNumber").value)
             + "&email="

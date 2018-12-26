@@ -22,6 +22,6 @@ function groupLoadSubscribe() {
             }
         }
     };
-    req.open("post", "http://localhost:1234/group_load.do", true);
+    req.open("post", "http://namsu.site:9891/group_load.do", true);
     req.send(null);
 }

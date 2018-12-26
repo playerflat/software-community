@@ -15,11 +15,12 @@ import java.util.Vector;
  */
 
 @SuppressWarnings("unchecked")
-public class Accessor {
+public abstract class Accessor {
 
     private final String id = "root";
-    private final String pw = "gusdnd852";
-    private final String url = "jdbc:mysql://localhost:3306/mingus?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC";
+    private final String pw = "soft5ware!@#$";
+    private final String url = "jdbc:mysql://localhost:3306/mingus?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
+
 
     private List<Consumer<PreparedStatement>> params;
     private Function<ResultSet, Object> mapper;

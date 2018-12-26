@@ -37,9 +37,7 @@ public class SignPublisher {
                 .map(encodeService::encodePassword)
                 .map(checkService::isSignedOrNull)
                 .filter(Objects::nonNull)
-                .next(db -> sessionService.store("stdNumber", db.getStdNumber()))
-                .next(db -> sessionService.store("name", db.getName()))
-                .next(db -> sessionService.store("email", db.getEmail()));
+                .next(sessionService::signInStore);
     }
 
     @PostMapping("sign_up.do")
@@ -52,7 +50,7 @@ public class SignPublisher {
     @PostMapping("sign_out.do")
     public Flow.Publisher signUpPublish() {
         return Empty.main()
-                .next(empty -> sessionService.invalidate());
+                .run(sessionService::invalidate);
     }
 }
 
