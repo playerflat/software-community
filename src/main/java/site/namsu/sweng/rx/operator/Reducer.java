@@ -1,9 +1,9 @@
 package site.namsu.sweng.rx.operator;
 
+import site.namsu.sweng.rx.function.BiFunction;
 import site.namsu.sweng.rx.publisher.Publisher;
 
 import java.util.concurrent.Flow;
-import site.namsu.sweng.rx.function.BiFunction;
 
 /**
  * @Author : Hyunwoong
@@ -12,18 +12,18 @@ import site.namsu.sweng.rx.function.BiFunction;
  */
 public class Reducer<T, R> extends Publisher<R> {
 
-    private final Publisher<T> flux;
+    private final Publisher<T> publisher;
     private final BiFunction<R, T, R> biFunction;
     private R temp;
 
-    public Reducer(Publisher<T> flux, R init, BiFunction<R, T, R> biFunction) {
-        this.flux = flux;
+    public Reducer(Publisher<T> publisher, R init, BiFunction<R, T, R> biFunction) {
+        this.publisher = publisher;
         this.biFunction = biFunction;
         this.temp = init;
     }
 
     @Override public void subscribe(Flow.Subscriber<? super R> subscriber) {
-        flux.subscribe(new Flow.Subscriber<>() {
+        publisher.subscribe(new Flow.Subscriber<>() {
 
             @Override public void onSubscribe(Flow.Subscription subscription) {
                 subscriber.onSubscribe(subscription);
@@ -42,7 +42,7 @@ public class Reducer<T, R> extends Publisher<R> {
             }
 
             @Override public void onComplete() {
-                  subscriber.onNext(temp);
+                subscriber.onNext(temp);
                 subscriber.onComplete();
             }
         });

@@ -24,13 +24,13 @@ import java.util.concurrent.Flow;
 @AllArgsConstructor
 public class MagazinePublisher {
 
-    private LoadService readService;
+    private LoadService loadService;
     private StoreService storeService;
 
     @PostMapping("magazine_load.do")
     public Publisher<List<Magazine>> magazineLoadPublish() {
         return Mono.background(Magazine.class)
-                .map(readService::loadAll);
+                .map(loadService::loadAll);
     }
 
     @PostMapping("magazine_write.do")

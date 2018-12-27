@@ -13,16 +13,16 @@ import site.namsu.sweng.rx.function.Consumer;
  */
 @SuppressWarnings("unchecked")
 public class Proceeder<T> extends Publisher<T> {
-    private Publisher<T> flux;
+    private Publisher<T> publisher;
     private Consumer<T> consumer;
 
-    public Proceeder(Publisher<T> flux, Consumer<T> consumer) {
-        this.flux = flux;
+    public Proceeder(Publisher<T> publisher, Consumer<T> consumer) {
+        this.publisher = publisher;
         this.consumer = consumer;
     }
 
     @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-        flux.subscribe(new Flow.Subscriber<>() {
+        publisher.subscribe(new Flow.Subscriber<>() {
             @Override public void onSubscribe(Flow.Subscription subscription) {
                 subscriber.onSubscribe(subscription);
             }

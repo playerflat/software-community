@@ -1,10 +1,9 @@
 package site.namsu.sweng.rx.operator;
 
+import site.namsu.sweng.rx.function.Predicate;
 import site.namsu.sweng.rx.publisher.Publisher;
 
 import java.util.concurrent.Flow;
-
-import site.namsu.sweng.rx.function.Predicate;
 
 /**
  * @Author : Hyunwoong
@@ -15,15 +14,15 @@ import site.namsu.sweng.rx.function.Predicate;
 public class Filter<T> extends Publisher<T> {
 
     private final Predicate<T> predicate;
-    private final Publisher<T> flux;
+    private final Publisher<T> publisher;
 
-    public Filter(Publisher<T> flux, Predicate<T> predicate) {
-        this.flux = flux;
+    public Filter(Publisher<T> publisher, Predicate<T> predicate) {
+        this.publisher = publisher;
         this.predicate = predicate;
     }
 
     @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-        flux.subscribe(new Flow.Subscriber<>() {
+        publisher.subscribe(new Flow.Subscriber<>() {
             @Override public void onSubscribe(Flow.Subscription subscription) {
                 subscriber.onSubscribe(subscription);
             }
@@ -33,7 +32,7 @@ public class Filter<T> extends Publisher<T> {
                     if (predicate.test(item)) {
                         subscriber.onNext(item);
                     } else {
-                         subscriber.onComplete();
+                        subscriber.onComplete();
                     }
                 } catch (Exception e) {
                     subscriber.onError(e);

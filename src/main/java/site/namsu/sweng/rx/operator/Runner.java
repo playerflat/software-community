@@ -10,16 +10,16 @@ import java.util.concurrent.Flow;
  * @Homepage : https://github.com/gusdnd852
  */
 public class Runner<T> extends Publisher<T> {
-    private Publisher<T> flux;
+    private Publisher<T> publisher;
     private Runnable runnable;
 
-    public Runner(Publisher<T> flux, Runnable runnable) {
-        this.flux = flux;
+    public Runner(Publisher<T> publisher, Runnable runnable) {
+        this.publisher = publisher;
         this.runnable = runnable;
     }
 
     @Override public void subscribe(Flow.Subscriber<? super T> subscriber) {
-        flux.subscribe(new Flow.Subscriber<>() {
+        publisher.subscribe(new Flow.Subscriber<>() {
             @Override public void onSubscribe(Flow.Subscription subscription) {
                 subscriber.onSubscribe(subscription);
             }

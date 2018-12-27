@@ -48,7 +48,7 @@ public class SignPublisher {
     }
 
     @PostMapping("sign_out.do")
-    public Flow.Publisher signUpPublish() {
+    public Flow.Publisher signOutPublish() {
         return Empty.main()
                 .run(sessionService::invalidate);
     }
